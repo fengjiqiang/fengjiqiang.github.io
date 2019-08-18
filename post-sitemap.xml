@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/git_use/</loc>
+        <lastmod>2019-08-18T10:55:57.019Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/test/</loc>
         <lastmod>2019-08-17T08:45:17.783Z</lastmod>
         <changefreq>weekly</changefreq>
