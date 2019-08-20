@@ -7,24 +7,16 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/ziduanpaixu/</loc>
+        <lastmod>2019-08-20T11:19:52.815Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/xml-add-jilu/</loc>
-        <lastmod>2019-08-20T09:57:21.076Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/add-business-logic/</loc>
-        <lastmod>2019-08-20T08:31:16.796Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/buttonshixian/</loc>
-        <lastmod>2019-08-20T07:15:06.120Z</lastmod>
+        <lastmod>2019-08-20T11:19:52.768Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,15 +24,23 @@
 
     <url>
         <loc>http://yoursite.com/article/morenshaixuan/</loc>
-        <lastmod>2019-08-19T14:00:00.556Z</lastmod>
+        <lastmod>2019-08-20T11:16:21.212Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/ziduanpaixu/</loc>
-        <lastmod>2019-08-19T13:59:00.615Z</lastmod>
+        <loc>http://yoursite.com/article/buttonshixian/</loc>
+        <lastmod>2019-08-20T11:15:54.240Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/add-business-logic/</loc>
+        <lastmod>2019-08-20T11:15:35.925Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
