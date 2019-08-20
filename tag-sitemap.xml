@@ -3,7 +3,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/hello/</loc>
-        <lastmod>2019-08-20T11:34:41.759Z</lastmod>
+        <lastmod>2019-08-20T11:39:50.598Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/odoo/</loc>
+        <lastmod>2019-08-20T11:41:39.131Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
