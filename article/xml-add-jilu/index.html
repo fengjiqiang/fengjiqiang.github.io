@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          windows10安装docker - Ethan | Blog
+          Odoo开发在XML里定义记录 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/docker-install/">
+    <link rel="canonical" href="http://yoursite.com/article/xml-add-jilu/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,11 +89,11 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>windows10安装docker</h1>
+                        <h1>Odoo开发在XML里定义记录</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-18
+                            2019-08-20
                         </span>
                     </div>
                 
@@ -210,41 +210,42 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="下载docker">下载docker</h1>
-<ul>
-<li><a href="https://www.docker.com/" target="_blank" rel="noopener">docker官网</a>，不过国内从官网下载较慢。</li>
-<li>可以在<a href="https://oomake.com/download/docker-windows" target="_blank" rel="noopener">这里</a>下载需要的版本。</li>
-<li>也可以从百度云下载，<a href="https://pan.baidu.com/share/init?surl=BAeN1RWoUWWoM_rd7HtmqQ" target="_blank" rel="noopener">点击下载</a>，提取码: v8k8</li>
-</ul>
-<h1 id="安装docker">安装docker</h1>
-<ul>
-<li>windows10安装docker，首先需要启用Hyper-v。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819084845.png" alt="Hyper-v"></li>
-<li>先安装git，然后安装docker。安装过程简单</li>
-</ul>
-<h1 id="配置docker">配置docker</h1>
-<ul>
-<li>安装完成后，电脑右下角出现一个小鲸鱼图标，右键选择settings进行配置。最好先关闭防火墙，然后进行配置。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085023.png" alt="shared drivers"><br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085049.png" alt="general"></li>
-<li>docker在拉取镜像时会从国外的源进行拉取，速度较慢，我们可以将docker的源设置为阿里或者中科大的源，这样下载速度较快。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085115.png" alt="mirrors"></li>
-<li>配置完成docker之后应用然后关闭就可以了。</li>
-</ul>
-
+                <h1 id="使用表达式设置值">使用表达式设置值</h1>
+<p>定义字段值的更精细的替代方法是eval属性。 它评估一个Python表达式并将结果值分配给字段。</p>
+<p>该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。</p>
+<p>要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。<br>
+例如，要将值设置为昨天，我们将使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;date_deadline&quot;</span><br><span class="line"> eval=&quot;(datetime.now() + timedelta(-1)).strftime(&apos;%Y-%m-%d&apos;)&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>我们以前使用过它来设置user_id的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;user_id&quot; eval=&quot;ref(&apos;base.group_user&apos;)&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="设置字段值的关系">设置字段值的关系</h1>
+<p>上一节了解了如何使用eval属性和ref（）函数在多对一关系字段（如user_id）上设置值。 但是有一个更简单的方法。</p>
+<p><field>元素还有一个ref属性，用于使用外部标识符设置many2one字段的值。 有了这个，我们可以设置user_id的值：</field></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;user_id&quot; ref=&quot;base.user_demo&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>对于一对多和多对多字段，需要相关ID的列表，因此需要不同的语法; Odoo提供了一种特殊的语法来写这种类型的字段。</p>
+<p>以下示例取自Fleet官方应用程序，替换了tag_ids字段的相关记录列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;tag_ids&quot;  </span><br><span class="line">  eval=&quot;[(6,0,</span><br><span class="line">    [ref(&apos;vehicle_tag_leasing&apos;),   </span><br><span class="line">    ref(&apos;fleet.vehicle_tag_compact&apos;),   </span><br><span class="line">    ref(&apos;fleet.vehicle_tag_senior&apos;)]  </span><br><span class="line">  )]&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>要在一对多字段上写，我们使用三元组列表。 每个三元组是一个写命令，根据所使用的代码执行不同的事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(0,_ ,&#123;&apos;field&apos;: value&#125;) 创建一个新记录并将其链接到此记录</span><br><span class="line">(1,id,&#123;&apos;field&apos;: value&#125;) 更新已链接记录上的值</span><br><span class="line">(2,id,_) 取消链接并删除相关记录</span><br><span class="line">(3,id,_) 取消链接但不删除相关记录</span><br><span class="line">(4,id,_) 链接已存在的记录</span><br><span class="line">(5,_,_) 取消链接，但不会删除所有链接的记录</span><br><span class="line">(6,_,[ids]) 使用提供的列表替换链接记录的列表</span><br></pre></td></tr></table></figure>
+<p>前面列表中使用的下划线符号表示不相关的值，通常填充为0或False</p>
+<h1 id="常用模型的快捷键">常用模型的快捷键</h1>
+<p>在xml文件中除了<record>的元素，还有如act_window &gt;和<menuitem>元素。<br>
+作为参考，下列快捷元素可与他们加载数据的相应模型一起使用：</menuitem></record></p>
+<p>&lt;act_window&gt;是窗口操作模型,ir.actions.act_window</p>
+<menuitem>是菜单项模型,ir.ui.menu
+<p><report>是报告行动模型,ir.actions.report.xml</report></p>
+<p><template>是存储在ir.ui.view 模型的QWeb模板</template></p>
+<p><url> 是统一资源定位行为模型，ir.actions.act_URL</url></p>
+</menuitem>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/morenshaixuan/" data-toggle="tooltip" data-placement="top" title="odoo实现默认筛选(search view)">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/git_use/" data-toggle="tooltip" data-placement="top" title="使用git命令行提交代码至GitHub">Next Post &rarr;</a>
+                            <a href="/article/add-business-logic/" data-toggle="tooltip" data-placement="top" title="Odoo开发添加业务逻辑">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -300,7 +301,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#下载docker"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E0B;&#x8F7D;docker</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#安装docker"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;docker</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#配置docker"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x914D;&#x7F6E;docker</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#使用表达式设置值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8868;&#x8FBE;&#x5F0F;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#设置字段值的关系"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;&#x5B57;&#x6BB5;&#x503C;&#x7684;&#x5173;&#x7CFB;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#常用模型的快捷键"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5E38;&#x7528;&#x6A21;&#x578B;&#x7684;&#x5FEB;&#x6377;&#x952E;</span></a></li></ol>
         
         </div>
       </aside>

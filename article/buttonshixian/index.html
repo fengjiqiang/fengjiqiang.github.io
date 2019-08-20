@@ -140,14 +140,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -212,11 +212,11 @@
 
                 <h1 id="button实现跳转">button实现跳转</h1>
 <ul>
-<li>方法一 type=“action” name里面是action的id，用%和d括起来。</li>
+<li>方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;record id=&quot;view_volunteer_plan_form&quot; model=&quot;ir.ui.view&quot;&gt;</span><br><span class="line">    &lt;field name=&quot;name&quot;&gt;volunteer.plan.form&lt;/field&gt;</span><br><span class="line">    &lt;field name=&quot;model&quot;&gt;volunteer.plan&lt;/field&gt;</span><br><span class="line">    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;</span><br><span class="line">        &lt;form&gt;</span><br><span class="line">            &lt;header&gt;</span><br><span class="line">                &lt;button string=&quot;Generate Task&quot; type=&quot;action&quot; name=&quot;%(action_volunteer_generate_task)d&quot;</span><br><span class="line">                        class=&quot;oe_highlight&quot; context=&quot;&#123;&apos;default_plan_id&apos;: id&#125;&quot;/&gt;</span><br><span class="line">            &lt;/header&gt;</span><br><span class="line">            &lt;sheet&gt;</span><br><span class="line">                &lt;group&gt;</span><br><span class="line">                    &lt;field name=&quot;name&quot; placeholder=&quot;输入任务模板名称&quot;/&gt;</span><br><span class="line">                    &lt;field name=&quot;type&quot;/&gt;</span><br><span class="line">                &lt;/group&gt;</span><br><span class="line">                &lt;notebook&gt;</span><br><span class="line">                    &lt;page string=&quot;任务信息&quot;&gt;</span><br><span class="line">                        &lt;field name=&quot;task_plan_ids&quot;&gt;</span><br><span class="line">                        &lt;/field&gt;</span><br><span class="line">                    &lt;/page&gt;</span><br><span class="line">                &lt;/notebook&gt;</span><br><span class="line">            &lt;/sheet&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/field&gt;</span><br><span class="line">&lt;/record&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>方法二 type=“object” name里面是函数名。</li>
+<li>方法二 type=“object” 激活一个自定义python函数，name里面是函数名。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer&gt;</span><br><span class="line">    &lt;button name=&apos;action_merge&apos; string=&apos;Merge Contacts&apos;</span><br><span class="line">        class=&apos;oe_highlight&apos;</span><br><span class="line">        type=&apos;object&apos;</span><br><span class="line">        attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;in&apos;, (&apos;option&apos;, &apos;finished&apos; ))]&#125;&quot; /&gt;</span><br><span class="line">    &lt;button name=&apos;action_skip&apos; string=&apos;Skip these contacts&apos;</span><br><span class="line">        type=&apos;object&apos;</span><br><span class="line">        attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;!=&apos;, &apos;selection&apos;)]&#125;&quot; /&gt;</span><br><span class="line">    &lt;button name=&apos;action_start_manual_process&apos;</span><br><span class="line">        string=&apos;Merge with Manual Check&apos;</span><br><span class="line">        type=&apos;object&apos;  class=&apos;oe_highlight&apos;</span><br><span class="line">        attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;!=&apos;, &apos;option&apos;)]&#125;&quot; /&gt;</span><br><span class="line">    &lt;button name=&apos;action_start_automatic_process&apos;</span><br><span class="line">        string=&apos;Merge Automatically&apos;</span><br><span class="line">        type=&apos;object&apos; class=&apos;oe_highlight&apos;</span><br><span class="line">        confirm=&quot;Are you sure to execute the automatic merge of your contacts ?&quot;</span><br><span class="line">        attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;!=&apos;, &apos;option&apos;)]&#125;&quot; /&gt;</span><br><span class="line">    &lt;button name=&apos;action_update_all_process&apos;</span><br><span class="line">        string=&apos;Merge Automatically all process&apos;</span><br><span class="line">        type=&apos;object&apos;</span><br><span class="line">        confirm=&quot;Are you sure to execute the list of automatic merges of your contacts ?&quot;</span><br><span class="line">        attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;!=&apos;, &apos;option&apos;)]&#125;&quot; /&gt;</span><br><span class="line">    &lt;button special=&quot;cancel&quot; string=&quot;Cancel&quot; type=&quot;object&quot; class=&quot;btn btn-secondary oe_inline&quot; attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;=&apos;, &apos;finished&apos;)]&#125;&quot;/&gt;</span><br><span class="line">    &lt;button special=&quot;cancel&quot; string=&quot;Close&quot; type=&quot;object&quot; class=&quot;btn btn-secondary oe_inline&quot; attrs=&quot;&#123;&apos;invisible&apos;: [(&apos;state&apos;, &apos;!=&apos;, &apos;finished&apos;)]&#125;&quot;/&gt;</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
 
@@ -225,6 +225,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/add-business-logic/" data-toggle="tooltip" data-placement="top" title="Odoo开发添加业务逻辑">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
