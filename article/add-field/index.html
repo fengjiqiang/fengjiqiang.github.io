@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo开发在XML里定义记录 - Ethan | Blog
+          odoo开发向模型中添加字段 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/xml-add-jilu/">
+    <link rel="canonical" href="http://yoursite.com/article/add-field/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo开发在XML里定义记录</h1>
+                        <h1>odoo开发向模型中添加字段</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-20
+                            2019-08-21
                         </span>
                     </div>
                 
@@ -212,46 +212,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="使用表达式设置值">使用表达式设置值</h1>
-<p>定义字段值的更精细的替代方法是eval属性。 它评估一个Python表达式并将结果值分配给字段。</p>
-<p>该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。</p>
-<p>要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。<br>
-例如，要将值设置为昨天，我们将使用：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"date_deadline"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">eval</span>=<span class="string">"(datetime.now() + timedelta(-1)).strftime('%Y-%m-%d')"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们以前使用过它来设置user_id的值：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"user_id"</span> <span class="attr">eval</span>=<span class="string">"ref('base.group_user')"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="设置字段值的关系">设置字段值的关系</h1>
-<p>上一节了解了如何使用eval属性和ref（）函数在多对一关系字段（如user_id）上设置值。 但是有一个更简单的方法。</p>
-<p><field>元素还有一个ref属性，用于使用外部标识符设置many2one字段的值。 有了这个，我们可以设置user_id的值：</field></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"user_id"</span> <span class="attr">ref</span>=<span class="string">"base.user_demo"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>对于一对多和多对多字段，需要相关ID的列表，因此需要不同的语法; Odoo提供了一种特殊的语法来写这种类型的字段。</p>
-<p>以下示例取自Fleet官方应用程序，替换了tag_ids字段的相关记录列表：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"tag_ids"</span>  </span></span><br><span class="line"><span class="tag">  <span class="attr">eval</span>=<span class="string">"[(6,0,</span></span></span><br><span class="line"><span class="tag"><span class="string">    [ref('vehicle_tag_leasing'),   </span></span></span><br><span class="line"><span class="tag"><span class="string">    ref('fleet.vehicle_tag_compact'),   </span></span></span><br><span class="line"><span class="tag"><span class="string">    ref('fleet.vehicle_tag_senior')]  </span></span></span><br><span class="line"><span class="tag"><span class="string">  )]"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>要在一对多字段上写，我们使用三元组列表。 每个三元组是一个写命令，根据所使用的代码执行不同的事情：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(0,_ ,&#123;&apos;field&apos;: value&#125;) 创建一个新记录并将其链接到此记录</span><br><span class="line">(1,id,&#123;&apos;field&apos;: value&#125;) 更新已链接记录上的值</span><br><span class="line">(2,id,_) 取消链接并删除相关记录</span><br><span class="line">(3,id,_) 取消链接但不删除相关记录</span><br><span class="line">(4,id,_) 链接已存在的记录</span><br><span class="line">(5,_,_) 取消链接，但不会删除所有链接的记录</span><br><span class="line">(6,_,[ids]) 使用提供的列表替换链接记录的列表</span><br></pre></td></tr></table></figure>
-<p>前面列表中使用的下划线符号表示不相关的值，通常填充为0或False</p>
-<h1 id="常用模型的快捷键">常用模型的快捷键</h1>
-<p>在xml文件中除了<record>的元素，还有如act_window &gt;和<menuitem>元素。<br>
-作为参考，下列快捷元素可与他们加载数据的相应模型一起使用：</menuitem></record></p>
-<p>&lt;act_window&gt;是窗口操作模型,ir.actions.act_window</p>
-<menuitem>是菜单项模型,ir.ui.menu
-<p><report>是报告行动模型,ir.actions.report.xml</report></p>
-<p><template>是存储在ir.ui.view 模型的QWeb模板</template></p>
-<p><url> 是统一资源定位行为模型，ir.actions.act_URL</url></p>
-</menuitem>
+                <h1 id="向模型中添加字段">向模型中添加字段</h1>
+<ul>
+<li>我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。<br>
+在model文件夹下面创建一个文件名称为instructor.py文件（即创建training_academy/models/instructor.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> api, fields, models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instructor</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    _inherit = <span class="string">'academy.partner'</span></span><br><span class="line">    _description = <span class="string">'教师'</span></span><br><span class="line"></span><br><span class="line">    instructor = fields.Boolean(string=<span class="string">"讲师"</span>)</span><br></pre></td></tr></table></figure>
+<p>类的属性_inherit是关键字：它告诉Odoo，这个类是从类名为academy.partner类继承。<br>
+注意这里不再需要_name属性。因为这个属性已经从父模型（类）继承下来。<br>
+接下来的一行是常规字段声明。</p>
+<ul>
+<li>接下来在model文件夹里面还需要创建一个__init__.py文件，代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> instructor</span><br></pre></td></tr></table></figure>
+<p>至此，就可以执行模块升级操作了，如果上面的代码都没有写错并且模块升级成功的话，我们可以通过进入菜单Setting|Technical|Database Structure|Models，并在搜索栏里面搜索academy.partner查看类的细节，在Field Name中可以看到刚才添加的instructor属性。</p>
+
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="odoo开发向模型中添加字段">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/add-business-logic/" data-toggle="tooltip" data-placement="top" title="odoo开发添加业务逻辑">Next Post &rarr;</a>
+                            <a href="/article/xml-add-jilu/" data-toggle="tooltip" data-placement="top" title="odoo开发在XML里定义记录">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -296,12 +280,18 @@
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#使用表达式设置值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8868;&#x8FBE;&#x5F0F;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#设置字段值的关系"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;&#x5B57;&#x6BB5;&#x503C;&#x7684;&#x5173;&#x7CFB;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#常用模型的快捷键"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5E38;&#x7528;&#x6A21;&#x578B;&#x7684;&#x5FEB;&#x6377;&#x952E;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#向模型中添加字段"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5411;&#x6A21;&#x578B;&#x4E2D;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li></ol>
         
         </div>
       </aside>

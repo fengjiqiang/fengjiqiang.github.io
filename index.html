@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -211,7 +211,7 @@
 
 <div class="post-preview">
 
-    <a href="/article/add-business-logic/">
+    <a href="/article/add-field/">
         <h2 class="post-title">
             
                 <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
@@ -221,24 +221,24 @@
                 <!-- <font color=#F89E8C>置顶</font>  -->
                 <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            odoo开发添加业务逻辑
+            odoo开发向模型中添加字段
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            添加业务逻辑
+            向模型中添加字段
 
-对于记录上的逻辑，使用@api.multi装饰器。 这里，self将表示一个记录集，然后我们应该遍历每个记录。
+我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。
+在model文件夹下面创建一个文件名称为instructor.py文件（即创建training_academy/models/instructor.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：
 
-12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
-代码循环遍历所有待完成的任务记......
+12345678910# -*- ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Ethan on
-            2019-08-20
+            2019-08-21
         </p>
         <div class="tags">
             
@@ -292,6 +292,46 @@
 
 <div class="post-preview">
 
+    <a href="/article/morenshaixuan/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            odoo实现默认筛选(search view)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            筛选视图
+
+使用search实现筛选
+
+12345678910111213141516&lt;record id="view_volunteer_task_search" model="ir.ui.view"&gt;    &lt;field name="model"&gt;volunteer.task&lt;/field&gt;    &lt;field name="arch" type=......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/xml-add-jilu/">
         <h2 class="post-title">
                                  
@@ -326,25 +366,27 @@
 
 <div class="post-preview">
 
-    <a href="/article/ziduanpaixu/">
+    <a href="/article/add-business-logic/">
         <h2 class="post-title">
                                  
-            odoo实现字段排序
+            odoo开发添加业务逻辑
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-在tree视图中实现字段排序 使用default_order
+            添加业务逻辑
 
-123456789101112131415161718&lt;record id="view_volunteer_task_tree" model="ir.ui.view"&gt;    &lt;field name="name"&gt;volunteer.task.tree&lt;/field&gt;    &lt;fiel......
+对于记录上的逻辑，使用@api.multi装饰器。 这里，self将表示一个记录集，然后我们应该遍历每个记录。
+
+12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
+代码循环遍历所有待完成的任务记......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Ethan on
-            2019-08-19
+            2019-08-20
         </p>
         <div class="tags">
             
@@ -358,20 +400,19 @@
 
 <div class="post-preview">
 
-    <a href="/article/morenshaixuan/">
+    <a href="/article/ziduanpaixu/">
         <h2 class="post-title">
                                  
-            odoo实现默认筛选(search view)
+            odoo实现字段排序
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            筛选视图
+            
+在tree视图中实现字段排序 使用default_order
 
-使用search实现筛选
-
-12345678910111213141516&lt;record id="view_volunteer_task_search" model="ir.ui.view"&gt;    &lt;field name="model"&gt;volunteer.task&lt;/field&gt;    &lt;field name="arch" type=......
+123456789101112131415161718&lt;record id="view_volunteer_task_tree" model="ir.ui.view"&gt;    &lt;field name="name"&gt;volunteer.task.tree&lt;/field&gt;    &lt;fiel......
         </div>
     </a>
     
@@ -535,11 +576,11 @@ Hello World
     <div class="tags">
         
             
-            <a href="/tags/#hello" title="hello" rel="1">hello</a>
+            <a href="/tags/#odoo" title="odoo" rel="6">odoo</a>
             
         
             
-            <a href="/tags/#odoo" title="odoo" rel="5">odoo</a>
+            <a href="/tags/#hello" title="hello" rel="1">hello</a>
             
         
     </div>
@@ -595,6 +636,10 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/add-field/">odoo开发向模型中添加字段</a>
+        </li>
+      
+        <li>
           <a href="/article/xml-add-jilu/">odoo开发在XML里定义记录</a>
         </li>
       
@@ -608,10 +653,6 @@ Hello World
       
         <li>
           <a href="/article/ziduanpaixu/">odoo实现字段排序</a>
-        </li>
-      
-        <li>
-          <a href="/article/morenshaixuan/">odoo实现默认筛选(search view)</a>
         </li>
       
     </ul>
@@ -634,7 +675,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
