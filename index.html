@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,6 +211,48 @@
 
 <div class="post-preview">
 
+    <a href="/article/ViewInheritNotice/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            odoo视图继承注意的点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            授权继承的视图继承
+模型继承时，使用授权继承方式，即应用这样的代码：
+1book_id = fields.Many2one('training.book', string="书籍", delegate=True)
+或
+1_inherits = &#123;'training.book': 'book_id'&#125;
+在写Form视图继承时，容易忽略的一点是在代码中加入一句：
+1&lt;f......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/ViewInheritance/">
         <h2 class="post-title">
             
@@ -254,13 +296,6 @@
 
     <a href="/article/add-field/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
             odoo开发向模型中添加字段
         </h2>
@@ -280,86 +315,6 @@
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Ethan on
             2019-08-21
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/buttonshixian/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            odoo实现按钮(button)跳转
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            button实现跳转
-
-方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。
-
-123456789101112131415161718192021222324&lt;record id="view_volunteer_plan_form" model="ir.ui.view"&gt;    &lt;fi......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/morenshaixuan/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            odoo实现默认筛选(search view)
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            筛选视图
-
-使用search实现筛选
-
-12345678910111213141516&lt;record id="view_volunteer_task_search" model="ir.ui.view"&gt;    &lt;field name="model"&gt;volunteer.task&lt;/field&gt;    &lt;field name="arch" type=......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-19
         </p>
         <div class="tags">
             
@@ -441,6 +396,39 @@
 
 <div class="post-preview">
 
+    <a href="/article/buttonshixian/">
+        <h2 class="post-title">
+                                 
+            odoo实现按钮(button)跳转
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            button实现跳转
+
+方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。
+
+123456789101112131415161718192021222324&lt;record id="view_volunteer_plan_form" model="ir.ui.view"&gt;    &lt;fi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/ziduanpaixu/">
         <h2 class="post-title">
                                  
@@ -454,6 +442,39 @@
 在tree视图中实现字段排序 使用default_order
 
 123456789101112131415161718&lt;record id="view_volunteer_task_tree" model="ir.ui.view"&gt;    &lt;field name="name"&gt;volunteer.task.tree&lt;/field&gt;    &lt;fiel......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/morenshaixuan/">
+        <h2 class="post-title">
+                                 
+            odoo实现默认筛选(search view)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            筛选视图
+
+使用search实现筛选
+
+12345678910111213141516&lt;record id="view_volunteer_task_search" model="ir.ui.view"&gt;    &lt;field name="model"&gt;volunteer.task&lt;/field&gt;    &lt;field name="arch" type=......
         </div>
     </a>
     
@@ -549,43 +570,16 @@ git push
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/test/">
-        <h2 class="post-title">
-                                 
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Hello World
-Hello World
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2018-07-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hello" title="hello">hello</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
 
 <ul class="pager">
     
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -617,7 +611,7 @@ Hello World
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="7">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="8">odoo</a>
             
         
             
@@ -677,6 +671,10 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/ViewInheritNotice/">odoo视图继承注意的点</a>
+        </li>
+      
+        <li>
           <a href="/article/ViewInheritance/">odoo开发视图继承</a>
         </li>
       
@@ -690,10 +688,6 @@ Hello World
       
         <li>
           <a href="/article/add-business-logic/">odoo开发添加业务逻辑</a>
-        </li>
-      
-        <li>
-          <a href="/article/buttonshixian/">odoo实现按钮(button)跳转</a>
         </li>
       
     </ul>
@@ -716,7 +710,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

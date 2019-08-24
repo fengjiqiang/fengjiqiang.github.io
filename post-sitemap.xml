@@ -7,16 +7,24 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/ViewInheritance/</loc>
-        <lastmod>2019-08-24T02:48:13.970Z</lastmod>
+        <loc>http://yoursite.com/article/add-field/</loc>
+        <lastmod>2019-08-24T04:26:42.840Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/add-field/</loc>
-        <lastmod>2019-08-21T12:13:15.355Z</lastmod>
+        <loc>http://yoursite.com/article/ViewInheritance/</loc>
+        <lastmod>2019-08-24T04:26:11.496Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/buttonshixian/</loc>
+        <lastmod>2019-08-24T04:26:11.458Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -24,7 +32,15 @@
 
     <url>
         <loc>http://yoursite.com/article/morenshaixuan/</loc>
-        <lastmod>2019-08-20T11:57:04.390Z</lastmod>
+        <lastmod>2019-08-24T04:26:11.410Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
+        <lastmod>2019-08-24T04:25:11.811Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -49,14 +65,6 @@
     <url>
         <loc>http://yoursite.com/article/xml-add-jilu/</loc>
         <lastmod>2019-08-20T11:43:46.647Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/buttonshixian/</loc>
-        <lastmod>2019-08-20T11:43:46.581Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
