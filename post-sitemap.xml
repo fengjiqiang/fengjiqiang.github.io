@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/tec0827/</loc>
+        <lastmod>2019-08-27T13:24:04.281Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/add-field/</loc>
         <lastmod>2019-08-24T04:26:42.840Z</lastmod>
         <changefreq>weekly</changefreq>

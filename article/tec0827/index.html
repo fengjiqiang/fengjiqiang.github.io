@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo视图继承注意的点 - Ethan | Blog
+          技术分享会0827 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/ViewInheritNotice/">
+    <link rel="canonical" href="http://yoursite.com/article/tec0827/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo视图继承注意的点</h1>
+                        <h1>技术分享会0827</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-24
+                            2019-08-27
                         </span>
                     </div>
                 
@@ -212,30 +212,36 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="授权继承的视图继承">授权继承的视图继承</h2>
-<p>模型继承时，使用授权继承方式，即应用这样的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book_id = fields.Many2one(<span class="string">'training.book'</span>, string=<span class="string">"书籍"</span>, delegate=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_inherits = &#123;<span class="string">'training.book'</span>: <span class="string">'book_id'</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>在写Form视图继承时，容易忽略的一点是在代码中加入一句：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这样在Form视图中才可以正常显示。<br>
-官方解释：</p>
+                <h1 id="技术分享">技术分享</h1>
+<ol>
+<li>bug解决<br>
+<img src="/article/tec0827/img/TIM%E5%9B%BE%E7%89%8720190827173734.png" alt="bug">
 <ul>
-<li>View matching
+<li>readonly字段无法自动保存，可以加一个属性<br>
+<img src="/article/tec0827/img/TIM%E5%9B%BE%E7%89%8720190827210741.png" alt="bug"></li>
+<li>必填字段没写</li>
+</ul>
+</li>
+<li>特殊字段active设置为False后，前端页面不会显示，在视图中传一个上下文就会显示出来。</li>
+<li>上下文的用法
 <ul>
-<li>if a view is requested by (model, type), the view with the right model and type, mode=primary and the lowest priority is matched</li>
-<li>when a view is requested by id, if its mode is not primary its closest parent with mode primary is matched</li>
+<li>
+<p>实现给默认值赋值</p>
+<ul>
+<li>xml文件<br>
+<img src="/article/tec0827/img/TIM%E5%9B%BE%E7%89%8720190827210725.png" alt="bug"></li>
+</ul>
+ <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context=<span class="string">"&#123;'default_lesson_id': id, 'default_subject_id': subject_id&#125;"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>py文件<br>
+default_get方法 / parent</li>
 </ul>
 </li>
 </ul>
-<h2 id="视图继承中positionmove的用法">视图继承中position='move’的用法</h2>
-<p>直接贴代码：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_training_book_copy_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>training.book.copy.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"view_training_book_form"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"reference"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_rented"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='ISBN']"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"year"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>year字段定义在view_training_book_form视图中，通过position='move’可以将移动到ISBN字段后面，即可以自定义位置。<br>
-官方解释：<br>
-the position move can be used as a direct child of a spec with a inside, replace, after or before position attribute to move a node.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//@target"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//@node"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"target_field"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"my_field"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>总结<br>
+<img src="/article/tec0827/img/TIM%E5%9B%BE%E7%89%8720190827210725.png" alt="bug"></li>
+</ol>
 
                 
 
@@ -243,13 +249,9 @@ the position move can be used as a direct child of a spec with a inside, replace
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/tec0827/" data-toggle="tooltip" data-placement="top" title="技术分享会0827">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/ViewInheritance/" data-toggle="tooltip" data-placement="top" title="odoo开发视图继承">Next Post &rarr;</a>
+                            <a href="/article/ViewInheritNotice/" data-toggle="tooltip" data-placement="top" title="odoo视图继承注意的点">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -299,7 +301,7 @@ the position move can be used as a direct child of a spec with a inside, replace
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#授权继承的视图继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6388;&#x6743;&#x7EE7;&#x627F;&#x7684;&#x89C6;&#x56FE;&#x7EE7;&#x627F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#视图继承中positionmove的用法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x89C6;&#x56FE;&#x7EE7;&#x627F;&#x4E2D;position=&apos;move&#x2019;&#x7684;&#x7528;&#x6CD5;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#技术分享"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6280;&#x672F;&#x5206;&#x4EAB;</span></a></li></ol>
         
         </div>
       </aside>
