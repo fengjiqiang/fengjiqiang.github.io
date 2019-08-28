@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo开发视图继承 - Ethan | Blog
+          odoo开发消息通知 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/ViewInheritance/">
+    <link rel="canonical" href="http://yoursite.com/article/notification/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo开发视图继承</h1>
+                        <h1>odoo开发消息通知</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-24
+                            2019-08-28
                         </span>
                     </div>
                 
@@ -212,30 +212,32 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="视图继承">视图继承</h1>
-<p>在odoo界面中，表单，列表和搜索视图是使用arch XML结构定义的。如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。 这需要通过两步来实现。<br>
-1、定位到视图XML中某个界面元素的位置；<br>
-2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。<br>
-继承视图正可以实现这个功能。一个继承视图声明如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_training_book_copy_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>training.book.copy.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"view_training_book_form"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>inherit_id字段使用特定属性ref引用一个外部标识符来指定要被扩展的视图。<br>
-对于XML，在其中定位元素的最好方法是使用XPath表达式。比如其中一个XPath表达式是//field[@name=‘author’],这个表达式就是用于定位<br>
-<field name="“author”">元素的。这个表达式查找name属性等于author的任意field元素。<br>
-有关XPath的详细信息，请访问<a href="https://docs.python.org/2/library/xml.etree.elementtree.html#xpath-support" target="_blank" rel="noopener">Xpath表达式</a>。<br>
-如果XPath表达式匹配到多个元素，只有第一个元素会被修改。 因此，表达式应该使用独特的属性以使其指定尽可能具体。 使用name属性是确保我们找到扩展点的确切xml元素的最简单方法。 因此，在我们的视图XML元素上定义name属性是很重要的。<br>
-扩展点定位后，您可以修改它或在其附近添加XML元素。 下面是一个写在arch中的实现在author字段之前添加book_id,name,reference,book_rented四个字段的具体例子：</field></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"reference"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_rented"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果只添加一个字段，下面两种方法实现的效果一样：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>请注意，如果字段在同一视图中多次出现，则应始终使用XPath语法。 这是因为在字段第一次出现的时候Odoo将停止查找，而这可能会将您的更改应用在错误的字段上。<br>
-通常，我们是在现有字段旁边添加新字段，因此field标记经常用作定位器。 但是也可以使用任何其他标签：如sheet，group，page等。<br>
-name属性通常是匹配元素的最佳选择，但有时，我们可能需要使用其他东西：例如CSS类元素。 Odoo将找到具有指定的所有属性的第一个元素。<br>
-与定位器元素一起使用的position属性是可选的，并且可以具有以下值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">after:将内容添加到父元素之中，匹配的节点之后。</span><br><span class="line">before:添加内容在匹配节点之前。</span><br><span class="line">inside（默认值）:匹配节点内的追加内容。</span><br><span class="line">replace:替换匹配的节点。如果使用空内容，它将删除该匹配的元素。从Odoo10开始，它还允许用其他标记包装一个元素，通过在内容中使用$0来表示被替换的元素。</span><br><span class="line">attributes：修改匹配元素的XML属性。在元素内容使用&lt;attribute name =“attr-name”&gt;实现给属性name设置新属性值attr-name。</span><br></pre></td></tr></table></figure>
-<p>例如，在表单中有一个name字段，但它可见不是那么有用。 我们可以将它对用户隐藏。 这可以通过设置invisible属性来完成：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">position</span>=<span class="string">"attributes"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"invisible"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设置invisible属性来隐藏元素是使用定位器元素replace属性删除节点的一个很好的替代方法。 应该避免删除节点，因为它可能破环那些利用删除的节点作为选择器添加其他元素的依赖模块。</p>
+                <h1 id="添加社交网络功能">添加社交网络功能</h1>
+<p>社交网络模块 (技术名称mail) 提供留言板功能和关注的特征，以及消息和通知功能。<br>
+社交网络邮件功能由mail.thread模型的mail模块提供。要将其添加到自定义的模型，我们需要执行以下操作︰</p>
+<ul>
+<li>依赖mail模块</li>
+<li>继承mail.thread类</li>
+<li>将关注者和线程小部件添加到form视图</li>
+<li>为关注者设置记录规则</li>
+</ul>
+<ol>
+<li>在我们模块的__manifest__.py清单文件中添加对mail的依赖︰</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'depends'</span>: [<span class="string">'base'</span>, <span class="string">'mail'</span>],</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用我们以前使用的_inherit属性继承mail.thread</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_name = <span class="string">"book.rent.return"</span></span><br><span class="line">_inherit = <span class="string">'mail.thread'</span></span><br></pre></td></tr></table></figure>
+<p>mail.thread是一种抽象的模型。抽象的模型和普通模型类似，只是他们没有数据库表示;也没有实际的表。抽象的模型不是直接使用。相反，他们都是被混合使用。我们可以将它们看作模板与准备使用的功能。若要创建一个抽象类，我们只需要在创建模块时，使用models.AbstractModel 替代models.Model。</p>
+<ol start="3">
+<li>我们在Form视图的底部添加社交网络部件。通过扩展原视图的方式添加。我们使用view_form_todo_task_inherited继承已经创建的视图，并其arch数据块中添加以下内容︰</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"oe_chatter"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"message_follower_ids"</span></span></span><br><span class="line"><span class="tag">           <span class="attr">widget</span>=<span class="string">"mail_followers"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"message_ids"</span> <span class="attr">widget</span>=<span class="string">"mail_thread"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这里添加的两个字段未被我们进行显式声明，他们由mail.thread模型声明的。</p>
+<ol start="4">
+<li>是关注者设置记录规则︰ rowlevel访问控制。如果我们的模型需要限制其他用户无法访问记录，就需要设置记录规则。在这里，我们希望每个待办任务记录可以被任何它的关注者看见。</li>
+</ol>
 
                 
 
@@ -243,13 +245,9 @@ name属性通常是匹配元素的最佳选择，但有时，我们可能需要�
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/ViewInheritNotice/" data-toggle="tooltip" data-placement="top" title="odoo视图继承注意的点">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="odoo开发向模型中添加字段">Next Post &rarr;</a>
+                            <a href="/article/tec0827/" data-toggle="tooltip" data-placement="top" title="技术分享会0827">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -299,7 +297,7 @@ name属性通常是匹配元素的最佳选择，但有时，我们可能需要�
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#视图继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x89C6;&#x56FE;&#x7EE7;&#x627F;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#添加社交网络功能"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6DFB;&#x52A0;&#x793E;&#x4EA4;&#x7F51;&#x7EDC;&#x529F;&#x80FD;</span></a></li></ol>
         
         </div>
       </aside>
