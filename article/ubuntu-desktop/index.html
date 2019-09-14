@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - Ethan | Blog
+          ubuntu_desktop - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/test/">
+    <link rel="canonical" href="http://yoursite.com/article/ubuntu-desktop/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#hello" title="hello">hello</a>
+                              <a class="tag" href="/tags/#ubuntu" title="ubuntu">ubuntu</a>
                             
                         </div>
-                        <h1>Hello World</h1>
+                        <h1>ubuntu_desktop</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2018-07-18
+                            2019-09-14
                         </span>
                     </div>
                 
@@ -212,8 +212,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="hello-world">Hello World</h1>
-<h2 id="hello-world">Hello World</h2>
+                <h1 id="unbuntu-子系统安装wsl图形界面远程桌面">Unbuntu 子系统安装WSL，图形界面，远程桌面</h1>
+<h2 id="升级子系统">升级子系统</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get dist-upgrade -y &amp;&amp; sudo apt-get autoremove -y</span><br></pre></td></tr></table></figure>
+<h2 id="远程图形界面的配置">远程图形界面的配置</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xorg</span><br><span class="line">sudo apt-get install xfce4</span><br><span class="line">sudo apt-get install xrdp</span><br><span class="line"># 修改端口号port=3365</span><br><span class="line">sudo nano /etc/xrdp/xrdp.ini  </span><br><span class="line">sudo echo xfce4-session &gt;~/.xsession</span><br><span class="line">sudo service xrdp restart</span><br></pre></td></tr></table></figure>
+<p>cmd输入mstsc<br>
+计算机名填写的是ip地址加端口，由于我这是自己电脑连接自己电脑的操作系统所以是127.0.0.1，<br>
+而端口号就是上面设置的3365.<br>
+下次需要再用的时候都是需要输入sudo service xrdp restart的，输入完毕之后会提示端口是多少.</p>
 
                 
 
@@ -221,10 +228,10 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/git_use/" data-toggle="tooltip" data-placement="top" title="使用git命令行提交代码至GitHub">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/article/notification/" data-toggle="tooltip" data-placement="top" title="odoo开发消息通知">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -268,12 +275,18 @@
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#hello-world"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hello World</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hello-world"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hello World</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#unbuntu-子系统安装wsl图形界面远程桌面"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Unbuntu &#x5B50;&#x7CFB;&#x7EDF;&#x5B89;&#x88C5;WSL&#xFF0C;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF0C;&#x8FDC;&#x7A0B;&#x684C;&#x9762;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#升级子系统"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x5347;&#x7EA7;&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#远程图形界面的配置"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x8FDC;&#x7A0B;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x7684;&#x914D;&#x7F6E;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -293,7 +306,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#hello" title="hello">hello</a>
+                          <a class="tag" href="/tags/#ubuntu" title="ubuntu">ubuntu</a>
                         
                     </div>
                 </section>
