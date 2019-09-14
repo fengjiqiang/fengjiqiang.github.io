@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo开发视图继承 - Ethan | Blog
+          Odoo开发之小方法 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/ViewInheritance/">
+    <link rel="canonical" href="http://yoursite.com/article/odoo-develop/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo开发视图继承</h1>
+                        <h1>Odoo开发之小方法</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-24
+                            2019-09-14
                         </span>
                     </div>
                 
@@ -212,30 +212,28 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="视图继承">视图继承</h1>
-<p>在odoo界面中，表单，列表和搜索视图是使用arch XML结构定义的。如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。 这需要通过两步来实现。<br>
-1、定位到视图XML中某个界面元素的位置；<br>
-2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。<br>
-继承视图正可以实现这个功能。一个继承视图声明如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_training_book_copy_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>training.book.copy.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"view_training_book_form"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>inherit_id字段使用特定属性ref引用一个外部标识符来指定要被扩展的视图。<br>
-对于XML，在其中定位元素的最好方法是使用XPath表达式。比如其中一个XPath表达式是//field[@name=‘author’],这个表达式就是用于定位<br>
-<field name="“author”">元素的。这个表达式查找name属性等于author的任意field元素。<br>
-有关XPath的详细信息，请访问<a href="https://docs.python.org/2/library/xml.etree.elementtree.html#xpath-support" target="_blank" rel="noopener">Xpath表达式</a>。<br>
-如果XPath表达式匹配到多个元素，只有第一个元素会被修改。 因此，表达式应该使用独特的属性以使其指定尽可能具体。 使用name属性是确保我们找到扩展点的确切xml元素的最简单方法。 因此，在我们的视图XML元素上定义name属性是很重要的。<br>
-扩展点定位后，您可以修改它或在其附近添加XML元素。 下面是一个写在arch中的实现在author字段之前添加book_id,name,reference,book_rented四个字段的具体例子：</field></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"reference"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_rented"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果只添加一个字段，下面两种方法实现的效果一样：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>请注意，如果字段在同一视图中多次出现，则应始终使用XPath语法。 这是因为在字段第一次出现的时候Odoo将停止查找，而这可能会将您的更改应用在错误的字段上。<br>
-通常，我们是在现有字段旁边添加新字段，因此field标记经常用作定位器。 但是也可以使用任何其他标签：如sheet，group，page等。<br>
-name属性通常是匹配元素的最佳选择，但有时，我们可能需要使用其他东西：例如CSS类元素。 Odoo将找到具有指定的所有属性的第一个元素。<br>
-与定位器元素一起使用的position属性是可选的，并且可以具有以下值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">after:将内容添加到父元素之中，匹配的节点之后。</span><br><span class="line">before:添加内容在匹配节点之前。</span><br><span class="line">inside（默认值）:匹配节点内的追加内容。</span><br><span class="line">replace:替换匹配的节点。如果使用空内容，它将删除该匹配的元素。从Odoo10开始，它还允许用其他标记包装一个元素，通过在内容中使用$0来表示被替换的元素。</span><br><span class="line">attributes：修改匹配元素的XML属性。在元素内容使用&lt;attribute name =“attr-name”&gt;实现给属性name设置新属性值attr-name。</span><br></pre></td></tr></table></figure>
-<p>例如，在表单中有一个name字段，但它可见不是那么有用。 我们可以将它对用户隐藏。 这可以通过设置invisible属性来完成：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">position</span>=<span class="string">"attributes"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"invisible"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设置invisible属性来隐藏元素是使用定位器元素replace属性删除节点的一个很好的替代方法。 应该避免删除节点，因为它可能破环那些利用删除的节点作为选择器添加其他元素的依赖模块。</p>
+                <h2 id="间隔期间取数">间隔期间取数</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值</span></span><br><span class="line"><span class="comment"># @author:fengjiqiang@inspur.com</span></span><br><span class="line">receipts_ids = self.env[<span class="string">'cost.transfer.receipts.sub'</span>].search(</span><br><span class="line">    [</span><br><span class="line">        (<span class="string">'product_id'</span>, <span class="string">'='</span>, id),</span><br><span class="line">        (<span class="string">'company_id'</span>, <span class="string">'='</span>, self.company_id.id),</span><br><span class="line">        (<span class="string">'created_date'</span>, <span class="string">'&lt;='</span>, period.date_stop)</span><br><span class="line">    ], order=<span class="string">"created_date desc"</span>, limit=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># receipts_ids = receipts_ids[0]</span></span><br></pre></td></tr></table></figure>
+<h2 id="在-to-many-关联字段上设置值">在 to-many 关联字段上设置值</h2>
+<p>完整的可用命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">• (0, _ , &#123;‘field’: value&#125;)新建一条记录并将其与之关联</span><br><span class="line">• (1, id, &#123;‘field’: value&#125;)更新已关联记录的值</span><br><span class="line">• (2, id, _)移除关联并删除 id 关联的记录</span><br><span class="line">• (3, id, _)移除关联但不删除 id 关联的记录。通常使用它来删除many-to-many字段的关联记录</span><br><span class="line">• (4, id, _)关联已存在记录，仅适用于many-to-many字段</span><br><span class="line">• (5, _, _)删除所有关联，但不删除关联记录</span><br><span class="line">• (6, _, [ids])替换已关联记录列表为此处的列表</span><br></pre></td></tr></table></figure>
+<p>上述下划线_字符代表非关联值，通常填入 0 或 False。<br>
+后面的非关联值可以放心地省略掉，如(4, id, _) 可使用(4, id)</p>
+<h2 id="上下文context">上下文(context)</h2>
+<ol>
+<li>服务端查看上下文命令为self.context_get()或self.env.context</li>
+<li>在客户端中，上下文可用于使用default_或default_search_前缀在目录视图上设置默认值或启动默认过滤器。举例如下：
+<ul>
+<li>设置当前用户为user_id字段默认值，使用{‘default_user_id’: uid}</li>
+<li>在目标视图上默认启动filter_my_books过滤器，使用{‘default_search_filter_my_tasks’: 1}</li>
+</ul>
+</li>
+</ol>
+<h2 id="多公司company_id">多公司(company_id)</h2>
+<ol>
+<li>每个模型在设计时都要加入company_id，参考：company_id = fields.Many2one(‘res.company’, string=‘公司’, required=True, default=lambda self: self.env.user.company_id)</li>
+<li>使用search()方法时，在搜索条件内也要加入company_id，参考：(‘company_id’,’=’, self.env.user.company_id.id)</li>
+</ol>
 
                 
 
@@ -243,13 +241,9 @@ name属性通常是匹配元素的最佳选择，但有时，我们可能需要�
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/ViewInheritNotice/" data-toggle="tooltip" data-placement="top" title="odoo视图继承注意的点">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="odoo开发向模型中添加字段">Next Post &rarr;</a>
+                            <a href="/article/ubuntu-desktop/" data-toggle="tooltip" data-placement="top" title="Unbuntu子系统安装WSL 图形界面 远程桌面">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -294,12 +288,18 @@ name属性通常是匹配元素的最佳选择，但有时，我们可能需要�
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#视图继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x89C6;&#x56FE;&#x7EE7;&#x627F;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#间隔期间取数"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x95F4;&#x9694;&#x671F;&#x95F4;&#x53D6;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#在-to-many-关联字段上设置值"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5728; to-many &#x5173;&#x8054;&#x5B57;&#x6BB5;&#x4E0A;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#上下文context"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x4E0A;&#x4E0B;&#x6587;(context)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#多公司company_id"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x591A;&#x516C;&#x53F8;(company_id)</span></a></li></ol>
         
         </div>
       </aside>

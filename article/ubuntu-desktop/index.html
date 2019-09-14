@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -213,19 +213,23 @@
                 post-container">
 
                 <h2 id="升级子系统">升级子系统</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get dist-upgrade -y &amp;&amp; sudo apt-get autoremove -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get dist-upgrade -y &amp;&amp; sudo apt-get autoremove -y</span><br></pre></td></tr></table></figure>
 <h2 id="远程图形界面的配置">远程图形界面的配置</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xorg</span><br><span class="line">sudo apt-get install xfce4</span><br><span class="line">sudo apt-get install xrdp</span><br><span class="line"># 修改端口号port=3365</span><br><span class="line">sudo nano /etc/xrdp/xrdp.ini  </span><br><span class="line">sudo echo xfce4-session &gt;~/.xsession</span><br><span class="line">sudo service xrdp restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xorg</span><br><span class="line">sudo apt-get install xfce4</span><br><span class="line">sudo apt-get install xrdp</span><br><span class="line"># 修改端口号port=<span class="number">3365</span></span><br><span class="line">sudo nano /etc/xrdp/xrdp.ini  </span><br><span class="line">sudo echo xfce4-session &gt;~/.xsession</span><br><span class="line">sudo service xrdp restart</span><br></pre></td></tr></table></figure>
 <p>cmd输入mstsc<br>
 计算机名填写的是ip地址加端口，由于我这是自己电脑连接自己电脑的操作系统所以是127.0.0.1，<br>
 而端口号就是上面设置的3365.<br>
-下次需要再用的时候都是需要输入sudo service xrdp restart的，输入完毕之后会提示端口是多少.</p>
+下次需要再用的时候都是需要输入<code>sudo service xrdp restart</code>的，输入完毕之后会提示端口是多少.</p>
 
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/odoo-develop/" data-toggle="tooltip" data-placement="top" title="Odoo开发之小方法">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">

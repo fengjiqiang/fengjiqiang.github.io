@@ -8,7 +8,15 @@
 
     <url>
         <loc>http://yoursite.com/article/ubuntu-desktop/</loc>
-        <lastmod>2019-09-14T09:52:46.537Z</lastmod>
+        <lastmod>2019-09-14T10:03:43.752Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/odoo-develop/</loc>
+        <lastmod>2019-09-14T10:02:22.671Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
