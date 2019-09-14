@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          ubuntu_desktop - Ethan | Blog
+          Unbuntu子系统安装WSL 图形界面 远程桌面 - Ethan | Blog
         
     </title>
 
@@ -91,7 +91,7 @@
                               <a class="tag" href="/tags/#ubuntu" title="ubuntu">ubuntu</a>
                             
                         </div>
-                        <h1>ubuntu_desktop</h1>
+                        <h1>Unbuntu子系统安装WSL 图形界面 远程桌面</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
@@ -212,8 +212,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="unbuntu-子系统安装wsl图形界面远程桌面">Unbuntu 子系统安装WSL，图形界面，远程桌面</h1>
-<h2 id="升级子系统">升级子系统</h2>
+                <h2 id="升级子系统">升级子系统</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get dist-upgrade -y &amp;&amp; sudo apt-get autoremove -y</span><br></pre></td></tr></table></figure>
 <h2 id="远程图形界面的配置">远程图形界面的配置</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xorg</span><br><span class="line">sudo apt-get install xfce4</span><br><span class="line">sudo apt-get install xrdp</span><br><span class="line"># 修改端口号port=3365</span><br><span class="line">sudo nano /etc/xrdp/xrdp.ini  </span><br><span class="line">sudo echo xfce4-session &gt;~/.xsession</span><br><span class="line">sudo service xrdp restart</span><br></pre></td></tr></table></figure>
@@ -286,7 +285,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#unbuntu-子系统安装wsl图形界面远程桌面"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Unbuntu &#x5B50;&#x7CFB;&#x7EDF;&#x5B89;&#x88C5;WSL&#xFF0C;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF0C;&#x8FDC;&#x7A0B;&#x684C;&#x9762;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#升级子系统"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x5347;&#x7EA7;&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#远程图形界面的配置"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x8FDC;&#x7A0B;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x7684;&#x914D;&#x7F6E;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#升级子系统"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5347;&#x7EA7;&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#远程图形界面的配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8FDC;&#x7A0B;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x7684;&#x914D;&#x7F6E;</span></a></li></ol>
         
         </div>
       </aside>
