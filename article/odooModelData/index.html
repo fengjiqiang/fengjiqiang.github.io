@@ -249,17 +249,18 @@ browse()方法接收一个 ID 列表或单个ID并返回这些记录的记录集
 <li>‘like’匹配’%value%'模式，'ilike’与其相似但忽略大小写。还可以使用’not like’和’not ilike’运算符。</li>
 <li>'child of’在配置支持层级关联的模型中查找层级关系中的子级值。</li>
 <li>'in’和’not in’用于查看给定列表的包含，所以其值为一个列表。用于to-many关联字段时，in运算符和contains运算符一样。</li>
-<li>‘not in’是in的反向运算，用于查看不在列表中的值。<br>
-域表达式是一个列表并且包含多个条件元组。默认这些条件使用AND逻辑运算符连接，也就是说它仅返回满足所有条件的记录。也可以使用显式逻辑运算符 —— ‘&amp;‘符号表示 AND 运算符（默认值），管道运算符’|‘表示OR运算符。这两个运算符会作用于接下来的两项，递归执行。<br>
+<li>'not in’是in的反向运算，用于查看不在列表中的值。</li>
+</ul>
+</li>
+</ul>
+<p>域表达式是一个列表并且包含多个条件元组。默认这些条件使用AND逻辑运算符连接，也就是说它仅返回满足所有条件的记录。<br>
+也可以使用显式逻辑运算符 —— ‘&amp;‘符号表示 AND运算符（默认值），管道运算符’|‘表示OR运算符。这两个运算符会作用于接下来的两项，递归执行。<br>
 ℹ️域表达式使用了更为正式的定义方式：前缀标记法，也称波兰表达式(Polish notation)：<br>
 运算符放在运算项之前。AND和OR是二元运算符，而NOT是一元运算符。<br>
 感叹号’!‘表示NOT运算符，可用于下一项的运算，因此要放执行的否定项之前。<br>
 例如[’!’, (‘is_done’,’=’,True)]将过滤出所有未完成(not-don e)的记录。<br>
 下一项本身也可以是一个作用其后续项的运算符，形成一个嵌套条件。<br>
-下例可以有助于我们进行理解。在服务端记录规则中，可以找到类似下面这样的域表达式：</li>
-</ul>
-</li>
-</ul>
+下例可以有助于我们进行理解。在服务端记录规则中，可以找到类似下面这样的域表达式：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'|'</span>,</span><br><span class="line">    (<span class="string">'message_follower_ids'</span>, <span class="string">'in'</span>, [user.partner_id.id]),</span><br><span class="line">    <span class="string">'|'</span>,</span><br><span class="line">        (<span class="string">'user_id'</span>, <span class="string">'='</span>, user.id),</span><br><span class="line">        (<span class="string">'user_id'</span>, <span class="string">'='</span>, <span class="keyword">False</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
                 
