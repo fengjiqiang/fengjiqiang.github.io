@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/odooInherit/</loc>
+        <lastmod>2019-09-15T08:42:34.279Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/nameSequence/</loc>
         <lastmod>2019-09-15T02:58:35.976Z</lastmod>
         <changefreq>weekly</changefreq>
