@@ -211,6 +211,107 @@
 
 <div class="post-preview">
 
+    <a href="/article/xml-add-jilu/">
+        <h2 class="post-title">
+                                 
+            odoo开发在XML里定义记录
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用表达式设置值
+定义字段值的更精细的替代方法是eval属性。 它评估一个Python表达式并将结果值分配给字段。
+该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。
+要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。
+例如，要将值设置为昨天，我们将使用：
+12&lt;field name="date_deadl......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/add-business-logic/">
+        <h2 class="post-title">
+                                 
+            odoo开发添加业务逻辑
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            添加业务逻辑
+
+对于记录上的逻辑，使用@api.multi装饰器。 这里，self将表示一个记录集，然后我们应该遍历每个记录。
+
+12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
+代码循环遍历所有待完成的任务记......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/buttonshixian/">
+        <h2 class="post-title">
+                                 
+            odoo实现按钮(button)跳转
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            button实现跳转
+
+方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。
+
+123456789101112131415161718192021222324&lt;record id="view_volunteer_plan_form" model="ir.ui.view"&gt;    &lt;fi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/ziduanpaixu/">
         <h2 class="post-title">
                                  
@@ -424,7 +525,7 @@ Hello World
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="11">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="14">odoo</a>
             
         
             
@@ -488,23 +589,23 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/odooModelData/">Odoo开发之使用模型数据(一)</a>
+        </li>
+      
+        <li>
+          <a href="/article/odooInherit/">Odoo开发之模块继承(一)</a>
+        </li>
+      
+        <li>
+          <a href="/article/nameSequence/">odoo开发之自动编号创建</a>
+        </li>
+      
+        <li>
           <a href="/article/odoo-develop/">Odoo开发之小方法</a>
         </li>
       
         <li>
           <a href="/article/ubuntu-desktop/">Unbuntu子系统安装WSL 图形界面 远程桌面</a>
-        </li>
-      
-        <li>
-          <a href="/article/notification/">odoo开发消息通知</a>
-        </li>
-      
-        <li>
-          <a href="/article/tec0827/">技术分享会0827</a>
-        </li>
-      
-        <li>
-          <a href="/article/ViewInheritNotice/">odoo视图继承注意的点</a>
         </li>
       
     </ul>
@@ -527,7 +628,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
