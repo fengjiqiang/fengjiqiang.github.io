@@ -215,10 +215,52 @@
                 <h2 id="使用记录集和作用域domain查询数据">使用记录集和作用域(domain)查询数据</h2>
 <p>在方法或 shell 会话中，self表示当前模型，并且我们仅能访问该模型的记录。要访问其它模型就需要使用self.env。<br>
 例如self.env[‘res.partner’]返回一条对 Partner 模型的引用(也是一个空记录集)。<br>
-我们可以使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">### 创建记录集</span><br><span class="line">search()方法接收一个域表达式并返回符合条件记录的记录集。空域[]将返回所有记录。</span><br><span class="line">ℹ️如果模型有特殊字段 active，默认只有active=True的记录才在选择范围内</span><br><span class="line">还可以使用以下关键字参数：</span><br><span class="line">- order是一个数据库查询语句中ORDER BY使用的字符串，通常是一个逗号分隔的字段名列表。每个字段都可接DESC关键字，用于表示倒序排列。</span><br><span class="line">- limit设置获取记录的最大条数</span><br><span class="line">- offset忽略前 n 前记录，可配合limit使用来一次查询指定范围记录</span><br><span class="line">有时我们只要知道满足某一条件的记录条数，这时可使用search_count()来返回记录条数而非记录集。</span><br><span class="line">这节约了先获取记录列表再记数的开销，在还没有获取记录集且仅想知道记录条数时这样会更高效。</span><br><span class="line">browse()方法接收一个 ID 列表或单个ID并返回这些记录的记录集。在我们知道 ID 并想要获取记录时这就非常方便了。</span><br><span class="line">一些使用示例如下：</span><br><span class="line">```py</span><br><span class="line">&gt;&gt;&gt; self.env[&apos;res.partner&apos;].search([(&apos;name&apos;, &apos;like&apos;, &apos;Pac&apos;)])</span><br><span class="line">res.partner(42, 62)</span><br><span class="line">&gt;&gt;&gt; self.env[&apos;res.partner&apos;].browse([42, 62])</span><br><span class="line">res.partner(42, 62)</span><br></pre></td></tr></table></figure></p>
+我们可以使用search()或browse()来获取记录集，其中search()方法使用域表达式来定义记录选择范围。</p>
+<h3 id="创建记录集">创建记录集</h3>
+<p>search()方法接收一个域表达式并返回符合条件记录的记录集。空域[]将返回所有记录。<br>
+ℹ️如果模型有特殊字段 active，默认只有active=True的记录才在选择范围内<br>
+还可以使用以下关键字参数：</p>
+<ul>
+<li>order是一个数据库查询语句中ORDER BY使用的字符串，通常是一个逗号分隔的字段名列表。每个字段都可接DESC关键字，用于表示倒序排列。</li>
+<li>limit设置获取记录的最大条数</li>
+<li>offset忽略前 n 前记录，可配合limit使用来一次查询指定范围记录<br>
+有时我们只要知道满足某一条件的记录条数，这时可使用search_count()来返回记录条数而非记录集。<br>
+这节约了先获取记录列表再记数的开销，在还没有获取记录集且仅想知道记录条数时这样会更高效。<br>
+browse()方法接收一个 ID 列表或单个ID并返回这些记录的记录集。在我们知道 ID 并想要获取记录时这就非常方便了。<br>
+一些使用示例如下：</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>self.env[<span class="string">'res.partner'</span>].search([(<span class="string">'name'</span>, <span class="string">'like'</span>, <span class="string">'Pac'</span>)])</span><br><span class="line">res.partner(<span class="number">42</span>, <span class="number">62</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>self.env[<span class="string">'res.partner'</span>].browse([<span class="number">42</span>, <span class="number">62</span>])</span><br><span class="line">res.partner(<span class="number">42</span>, <span class="number">62</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="域表达式domain">域表达式(domain)</h3>
 <p>域(domain)用于过滤数据记录。它使用一个特殊语法来供 Odoo ORM解析，生成数据库查询中的 WHERE 表达式。域表达式是一组条件组成的列表，每个条件都是一个(‘字段名’, ‘运算符’, ‘值’’)组成的元组，<br>
-例如，<figure class="highlight plain"><figcaption><span>'</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- 字段名：是一个待过滤字段，可使用点号标记来表示关联模型中的字段</span><br><span class="line">- 值：在 Python 表达式中运行。可使用字面值，如数字、布尔值、字符串和列表，也可使用运行上下文中的字段和标识符。</span><br><span class="line">针对域其实有两种运行上下文：</span><br><span class="line">   - 在窗口操作或字段属性等客户端中使用时，可使用原生字段值来渲染当前可用视图，但不能对其使用点标记符</span><br><span class="line">   - 在服务端使用时，如安全记录规则或服务端 Python代码中，可以对字段使用点标记符，因为当前记录是一个对象</span><br><span class="line">- 运算符：可以是以下中的一个</span><br><span class="line">   - 常用比较运算符有&lt;, &gt;, &lt;= , &gt;=, =和!=。</span><br><span class="line">   - &apos;=like&apos;和&apos;=ilike&apos;匹配某一模式，这里下划线_匹配单个字符，百分号%匹配任意一组字符。</span><br><span class="line">   - &apos;like&apos;匹配&apos;%value%&apos;模式，&apos;ilike&apos;与其相似但忽略大小写。还可以使用&apos;not like&apos;和&apos;not ilike&apos;运算符。</span><br><span class="line">   - &apos;child of&apos;在配置支持层级关联的模型中查找层级关系中的子级值。</span><br><span class="line">   - &apos;in&apos;和&apos;not in&apos;用于查看给定列表的包含，所以其值为一个列表。用于to-many关联字段时，in运算符和contains运算符一样。</span><br><span class="line">   - &apos;not in&apos;是in的反向运算，用于查看不在列表中的值。</span><br><span class="line">域表达式是一个列表并且包含多个条件元组。默认这些条件使用AND逻辑运算符连接，也就是说它仅返回满足所有条件的记录。也可以使用显式逻辑运算符 —— &apos;&amp;&apos;符号表示 AND 运算符（默认值），管道运算符&apos;|&apos;表示OR运算符。这两个运算符会作用于接下来的两项，递归执行。</span><br><span class="line">ℹ️域表达式使用了更为正式的定义方式：前缀标记法，也称波兰表达式(Polish notation)：</span><br><span class="line">运算符放在运算项之前。AND和OR是二元运算符，而NOT是一元运算符。</span><br><span class="line">感叹号&apos;!&apos;表示NOT运算符，可用于下一项的运算，因此要放执行的否定项之前。</span><br><span class="line">例如[&apos;!&apos;, (&apos;is_done&apos;,&apos;=&apos;,True)]将过滤出所有未完成(not-don e)的记录。</span><br><span class="line">下一项本身也可以是一个作用其后续项的运算符，形成一个嵌套条件。</span><br><span class="line">下例可以有助于我们进行理解。在服务端记录规则中，可以找到类似下面这样的域表达式：</span><br><span class="line">```py</span><br><span class="line">[&apos;|&apos;,</span><br><span class="line">    (&apos;message_follower_ids&apos;, &apos;in&apos;, [user.partner_id.id]),</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">        (&apos;user_id&apos;, &apos;=&apos;, user.id),</span><br><span class="line">        (&apos;user_id&apos;, &apos;=&apos;, False)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+例如，[(‘is_done’, ‘=’, False)]是仅带有一个条件的有效域表达式。以下是对各个元素的说明：</p>
+<ul>
+<li>字段名：是一个待过滤字段，可使用点号标记来表示关联模型中的字段</li>
+<li>值：在 Python 表达式中运行。可使用字面值，如数字、布尔值、字符串和列表，也可使用运行上下文中的字段和标识符。<br>
+针对域其实有两种运行上下文：
+<ul>
+<li>在窗口操作或字段属性等客户端中使用时，可使用原生字段值来渲染当前可用视图，但不能对其使用点标记符</li>
+<li>在服务端使用时，如安全记录规则或服务端 Python代码中，可以对字段使用点标记符，因为当前记录是一个对象</li>
+</ul>
+</li>
+<li>运算符：可以是以下中的一个
+<ul>
+<li>常用比较运算符有&lt;, &gt;, &lt;= , &gt;=, =和!=。</li>
+<li>‘=like’和’=ilike’匹配某一模式，这里下划线_匹配单个字符，百分号%匹配任意一组字符。</li>
+<li>‘like’匹配’%value%'模式，'ilike’与其相似但忽略大小写。还可以使用’not like’和’not ilike’运算符。</li>
+<li>'child of’在配置支持层级关联的模型中查找层级关系中的子级值。</li>
+<li>'in’和’not in’用于查看给定列表的包含，所以其值为一个列表。用于to-many关联字段时，in运算符和contains运算符一样。</li>
+<li>‘not in’是in的反向运算，用于查看不在列表中的值。<br>
+域表达式是一个列表并且包含多个条件元组。默认这些条件使用AND逻辑运算符连接，也就是说它仅返回满足所有条件的记录。也可以使用显式逻辑运算符 —— ‘&amp;‘符号表示 AND 运算符（默认值），管道运算符’|‘表示OR运算符。这两个运算符会作用于接下来的两项，递归执行。<br>
+ℹ️域表达式使用了更为正式的定义方式：前缀标记法，也称波兰表达式(Polish notation)：<br>
+运算符放在运算项之前。AND和OR是二元运算符，而NOT是一元运算符。<br>
+感叹号’!‘表示NOT运算符，可用于下一项的运算，因此要放执行的否定项之前。<br>
+例如[’!’, (‘is_done’,’=’,True)]将过滤出所有未完成(not-don e)的记录。<br>
+下一项本身也可以是一个作用其后续项的运算符，形成一个嵌套条件。<br>
+下例可以有助于我们进行理解。在服务端记录规则中，可以找到类似下面这样的域表达式：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'|'</span>,</span><br><span class="line">    (<span class="string">'message_follower_ids'</span>, <span class="string">'in'</span>, [user.partner_id.id]),</span><br><span class="line">    <span class="string">'|'</span>,</span><br><span class="line">        (<span class="string">'user_id'</span>, <span class="string">'='</span>, user.id),</span><br><span class="line">        (<span class="string">'user_id'</span>, <span class="string">'='</span>, <span class="keyword">False</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -278,7 +320,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用记录集和作用域domain查询数据"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8BB0;&#x5F55;&#x96C6;&#x548C;&#x4F5C;&#x7528;&#x57DF;(domain)&#x67E5;&#x8BE2;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#域表达式domain"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x57DF;&#x8868;&#x8FBE;&#x5F0F;(domain)</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用记录集和作用域domain查询数据"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8BB0;&#x5F55;&#x96C6;&#x548C;&#x4F5C;&#x7528;&#x57DF;(domain)&#x67E5;&#x8BE2;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建记录集"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x521B;&#x5EFA;&#x8BB0;&#x5F55;&#x96C6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#域表达式domain"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x57DF;&#x8868;&#x8FBE;&#x5F0F;(domain)</span></a></li></ol></li></ol>
         
         </div>
       </aside>

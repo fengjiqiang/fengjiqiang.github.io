@@ -223,7 +223,7 @@
             使用记录集和作用域(domain)查询数据
 在方法或 shell 会话中，self表示当前模型，并且我们仅能访问该模型的记录。要访问其它模型就需要使用self.env。
 例如self.env[‘res.partner’]返回一条对 Partner 模型的引用(也是一个空记录集)。
-我们可以使用12345678910111213141516### 创建记录集search()方法接收一个域表达式......
+我们可以使用search()或browse()来获取记录集，其中search()方法使用域表达式来定义记录选择范......
         </div>
     </a>
     
@@ -571,7 +571,7 @@ xml文件
     
     
         <li class="next">
-            <a href="/archives/2/">Older Posts &rarr;</a>
+            <a href="/page/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
