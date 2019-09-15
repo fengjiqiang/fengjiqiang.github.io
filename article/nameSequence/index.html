@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo实现默认筛选(search view) - Ethan | Blog
+          odoo开发之自动编号创建 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/morenshaixuan/">
+    <link rel="canonical" href="http://yoursite.com/article/nameSequence/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo实现默认筛选(search view)</h1>
+                        <h1>odoo开发之自动编号创建</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-19
+                            2019-09-15
                         </span>
                     </div>
                 
@@ -212,33 +212,48 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="筛选视图">筛选视图</h1>
+                <h2 id="应用场景">应用场景：</h2>
+<p>在创建单据的时候，我们很容易遇到单据的编号是按照一定规则创建的，那么在新建单据的时候能够自动生成编号无疑可以减少用户的工作量，<br>
+本文为该流程的操作示例。</p>
+<h2 id="解决办法">解决办法：</h2>
+<p>通过在data文件夹插入一条ir.sequence数据，在模型里调用该数据，完成自动生成编号流程。</p>
+<h2 id="代码示例">代码示例：</h2>
+<h3 id="预制数据">预制数据</h3>
+<p>模块目录下新建data文件夹，创建xx_data.xml文件：<br>
+<img src="/img/nameSequence/Snipaste_2019-09-15_10-49-25.png" alt="data"><br>
+在__manifest__.py中找到data，添加文件路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'data'</span>: [</span><br><span class="line">        <span class="string">'data/ir_sequence_data.xml'</span>,</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+<p>建立一条记录，各字段要求如下：</p>
 <ul>
-<li>使用search实现筛选</li>
+<li>id不能重复，</li>
+<li>model为ir.sequence，</li>
+<li>name填写与该编号相关的内容，</li>
+<li>code为模型_name，</li>
+<li>prefix为编号默认前缀，</li>
+<li>number_next为编号开始数字，默认为1，</li>
+<li>number_increment为编号递增间隔，默认为1，</li>
+<li>padding为编号后数字位数，</li>
+<li>company_id默认为当前公司<br>
+例如模型training.book.copy中，reference字段起始编号为FBBH#01；<br>
+编码如下，部分字段未展示：</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_volunteer_task_search"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>volunteer.task<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">search</span> <span class="attr">string</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">name</span>=<span class="string">"recurring"</span> <span class="attr">string</span>=<span class="string">"周期性任务"</span> <span class="attr">domain</span>=<span class="string">"[('type', '=', 'recurring')]"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">name</span>=<span class="string">"one-shot"</span> <span class="attr">string</span>=<span class="string">"临时性任务"</span> <span class="attr">domain</span>=<span class="string">"[('type', '=', 'one-shot')]"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">separator</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">string</span>=<span class="string">"All"</span> <span class="attr">name</span>=<span class="string">"all"</span> <span class="attr">domain</span>=<span class="string">"['|', ('active', '=', False), ('active', '=', True)]"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">string</span>=<span class="string">"未归档"</span> <span class="attr">name</span>=<span class="string">"active"</span> <span class="attr">domain</span>=<span class="string">"[('active', '=', True)]"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">string</span>=<span class="string">"已归档"</span> <span class="attr">name</span>=<span class="string">"inactive"</span> <span class="attr">domain</span>=<span class="string">"[('active', '=', False)]"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"area"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter</span> <span class="attr">string</span>=<span class="string">"区域"</span> <span class="attr">name</span>=<span class="string">"area"</span> <span class="attr">domain</span>=<span class="string">"[]"</span> <span class="attr">context</span>=<span class="string">"&#123;'group_by':'area'&#125;"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">search</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="添加默认筛选">添加默认筛选</h1>
-<ul>
-<li>第一种 在action中加默认筛选 使用search_default_字段名</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"action_volunteer_task"</span> <span class="attr">model</span>=<span class="string">"ir.actions.act_window"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>添加任务<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"type"</span>&gt;</span>ir.actions.act_window<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"res_model"</span>&gt;</span>volunteer.task<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"view_type"</span>&gt;</span>form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"context"</span>&gt;</span>&#123;'active_test': False, 'search_default_active':1&#125;<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"view_id"</span> <span class="attr">ref</span>=<span class="string">"view_volunteer_task_tree"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"view_mode"</span>&gt;</span>kanban,tree,form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>第二种 在field中加默认筛选 使用search_default_字段名</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">notebook</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">page</span> <span class="attr">string</span>=<span class="string">"志愿者信息"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('is_floating', '=', True)]&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"person_ids"</span> <span class="attr">context</span>=<span class="string">"&#123;'search_default_term':1&#125;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"phone"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"type"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">notebook</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.1" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"seq_book_copy"</span> <span class="attr">model</span>=<span class="string">"ir.sequence"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Book Copy Sequence<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"code"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"prefix"</span>&gt;</span>FBBH#<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"padding"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模型文件">模型文件</h3>
+<p>给需要创建编号的字段增加属性default：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reference = fields.Char(string=<span class="string">"副本编号"</span>, default=<span class="keyword">lambda</span> self: _(<span class="string">'New'</span>), readonly=<span class="keyword">True</span>, required=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重写create方法，next_by_code方法指定模型：</span></span><br><span class="line"><span class="meta">@api.model</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, vals)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> vals.get(<span class="string">'reference'</span>, <span class="string">'New'</span>) == <span class="string">'New'</span>:</span><br><span class="line">        vals[<span class="string">'reference'</span>] = self.env[<span class="string">'ir.sequence'</span>].next_by_code(<span class="string">'training.book.copy'</span>) <span class="keyword">or</span> _(<span class="string">'New'</span>)</span><br><span class="line">    <span class="keyword">return</span> super(BookCopy, self).create(vals)</span><br></pre></td></tr></table></figure>
+<p>最后生成需要的编号：<br>
+<img src="/img/nameSequence/Snipaste_2019-09-15_10-56-06.png" alt="sequence"></p>
+
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/ziduanpaixu/" data-toggle="tooltip" data-placement="top" title="odoo实现字段排序">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/docker-install/" data-toggle="tooltip" data-placement="top" title="windows10安装docker">Next Post &rarr;</a>
+                            <a href="/article/odoo-develop/" data-toggle="tooltip" data-placement="top" title="Odoo开发之小方法">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -288,7 +303,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#筛选视图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x7B5B;&#x9009;&#x89C6;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#添加默认筛选"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x6DFB;&#x52A0;&#x9ED8;&#x8BA4;&#x7B5B;&#x9009;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决办法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#代码示例"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF1A;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#预制数据"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">&#x9884;&#x5236;&#x6570;&#x636E;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模型文件"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">&#x6A21;&#x578B;&#x6587;&#x4EF6;</span></a></li></ol></li></ol>
         
         </div>
       </aside>

@@ -7,8 +7,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/ubuntu-desktop/</loc>
-        <lastmod>2019-09-14T10:03:43.752Z</lastmod>
+        <loc>http://yoursite.com/article/nameSequence/</loc>
+        <lastmod>2019-09-15T02:58:35.976Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +16,15 @@
 
     <url>
         <loc>http://yoursite.com/article/odoo-develop/</loc>
-        <lastmod>2019-09-14T10:02:22.671Z</lastmod>
+        <lastmod>2019-09-15T02:43:25.266Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ubuntu-desktop/</loc>
+        <lastmod>2019-09-15T02:43:08.850Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -24,7 +32,23 @@
 
     <url>
         <loc>http://yoursite.com/article/notification/</loc>
-        <lastmod>2019-08-28T13:06:51.026Z</lastmod>
+        <lastmod>2019-09-15T02:43:06.570Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ViewInheritance/</loc>
+        <lastmod>2019-09-15T02:42:45.078Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
+        <lastmod>2019-09-15T02:42:34.602Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -47,14 +71,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/ViewInheritance/</loc>
-        <lastmod>2019-08-24T04:26:11.496Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/article/buttonshixian/</loc>
         <lastmod>2019-08-24T04:26:11.458Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,14 +81,6 @@
     <url>
         <loc>http://yoursite.com/article/morenshaixuan/</loc>
         <lastmod>2019-08-24T04:26:11.410Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
-        <lastmod>2019-08-24T04:25:11.811Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

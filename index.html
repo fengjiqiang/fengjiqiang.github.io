@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -208,6 +208,44 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/nameSequence/">
+        <h2 class="post-title">
+                                 
+            odoo开发之自动编号创建
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            应用场景：
+在创建单据的时候，我们很容易遇到单据的编号是按照一定规则创建的，那么在新建单据的时候能够自动生成编号无疑可以减少用户的工作量，
+本文为该流程的操作示例。
+解决办法：
+通过在data文件夹插入一条ir.sequence数据，在模型里调用该数据，完成自动生成编号流程。
+代码示例：
+预制数据
+模块目录下新建data文件夹，创建xx_data.xml文件：
+
+在__manifest__.......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-09-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -361,13 +399,6 @@ xml文件
 
     <a href="/article/ViewInheritNotice/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
             odoo视图继承注意的点
         </h2>
@@ -403,13 +434,6 @@ xml文件
 
     <a href="/article/ViewInheritance/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
             odoo开发视图继承
         </h2>
@@ -542,39 +566,6 @@ xml文件
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/buttonshixian/">
-        <h2 class="post-title">
-                                 
-            odoo实现按钮(button)跳转
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            button实现跳转
-
-方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。
-
-123456789101112131415161718192021222324&lt;record id="view_volunteer_plan_form" model="ir.ui.view"&gt;    &lt;fi......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -583,7 +574,7 @@ xml文件
     
     
         <li class="next">
-            <a href="/archives/2/">Older Posts &rarr;</a>
+            <a href="/page/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -616,7 +607,7 @@ xml文件
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="11">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="12">odoo</a>
             
         
             
@@ -680,6 +671,10 @@ xml文件
     <ul>
       
         <li>
+          <a href="/article/nameSequence/">odoo开发之自动编号创建</a>
+        </li>
+      
+        <li>
           <a href="/article/odoo-develop/">Odoo开发之小方法</a>
         </li>
       
@@ -693,10 +688,6 @@ xml文件
       
         <li>
           <a href="/article/tec0827/">技术分享会0827</a>
-        </li>
-      
-        <li>
-          <a href="/article/ViewInheritNotice/">odoo视图继承注意的点</a>
         </li>
       
     </ul>
@@ -719,7 +710,7 @@ xml文件
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
