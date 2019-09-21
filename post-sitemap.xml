@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/tomanywrite/</loc>
+        <lastmod>2019-09-21T07:48:24.966Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/bankpayment-oa-api/</loc>
         <lastmod>2019-09-21T07:43:04.680Z</lastmod>
         <changefreq>weekly</changefreq>
