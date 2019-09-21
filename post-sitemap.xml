@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/bankpayment-oa-api/</loc>
+        <lastmod>2019-09-21T07:43:04.680Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/odooModelData/</loc>
-        <lastmod>2019-09-15T09:19:31.383Z</lastmod>
+        <lastmod>2019-09-16T00:15:19.859Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
