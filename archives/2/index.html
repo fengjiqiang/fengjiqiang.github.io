@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -208,6 +208,109 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritNotice/">
+        <h2 class="post-title">
+                                 
+            odoo视图继承注意的点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            授权继承的视图继承
+模型继承时，使用授权继承方式，即应用这样的代码：
+1book_id = fields.Many2one('training.book', string="书籍", delegate=True)
+或
+1_inherits = &#123;'training.book': 'book_id'&#125;
+在写Form视图继承时，容易忽略的一点是在代码中加入一句：
+1&lt;f......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritance/">
+        <h2 class="post-title">
+                                 
+            odoo开发视图继承
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            视图继承
+在odoo界面中，表单，列表和搜索视图是使用arch XML结构定义的。如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。 这需要通过两步来实现。
+1、定位到视图XML中某个界面元素的位置；
+2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。
+继承视图正可以实现这个功能。一个继承视图声明如下：
+12345678&lt;record id="vi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/add-field/">
+        <h2 class="post-title">
+                                 
+            odoo开发向模型中添加字段
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            向模型中添加字段
+
+我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。
+在model文件夹下面创建一个文件名称为instructor.py文件（即创建training_academy/models/instructor.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：
+
+12345678910# -*- ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -453,37 +556,6 @@ git push
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/test/">
-        <h2 class="post-title">
-                                 
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Hello World
-Hello World
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2018-07-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hello" title="hello">hello</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -494,6 +566,10 @@ Hello World
             <a href="/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/3/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -525,7 +601,7 @@ Hello World
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="14">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="17">odoo</a>
             
         
             
@@ -589,23 +665,23 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/20190925/">Odoo开发之后台视图(一)</a>
+        </li>
+      
+        <li>
+          <a href="/article/bankpayment-oa-api/">OA向银企直连提供的接口</a>
+        </li>
+      
+        <li>
+          <a href="/article/tomanywrite/">x2many关联字段写值</a>
+        </li>
+      
+        <li>
           <a href="/article/odooModelData/">Odoo开发之使用模型数据(一)</a>
         </li>
       
         <li>
           <a href="/article/odooInherit/">Odoo开发之模块继承(一)</a>
-        </li>
-      
-        <li>
-          <a href="/article/nameSequence/">odoo开发之自动编号创建</a>
-        </li>
-      
-        <li>
-          <a href="/article/odoo-develop/">Odoo开发之小方法</a>
-        </li>
-      
-        <li>
-          <a href="/article/ubuntu-desktop/">Unbuntu子系统安装WSL 图形界面 远程桌面</a>
         </li>
       
     </ul>
@@ -628,7 +704,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
