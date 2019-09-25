@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/20190925/</loc>
+        <lastmod>2019-09-25T09:55:56.343Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/odoo-develop/</loc>
+        <lastmod>2019-09-24T00:22:51.789Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/tomanywrite/</loc>
         <lastmod>2019-09-21T07:48:24.966Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -41,14 +57,6 @@
     <url>
         <loc>http://yoursite.com/article/nameSequence/</loc>
         <lastmod>2019-09-15T02:58:35.976Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/odoo-develop/</loc>
-        <lastmod>2019-09-15T02:43:25.266Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -208,6 +208,38 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/20190925/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之后台视图(一)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            关联字段
+在关联字段中，我们可让用户操作做一些额外控制。默认用户从这些字段中创建新记（也称作“快速创建”）并打开关联记录表单。可通过options字段属性来关闭：
+1options="&#123;'no_open': True, 'no_create': True, 'no_create_edit': True&#125;"
+context和domain也是字段属性并对于关联字段特别有用。c......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-09-25
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -386,7 +418,7 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         </h3>
         <div class="post-content-preview">
             间隔期间取数
-123456789# 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值# @author:fengjiqiang@inspur.comreceipts_ids = self.env['cost.transfer.receipts.sub'].search(    [        ('product_id', '=', id),   ......
+12345678910# 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值# @author:fengjiqiang@inspur.comreceipts_ids = self.env['cost.transfer.receipts.sub'].search(    [        ('product_id', '=', id), ......
         </div>
     </a>
     
@@ -522,41 +554,6 @@ xml文件
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/ViewInheritNotice/">
-        <h2 class="post-title">
-                                 
-            odoo视图继承注意的点
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            授权继承的视图继承
-模型继承时，使用授权继承方式，即应用这样的代码：
-1book_id = fields.Many2one('training.book', string="书籍", delegate=True)
-或
-1_inherits = &#123;'training.book': 'book_id'&#125;
-在写Form视图继承时，容易忽略的一点是在代码中加入一句：
-1&lt;f......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-24
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -598,7 +595,7 @@ xml文件
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="16">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="17">odoo</a>
             
         
             
@@ -662,6 +659,10 @@ xml文件
     <ul>
       
         <li>
+          <a href="/article/20190925/">Odoo开发之后台视图(一)</a>
+        </li>
+      
+        <li>
           <a href="/article/bankpayment-oa-api/">OA向银企直连提供的接口</a>
         </li>
       
@@ -675,10 +676,6 @@ xml文件
       
         <li>
           <a href="/article/odooInherit/">Odoo开发之模块继承(一)</a>
-        </li>
-      
-        <li>
-          <a href="/article/nameSequence/">odoo开发之自动编号创建</a>
         </li>
       
     </ul>
@@ -701,7 +698,7 @@ xml文件
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

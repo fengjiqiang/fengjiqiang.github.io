@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - Ethan | Blog
+          Odoo开发之后台视图(一) - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/test/">
+    <link rel="canonical" href="http://yoursite.com/article/20190925/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#hello" title="hello">hello</a>
+                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>Hello World</h1>
+                        <h1>Odoo开发之后台视图(一)</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2018-07-18
+                            2019-09-25
                         </span>
                     </div>
                 
@@ -212,8 +212,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="hello-world">Hello World</h1>
-<h2 id="hello-world">Hello World</h2>
+                <h2 id="关联字段">关联字段</h2>
+<p>在关联字段中，我们可让用户操作做一些额外控制。默认用户从这些字段中创建新记（也称作“快速创建”）并打开关联记录表单。可通过options字段属性来关闭：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options=<span class="string">"&#123;'no_open': True, 'no_create': True, 'no_create_edit': True&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>context和domain也是字段属性并对于关联字段特别有用。context可定义关联字记录默认值，domain 可限制可选记录。常见的示例为让一个字段依赖其它字段值来产生选择项。domain可在模型中直接定义，但也可在视图中进行覆盖。<br>
+在to-many字段中，我们还可使用 mode 属性来更改用于显示记录的视图类型。默认为 tree，但还有其它选项：form, kanban或graph。关联字段可定义行内指定视图来使用。这些视图在元素中的嵌套视图定义中声明。例如，在line_ids借阅中，我们可以为这些线路定义特定的列表和表单视图：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">notebook</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">page</span> <span class="attr">string</span>=<span class="string">"Borrowed Books"</span> <span class="attr">name</span>=<span class="string">"page_lines"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"line_ids"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tree</span> <span class="attr">editable</span>=<span class="string">"buttom"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">widget</span>=<span class="string">"many2many_tags"</span> <span class="attr">options</span>=<span class="string">"&#123;'color_field': 'color'&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"publish"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;form&gt;</span></span><br><span class="line"><span class="comment">                &lt;field name="book_id"/&gt;</span></span><br><span class="line"><span class="comment">                &lt;field name="author"/&gt;</span></span><br><span class="line"><span class="comment">                &lt;field name="publish"/&gt;</span></span><br><span class="line"><span class="comment">            &lt;/form&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">notebook</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>线路列表将带有给定的<tree>定义。当我们与线路交互时，弹出一个表单对话框，在<form>定义中包含该结构。<br>
+如果想要在列表视图的表单弹出窗口中直接编辑one-to-many路线，应使用<br>
+<tree editable="top">或<tree editable="bottom"><br>
+<img src="/img/20190925/Snipaste_2019-09-25_17-50-52.png" alt="Odoo开发之后台视图(一)"></tree></tree></form></tree></p>
 
                 
 
@@ -221,10 +229,10 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/git_use/" data-toggle="tooltip" data-placement="top" title="使用git命令行提交代码至GitHub">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/article/bankpayment-oa-api/" data-toggle="tooltip" data-placement="top" title="OA向银企直连提供的接口">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -273,7 +281,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#hello-world"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hello World</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hello-world"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Hello World</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关联字段"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5173;&#x8054;&#x5B57;&#x6BB5;</span></a></li></ol>
         
         </div>
       </aside>
@@ -293,7 +301,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#hello" title="hello">hello</a>
+                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                         
                     </div>
                 </section>

@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,7 +213,7 @@
                 post-container">
 
                 <h2 id="间隔期间取数">间隔期间取数</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值</span></span><br><span class="line"><span class="comment"># @author:fengjiqiang@inspur.com</span></span><br><span class="line">receipts_ids = self.env[<span class="string">'cost.transfer.receipts.sub'</span>].search(</span><br><span class="line">    [</span><br><span class="line">        (<span class="string">'product_id'</span>, <span class="string">'='</span>, id),</span><br><span class="line">        (<span class="string">'company_id'</span>, <span class="string">'='</span>, self.company_id.id),</span><br><span class="line">        (<span class="string">'created_date'</span>, <span class="string">'&lt;='</span>, period.date_stop)</span><br><span class="line">    ], order=<span class="string">"created_date desc"</span>, limit=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># receipts_ids = receipts_ids[0]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值</span></span><br><span class="line"><span class="comment"># @author:fengjiqiang@inspur.com</span></span><br><span class="line">receipts_ids = self.env[<span class="string">'cost.transfer.receipts.sub'</span>].search(</span><br><span class="line">    [</span><br><span class="line">        (<span class="string">'product_id'</span>, <span class="string">'='</span>, id),</span><br><span class="line">        (<span class="string">'company_id'</span>, <span class="string">'='</span>, self.company_id.id),</span><br><span class="line">        (<span class="string">'created_date'</span>, <span class="string">'&lt;='</span>, period.date_stop),</span><br><span class="line">        (<span class="string">'outlet_unit_price'</span>, <span class="string">'&gt;'</span>, <span class="number">0</span>)</span><br><span class="line">    ], order=<span class="string">"created_date desc"</span>, limit=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># receipts_ids = receipts_ids[0]</span></span><br></pre></td></tr></table></figure>
 <h2 id="在-to-many-关联字段上设置值">在 to-many 关联字段上设置值</h2>
 <p>完整的可用命令如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">• (<span class="number">0</span>, _ , &#123;‘field’: value&#125;)新建一条记录并将其与之关联</span><br><span class="line">• (<span class="number">1</span>, id, &#123;‘field’: value&#125;)更新已关联记录的值</span><br><span class="line">• (<span class="number">2</span>, id, _)移除关联并删除 id 关联的记录</span><br><span class="line">• (<span class="number">3</span>, id, _)移除关联但不删除 id 关联的记录。通常使用它来删除many-to-many字段的关联记录</span><br><span class="line">• (<span class="number">4</span>, id, _)关联已存在记录，仅适用于many-to-many字段</span><br><span class="line">• (<span class="number">5</span>, _, _)删除所有关联，但不删除关联记录</span><br><span class="line">• (<span class="number">6</span>, _, [ids])替换已关联记录列表为此处的列表</span><br></pre></td></tr></table></figure>
