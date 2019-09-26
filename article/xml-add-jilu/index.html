@@ -221,8 +221,8 @@
 <p>我们以前使用过它来设置<code>user_id</code>的值：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"user_id"</span> <span class="attr">eval</span>=<span class="string">"ref('base.group_user')"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="设置字段值的关系">设置字段值的关系</h2>
-<p>上一节了解了如何使用<code>eval</code>属性和<code>ref()</code>函数在多对一关系字段（如<code>user_id</code>）上设置值。 但是有一个更简单的方法。<br>
-<code>&lt;field&gt;</code>元素还有一个<code>ref</code>属性，用于使用外部标识符设置many2one字段的值。 有了这个，我们可以设置<code>user_id</code>的值：</p>
+<p>知道如何使用<code>eval</code>属性和<code>ref()</code>函数在多对一关系字段（如<code>user_id</code>）上设置值。但是有一个更简单的方法。<br>
+<code>&lt;field&gt;</code>元素还有一个<code>ref</code>属性，用于使用外部标识符设置many2one字段的值。有了这个，我们可以设置<code>user_id</code>的值：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"user_id"</span> <span class="attr">ref</span>=<span class="string">"base.user_demo"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>对于一对多和多对多字段，需要相关ID的列表，因此需要不同的语法;<br>
 Odoo提供了一种特殊的语法来写这种类型的字段。<br>
@@ -236,17 +236,17 @@ Odoo提供了一种特殊的语法来写这种类型的字段。<br>
 <li>(3,id,_) 取消链接但不删除相关记录</li>
 <li>(4,id,_) 链接已存在的记录</li>
 <li>(5,<em>,</em>) 取消链接，但不会删除所有链接的记录</li>
-<li>(6,_,[ids]) 使用提供的列表替换链接记录的列表</li>
+<li>(6,_,[ids]) 使用提供的列表替换链接记录的列表<br>
+前面列表中使用的下划线符号表示不相关的值，通常填充为0或False。</li>
 </ul>
-<p>前面列表中使用的下划线符号表示不相关的值，通常填充为0或False</p>
-<h1 id="常用模型的快捷键">常用模型的快捷键</h1>
+<h2 id="常用模型的快捷元素">常用模型的快捷元素</h2>
 <p>在xml文件中除了<code>&lt;record&gt;</code>的元素，还有如<code>&lt;act_window&gt;</code>和<code>&lt;menuitem&gt;</code>元素。<br>
 作为参考，下列快捷元素可与他们加载数据的相应模型一起使用：<br>
-<code>&lt;act_window&gt;</code>是窗口操作模型,ir.actions.act_window<br>
-<code>&lt;menuitem&gt;</code>是菜单项模型,ir.ui.menu<br>
-<code>&lt;report&gt;</code>是报告行动模型,ir.actions.report.xml<br>
-<code>&lt;template&gt;</code>是存储在ir.ui.view 模型的QWeb模板<br>
-<code>&lt;URL&gt;</code>是统一资源定位行为模型，ir.actions.act_URL</p>
+<code>&lt;act_window&gt;</code>是窗口操作模型，<code>ir.actions.act_window</code><br>
+<code>&lt;menuitem&gt;</code>是菜单项模型，<code>ir.ui.menu</code><br>
+<code>&lt;report&gt;</code>是报告行动模型，<code>ir.actions.report.xml</code><br>
+<code>&lt;template&gt;</code>是存储在<code>ir.ui.view</code>模型的QWeb模板<br>
+<code>&lt;URL&gt;</code>是统一资源定位行为模型，<code>ir.actions.act_URL</code></p>
 
                 
 
@@ -255,7 +255,7 @@ Odoo提供了一种特殊的语法来写这种类型的字段。<br>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="Odoo开发向模型中添加字段">&larr; Previous Post</a>
+                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="Odoo开发之向模型中添加字段">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -310,7 +310,7 @@ Odoo提供了一种特殊的语法来写这种类型的字段。<br>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用表达式设置值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8868;&#x8FBE;&#x5F0F;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#设置字段值的关系"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;&#x5B57;&#x6BB5;&#x503C;&#x7684;&#x5173;&#x7CFB;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#常用模型的快捷键"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5E38;&#x7528;&#x6A21;&#x578B;&#x7684;&#x5FEB;&#x6377;&#x952E;</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用表达式设置值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x8868;&#x8FBE;&#x5F0F;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#设置字段值的关系"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;&#x5B57;&#x6BB5;&#x503C;&#x7684;&#x5173;&#x7CFB;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#常用模型的快捷元素"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5E38;&#x7528;&#x6A21;&#x578B;&#x7684;&#x5FEB;&#x6377;&#x5143;&#x7D20;</span></a></li></ol>
         
         </div>
       </aside>

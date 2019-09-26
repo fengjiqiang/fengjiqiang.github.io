@@ -215,9 +215,12 @@
                 <h2 id="按钮支持的属性">按钮支持的属性</h2>
 <ul>
 <li>string是按钮文本标签或使用图标时的 HTML alt 文本</li>
-<li>type是执行操作的类型，有以下值：</li>
+<li>type是执行操作的类型，有以下值：
+<ul>
 <li>object用于调用 Python 方法</li>
 <li>action用于运行窗口操作</li>
+</ul>
+</li>
 <li>name标识按所选类型要操作的具体的操作，要么是模型方法名，要么是要运行的窗口操作的数据库 ID。可使用%(xmlid)d方程式来将XML ID转换成加载视图时所需的数据库 ID。</li>
 <li>args在类型为 object 时用于向方法传递额外的参数，须是在形成方法调用参数的记录 ID 之后所添加的纯静态 JSON 参数。</li>
 <li>context在上下文中添加值，可在窗口操作或 Python 代码方法调用之后产生效果。</li>

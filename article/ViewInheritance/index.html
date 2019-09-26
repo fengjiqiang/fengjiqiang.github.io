@@ -213,29 +213,38 @@
                 post-container">
 
                 <h1 id="视图继承">视图继承</h1>
-<p>在odoo界面中，表单，列表和搜索视图是使用arch XML结构定义的。如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。 这需要通过两步来实现。<br>
+<p>在odoo中，表单、列表和搜索视图是使用<code>arch XML</code>结构定义的。<br>
+如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。这需要通过两步来实现。<br>
 1、定位到视图XML中某个界面元素的位置；<br>
 2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。<br>
 继承视图正可以实现这个功能。一个继承视图声明如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_training_book_copy_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>training.book.copy.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"view_training_book_form"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>inherit_id字段使用特定属性ref引用一个外部标识符来指定要被扩展的视图。<br>
+<p><code>inherit_id</code>字段使用特定属性<code>ref</code>引用一个外部标识符来指定要被扩展的视图。<br>
 对于XML，在其中定位元素的最好方法是使用XPath表达式。比如其中一个XPath表达式是//field[@name=‘author’],这个表达式就是用于定位<br>
-<field name="“author”">元素的。这个表达式查找name属性等于author的任意field元素。<br>
-有关XPath的详细信息，请访问<a href="https://docs.python.org/2/library/xml.etree.elementtree.html#xpath-support" target="_blank" rel="noopener">Xpath表达式</a>。<br>
-如果XPath表达式匹配到多个元素，只有第一个元素会被修改。 因此，表达式应该使用独特的属性以使其指定尽可能具体。 使用name属性是确保我们找到扩展点的确切xml元素的最简单方法。 因此，在我们的视图XML元素上定义name属性是很重要的。<br>
-扩展点定位后，您可以修改它或在其附近添加XML元素。 下面是一个写在arch中的实现在author字段之前添加book_id,name,reference,book_rented四个字段的具体例子：</field></p>
+<code>&lt;field name =&quot;author&quot;&gt;</code>元素的。这个表达式查找<code>name</code>属性等于<code>author</code>的任意<code>&lt;field&gt;</code>元素。<br>
+有关<code>XPath</code>的详细信息，请访问<a href="https://docs.python.org/2/library/xml.etree.elementtree.html#xpath-support" target="_blank" rel="noopener">Xpath表达式</a>。<br>
+如果<code>XPath</code>表达式匹配到多个元素，只有第一个元素会被修改。因此，表达式应该使用独特的属性以使其指定尽可能具体。<br>
+使用<code>name</code>属性是确保我们找到扩展点的确切<code>xml</code>元素的最简单方法。<br>
+扩展点定位后，可以修改它或在其附近添加<code>XML</code>元素。<br>
+下面是一个写在<code>arch</code>中的实现在<code>author</code>字段之前添加<code>book_id</code>,<code>name</code>,<code>reference</code>,<code>book_rented</code>四个字段的具体例子：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"reference"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_rented"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果只添加一个字段，下面两种方法实现的效果一样：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>请注意，如果字段在同一视图中多次出现，则应始终使用XPath语法。 这是因为在字段第一次出现的时候Odoo将停止查找，而这可能会将您的更改应用在错误的字段上。<br>
-通常，我们是在现有字段旁边添加新字段，因此field标记经常用作定位器。 但是也可以使用任何其他标签：如sheet，group，page等。<br>
-name属性通常是匹配元素的最佳选择，但有时，我们可能需要使用其他东西：例如CSS类元素。 Odoo将找到具有指定的所有属性的第一个元素。<br>
+<p>通常，我们是在现有字段旁边添加新字段，因此<code>&lt;field&gt;</code>标记经常用作定位器。但是也可以使用任何其他标签：如<code>&lt;sheet&gt;</code>，<code>&lt;group&gt;</code>，<code>&lt;page&gt;</code>等。<br>
 与定位器元素一起使用的position属性是可选的，并且可以具有以下值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">after:将内容添加到父元素之中，匹配的节点之后。</span><br><span class="line">before:添加内容在匹配节点之前。</span><br><span class="line">inside（默认值）:匹配节点内的追加内容。</span><br><span class="line">replace:替换匹配的节点。如果使用空内容，它将删除该匹配的元素。从Odoo10开始，它还允许用其他标记包装一个元素，通过在内容中使用$0来表示被替换的元素。</span><br><span class="line">attributes：修改匹配元素的XML属性。在元素内容使用&lt;attribute name =“attr-name”&gt;实现给属性name设置新属性值attr-name。</span><br></pre></td></tr></table></figure>
-<p>例如，在表单中有一个name字段，但它可见不是那么有用。 我们可以将它对用户隐藏。 这可以通过设置invisible属性来完成：</p>
+<ul>
+<li>after:将内容添加到父元素之中，匹配的节点之后。</li>
+<li>before:添加内容在匹配节点之前。</li>
+<li>inside（默认值）:匹配节点内的追加内容。</li>
+<li>replace:替换匹配的节点。如果使用空内容，它将删除该匹配的元素。从Odoo10开始，它还允许用其他标记包装一个元素，通过在内容中使用$0来表示被替换的元素。</li>
+<li>attributes：修改匹配元素的XML属性。在元素内容使用<code>&lt;attribute name = &quot;attr-name&quot;&gt;</code>实现给属性<code>name</code>设置新属性值<code>attr-name</code>。<br>
+例如，在表单中有一个<code>name</code>字段，但它可见不是那么有用，我们可以将它对用户隐藏。<br>
+这可以通过设置<code>invisible</code>属性来完成：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">position</span>=<span class="string">"attributes"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"invisible"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设置invisible属性来隐藏元素是使用定位器元素replace属性删除节点的一个很好的替代方法。 应该避免删除节点，因为它可能破环那些利用删除的节点作为选择器添加其他元素的依赖模块。</p>
+<p>设置<code>invisible</code>属性来隐藏元素是使用定位器元素<code>replace</code>属性删除节点的一个很好的替代方法。<br>
+应该避免删除节点，因为它可能破环那些利用删除的节点作为选择器添加其他元素的依赖模块。</p>
 
                 
 
@@ -249,7 +258,7 @@ name属性通常是匹配元素的最佳选择，但有时，我们可能需要�
                     
                     
                         <li class="next">
-                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="Odoo开发向模型中添加字段">Next Post &rarr;</a>
+                            <a href="/article/add-field/" data-toggle="tooltip" data-placement="top" title="Odoo开发之向模型中添加字段">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

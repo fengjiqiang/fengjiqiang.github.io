@@ -224,10 +224,10 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@api.model </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_clear_done</span><span class="params">(self)</span>:</span> </span><br><span class="line">   dones = self.search([(<span class="string">'is_done'</span>, <span class="string">'='</span>, <span class="keyword">True</span>)]) </span><br><span class="line">   dones.write(&#123;<span class="string">'active'</span>: <span class="keyword">False</span>&#125;) </span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
 <p>它应该查找已完成的所有活动记录，并使它们处于非活动状态。<br>
-我们将构建一个包含所有标记为done的任务的dones记录集。然后，我们将<code>active</code>标志设置为<code>False</code>。<br>
-search方法是一种返回满足某些条件的记录的API方法。这些条件写在一个domain中，这是一个三元组列表。<br>
+我们将构建一个包含所有标记为<code>done</code>的任务的<code>dones</code>记录集。然后，我们将<code>active</code>标志设置为<code>False</code>。<br>
+<code>search</code>方法是一种返回满足某些条件的记录的API方法。这些条件写在一个<code>domain</code>中，这是一个三元组列表。<br>
 写入方法同时对记录集的所有元素设置值。要写入的值使用字典进行描述。<br>
-在这里使用write比遍历记录集更有效率，以便逐一为每个记录集赋值。</p>
+在这里使用<code>write</code>比遍历记录集更有效率，以便逐一为每个记录集赋值。</p>
 
                 
 
