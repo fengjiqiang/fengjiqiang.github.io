@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo开发向模型中添加字段 - Ethan | Blog
+          Odoo开发向模型中添加字段 - Ethan | Blog
         
     </title>
 
@@ -91,7 +91,7 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo开发向模型中添加字段</h1>
+                        <h1>Odoo开发向模型中添加字段</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
@@ -212,20 +212,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="向模型中添加字段">向模型中添加字段</h1>
+                <h2 id="向模型中添加字段">向模型中添加字段</h2>
 <ul>
-<li>我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。<br>
+<li>我们将添加几个字段到<code>academy.partner</code>模型，包括添加一个布尔类型的字段<code>instructor</code>。<br>
 在model文件夹下面创建一个文件名称为instructor.py文件（即创建training_academy/models/instructor.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> api, fields, models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instructor</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    _inherit = <span class="string">'academy.partner'</span></span><br><span class="line">    _description = <span class="string">'教师'</span></span><br><span class="line"></span><br><span class="line">    instructor = fields.Boolean(string=<span class="string">"讲师"</span>)</span><br></pre></td></tr></table></figure>
-<p>类的属性_inherit是关键字：它告诉Odoo，这个类是从类名为academy.partner类继承。<br>
-注意这里不再需要_name属性。因为这个属性已经从父模型（类）继承下来。<br>
+<p>类的属性_inherit是关键字：它告诉Odoo，这个类是从类名为<code>academy.partner</code>类继承。<br>
+注意这里不再需要<code>_name</code>属性。因为这个属性已经从父模型（类）继承下来。<br>
 接下来的一行是常规字段声明。</p>
 <ul>
 <li>接下来在model文件夹里面还需要创建一个__init__.py文件，代码如下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> instructor</span><br></pre></td></tr></table></figure>
-<p>至此，就可以执行模块升级操作了，如果上面的代码都没有写错并且模块升级成功的话，我们可以通过进入菜单Setting|Technical|Database Structure|Models，并在搜索栏里面搜索academy.partner查看类的细节，在Field Name中可以看到刚才添加的instructor属性。</p>
+<p>至此，就可以执行模块升级操作了。</p>
 
                 
 
@@ -234,12 +234,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/ViewInheritance/" data-toggle="tooltip" data-placement="top" title="odoo开发视图继承">&larr; Previous Post</a>
+                            <a href="/article/ViewInheritance/" data-toggle="tooltip" data-placement="top" title="Odoo开发视图继承">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/xml-add-jilu/" data-toggle="tooltip" data-placement="top" title="odoo开发在XML里定义记录">Next Post &rarr;</a>
+                            <a href="/article/xml-add-jilu/" data-toggle="tooltip" data-placement="top" title="Odoo开发在XML里定义记录">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -289,7 +289,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#向模型中添加字段"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5411;&#x6A21;&#x578B;&#x4E2D;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#向模型中添加字段"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5411;&#x6A21;&#x578B;&#x4E2D;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li></ol>
         
         </div>
       </aside>

@@ -16,8 +16,15 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/tags/docker/</loc>
+        <lastmod>2019-09-26T00:59:05.313Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/odoo/</loc>
-        <lastmod>2019-09-25T12:20:14.715Z</lastmod>
+        <lastmod>2019-09-26T09:05:10.957Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo实现按钮(button)跳转 - Ethan | Blog
+          Odoo实现按钮(button)跳转 - Ethan | Blog
         
     </title>
 
@@ -91,7 +91,7 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo实现按钮(button)跳转</h1>
+                        <h1>Odoo实现按钮(button)跳转</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
@@ -212,13 +212,25 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="button实现跳转">button实现跳转</h1>
+                <h2 id="按钮支持的属性">按钮支持的属性</h2>
 <ul>
-<li>方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。</li>
+<li>string是按钮文本标签或使用图标时的 HTML alt 文本</li>
+<li>type是执行操作的类型，有以下值：</li>
+<li>object用于调用 Python 方法</li>
+<li>action用于运行窗口操作</li>
+<li>name标识按所选类型要操作的具体的操作，要么是模型方法名，要么是要运行的窗口操作的数据库 ID。可使用%(xmlid)d方程式来将XML ID转换成加载视图时所需的数据库 ID。</li>
+<li>args在类型为 object 时用于向方法传递额外的参数，须是在形成方法调用参数的记录 ID 之后所添加的纯静态 JSON 参数。</li>
+<li>context在上下文中添加值，可在窗口操作或 Python 代码方法调用之后产生效果。</li>
+<li>confirm在运行相关操作之前显示确认消息框，显示的内容是属性中分配的文本。special=”cancel”用于向导表单。</li>
+<li>icon是按钮所显示的图标。</li>
+</ul>
+<h2 id="按钮实现跳转">按钮实现跳转</h2>
+<ul>
+<li>方法一 type=“action” action用于运行窗口操作，name里面是action的id，设定为&quot;%(action_id)d&quot;。</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_volunteer_plan_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>volunteer.plan.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>volunteer.plan<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">string</span>=<span class="string">"Generate Task"</span> <span class="attr">type</span>=<span class="string">"action"</span> <span class="attr">name</span>=<span class="string">"%(action_volunteer_generate_task)d"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">class</span>=<span class="string">"oe_highlight"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_plan_id': id&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">sheet</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">group</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"输入任务模板名称"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"type"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">notebook</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">page</span> <span class="attr">string</span>=<span class="string">"任务信息"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"task_plan_ids"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">page</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">notebook</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">sheet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>方法二 type=“object” 激活一个自定义python函数，name里面是函数名。</li>
+<li>方法二 type=“object” object用于调用Python方法，name里面是函数名。</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">'action_merge'</span> <span class="attr">string</span>=<span class="string">'Merge Contacts'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">'oe_highlight'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">'object'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', 'in', ('option', 'finished' ))]&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">'action_skip'</span> <span class="attr">string</span>=<span class="string">'Skip these contacts'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">'object'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '!=', 'selection')]&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">'action_start_manual_process'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">string</span>=<span class="string">'Merge with Manual Check'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">'object'</span>  <span class="attr">class</span>=<span class="string">'oe_highlight'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '!=', 'option')]&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">'action_start_automatic_process'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">string</span>=<span class="string">'Merge Automatically'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">'object'</span> <span class="attr">class</span>=<span class="string">'oe_highlight'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">confirm</span>=<span class="string">"Are you sure to execute the automatic merge of your contacts ?"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '!=', 'option')]&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">'action_update_all_process'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">string</span>=<span class="string">'Merge Automatically all process'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">'object'</span></span></span><br><span class="line"><span class="tag">        <span class="attr">confirm</span>=<span class="string">"Are you sure to execute the list of automatic merges of your contacts ?"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '!=', 'option')]&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">special</span>=<span class="string">"cancel"</span> <span class="attr">string</span>=<span class="string">"Cancel"</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">class</span>=<span class="string">"btn btn-secondary oe_inline"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '=', 'finished')]&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">special</span>=<span class="string">"cancel"</span> <span class="attr">string</span>=<span class="string">"Close"</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">class</span>=<span class="string">"btn btn-secondary oe_inline"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', '!=', 'finished')]&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -229,12 +241,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/add-business-logic/" data-toggle="tooltip" data-placement="top" title="odoo开发添加业务逻辑">&larr; Previous Post</a>
+                            <a href="/article/add-business-logic/" data-toggle="tooltip" data-placement="top" title="Odoo开发添加业务逻辑">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/ziduanpaixu/" data-toggle="tooltip" data-placement="top" title="odoo实现字段排序">Next Post &rarr;</a>
+                            <a href="/article/morenshaixuan/" data-toggle="tooltip" data-placement="top" title="Odoo实现默认筛选和默认排序">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -284,7 +296,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#button实现跳转"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">button&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#按钮支持的属性"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6309;&#x94AE;&#x652F;&#x6301;&#x7684;&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#按钮实现跳转"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x6309;&#x94AE;&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;</span></a></li></ol>
         
         </div>
       </aside>

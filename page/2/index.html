@@ -261,19 +261,17 @@ xml文件
     <a href="/article/ViewInheritNotice/">
         <h2 class="post-title">
                                  
-            odoo视图继承注意的点
+            Odoo视图继承注意的点
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             授权继承的视图继承
-模型继承时，使用授权继承方式，即应用这样的代码：
-1book_id = fields.Many2one('training.book', string="书籍", delegate=True)
-或
-1_inherits = &#123;'training.book': 'book_id'&#125;
+模型继承时，使用授权继承方式，也称代理继承，即应用这样的代码：
+123book_id = fields.Many2one('training.book', string="书籍", delegate=True)或_inherits = &#123;'training.book': 'book_id'&#125;
 在写Form视图继承时，容易忽略的一点是在代码中加入一句：
-1&lt;f......
+......
         </div>
     </a>
     
@@ -296,7 +294,7 @@ xml文件
     <a href="/article/ViewInheritance/">
         <h2 class="post-title">
                                  
-            odoo开发视图继承
+            Odoo开发视图继承
         </h2>
         <h3 class="post-subtitle">
             
@@ -330,7 +328,7 @@ xml文件
     <a href="/article/add-field/">
         <h2 class="post-title">
                                  
-            odoo开发向模型中添加字段
+            Odoo开发向模型中添加字段
         </h2>
         <h3 class="post-subtitle">
             
@@ -364,18 +362,18 @@ xml文件
     <a href="/article/xml-add-jilu/">
         <h2 class="post-title">
                                  
-            odoo开发在XML里定义记录
+            Odoo开发在XML里定义记录
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             使用表达式设置值
-定义字段值的更精细的替代方法是eval属性。 它评估一个Python表达式并将结果值分配给字段。
+定义字段值的更精细的替代方法是eval属性。它评估一个Python表达式并将结果值分配给字段。
 该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。
 要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。
 例如，要将值设置为昨天，我们将使用：
-12&lt;field name="date_deadl......
+12&lt;field name="date_deadli......
         </div>
     </a>
     
@@ -398,7 +396,7 @@ xml文件
     <a href="/article/add-business-logic/">
         <h2 class="post-title">
                                  
-            odoo开发添加业务逻辑
+            Odoo开发添加业务逻辑
         </h2>
         <h3 class="post-subtitle">
             
@@ -406,10 +404,10 @@ xml文件
         <div class="post-content-preview">
             添加业务逻辑
 
-对于记录上的逻辑，使用@api.multi装饰器。 这里，self将表示一个记录集，然后我们应该遍历每个记录。
+对于记录上的逻辑，使用@api.multi装饰器。这里，self将表示一个记录集，然后我们应该遍历每个记录。
 
 12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
-代码循环遍历所有待完成的任务记......
+代码循环遍历所有待完成的任务记录......
         </div>
     </a>
     
@@ -432,49 +430,20 @@ xml文件
     <a href="/article/buttonshixian/">
         <h2 class="post-title">
                                  
-            odoo实现按钮(button)跳转
+            Odoo实现按钮(button)跳转
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            button实现跳转
+            按钮支持的属性
 
-方法一 type=“action” 激活一个动作，name里面是action的id，设定为&quot;%(action_id)d&quot;。
-
-123456789101112131415161718192021222324&lt;record id="view_volunteer_plan_form" model="ir.ui.view"&gt;    &lt;fi......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/ziduanpaixu/">
-        <h2 class="post-title">
-                                 
-            odoo实现字段排序
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-在tree视图中实现字段排序 使用default_order
-
-123456789101112131415161718&lt;record id="view_volunteer_task_tree" model="ir.ui.view"&gt;    &lt;field name="name"&gt;volunteer.task.tree&lt;/field&gt;    &lt;fiel......
+string是按钮文本标签或使用图标时的 HTML alt 文本
+type是执行操作的类型，有以下值：
+object用于调用 Python 方法
+action用于运行窗口操作
+name标识按所选类型要操作的具体的操作，要么是模型方法名，要么是要运行的窗口操作的数据库 ID。可使用%(xmlid)d方程式来将XML ID转换成加载视图时所需的数据库 ID。
+args在类型为 ......
         </div>
     </a>
     
@@ -497,17 +466,17 @@ xml文件
     <a href="/article/morenshaixuan/">
         <h2 class="post-title">
                                  
-            odoo实现默认筛选(search view)
+            Odoo实现默认筛选和默认排序
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            筛选视图
+            筛选(search)视图
 
 使用search实现筛选
 
-12345678910111213141516&lt;record id="view_volunteer_task_search" model="ir.ui.view"&gt;    &lt;field name="model"&gt;volunteer.task&lt;/field&gt;    &lt;field name="arch" type=......
+12345678910111213141516&lt;record id="view_search_partner" model="ir.ui.view"&gt;    &lt;field name="name"&gt;Partner Filters&lt;/field&gt;    &lt;field name="model"&gt;......
         </div>
     </a>
     
@@ -551,6 +520,45 @@ windows10安装docker，首先需要启用Hyper-v。
 配置docker
 
 安装完成后，电脑右下角出现一个小鲸鱼图标，右键选择settings进行配置。最好先关闭防火......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#docker" title="docker">docker</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/git_use/">
+        <h2 class="post-title">
+                                 
+            使用git命令行提交代码至GitHub
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            git安装
+git下载
+GitHub新建代码仓库
+GitHub
+提交代码至GitHub
+
+git add --all
+git commit -m &quot;first commit&quot;
+git push
+
+...
         </div>
     </a>
     
@@ -611,7 +619,7 @@ windows10安装docker，首先需要启用Hyper-v。
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="18">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="17">odoo</a>
             
         
             
@@ -620,6 +628,10 @@ windows10安装docker，首先需要启用Hyper-v。
         
             
             <a href="/tags/#hello" title="hello" rel="1">hello</a>
+            
+        
+            
+            <a href="/tags/#docker" title="docker" rel="1">docker</a>
             
         
     </div>
@@ -714,7 +726,7 @@ windows10安装docker，首先需要启用Hyper-v。
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
