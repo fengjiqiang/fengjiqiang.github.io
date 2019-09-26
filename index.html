@@ -277,14 +277,14 @@ context和domain也是字段属性并对于关联字段特别有用。c......
     <a href="/article/bankpayment-oa-api/">
         <h2 class="post-title">
                                  
-            OA向银企直连提供的接口
+            Odoo开发之接口实现
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            OA向银企直连提供的接口
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455# -*- coding: utf-8 -*-import jsonimport loggingfrom odoo.http import Controller, r......
+            接口实现
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354# -*- coding: utf-8 -*-import jsonimport loggingfrom odoo.http import Controller, route, requ......
         </div>
     </a>
     
@@ -307,7 +307,7 @@ context和domain也是字段属性并对于关联字段特别有用。c......
     <a href="/article/tomanywrite/">
         <h2 class="post-title">
                                  
-            x2many关联字段写值
+            Odoo开发之关联字段x2many写值
         </h2>
         <h3 class="post-subtitle">
             
@@ -346,9 +346,14 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         </h3>
         <div class="post-content-preview">
             使用记录集和作用域(domain)查询数据
-在方法或 shell 会话中，self表示当前模型，并且我们仅能访问该模型的记录。要访问其它模型就需要使用self.env。
-例如self.env[‘res.partner’]返回一条对 Partner 模型的引用(也是一个空记录集)。
-我们可以使用search()或browse()来获取记录集，其中search()方法使用域表达式来定义记录选择范......
+
+在方法中，self表示当前模型，并且我们仅能访问该模型的记录。要访问其它模型就需要使用self.env。
+例如self.env['res.partner']返回一条对Partner模型的引用(也是一个空记录集)。
+我们可以使用search()或browse()来获取记录集，其中search()方法使用域表达式来定义记录选择范围。
+
+创建记录集
+
+......
         </div>
     </a>
     
@@ -379,9 +384,11 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         <div class="post-content-preview">
             原模型继承
 为模型添加字段
-通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即_inherit 类属性。
+
+通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即_inherit类属性。
 该属性标明所继承的模型。新的类继承父 Odoo 模型的所有功能，仅需声明要做修改的部分。
-推荐为每个模型创建一个 Python 文件，因此我们添加library_member/models/library_book.py文件来继承原模型......
+添加library_member/models/library_book.py文件来继承原模型，首先创建__init__.py文件来导入该文件：
+......
         </div>
     </a>
     
@@ -404,22 +411,22 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
     <a href="/article/nameSequence/">
         <h2 class="post-title">
                                  
-            odoo开发之自动编号创建
+            Odoo开发之自动编号创建
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            应用场景：
+            应用场景
 在创建单据的时候，我们很容易遇到单据的编号是按照一定规则创建的，那么在新建单据的时候能够自动生成编号无疑可以减少用户的工作量，
 本文为该流程的操作示例。
-解决办法：
+解决办法
 通过在data文件夹插入一条ir.sequence数据，在模型里调用该数据，完成自动生成编号流程。
-代码示例：
+代码示例
 预制数据
 模块目录下新建data文件夹，创建xx_data.xml文件：
 
-在__manifest__.......
+在__manifest__.py中......
         </div>
     </a>
     
@@ -504,7 +511,7 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
     <a href="/article/notification/">
         <h2 class="post-title">
                                  
-            odoo开发消息通知
+            Odoo开发之消息通知
         </h2>
         <h3 class="post-subtitle">
             
@@ -655,11 +662,11 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         </li>
       
         <li>
-          <a href="/article/bankpayment-oa-api/">OA向银企直连提供的接口</a>
+          <a href="/article/bankpayment-oa-api/">Odoo开发之接口实现</a>
         </li>
       
         <li>
-          <a href="/article/tomanywrite/">x2many关联字段写值</a>
+          <a href="/article/tomanywrite/">Odoo开发之关联字段x2many写值</a>
         </li>
       
         <li>

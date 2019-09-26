@@ -214,9 +214,11 @@
 
                 <h1 id="原模型继承">原模型继承</h1>
 <h2 id="为模型添加字段">为模型添加字段</h2>
-<p>通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即_inherit 类属性。<br>
-该属性标明所继承的模型。新的类继承父 Odoo 模型的所有功能，仅需声明要做修改的部分。<br>
-推荐为每个模型创建一个 Python 文件，因此我们添加library_member/models/library_book.py文件来继承原模型，首先创建__init__.py文件来导入该文件：</p>
+<ul>
+<li>通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即<code>_inherit</code>类属性。</li>
+<li>该属性标明所继承的模型。新的类继承父 Odoo 模型的所有功能，仅需声明要做修改的部分。</li>
+<li>添加library_member/models/library_book.py文件来继承原模型，首先创建__init__.py文件来导入该文件：</li>
+</ul>
 <ol>
 <li>添加library_member/<strong>init</strong>.py文件来导入 models 子文件夹</li>
 </ol>
@@ -229,60 +231,78 @@
 <li>创建library_member/models/library_book.py文件来继承library.book模型：</li>
 </ol>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> odoo <span class="keyword">import</span> api, fields, models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    _inherit = <span class="string">'library.book'</span></span><br><span class="line">    </span><br><span class="line">    is_available = fields.Boolean(<span class="string">'Is Available?'</span>)</span><br></pre></td></tr></table></figure>
-<p>使用_inherit类属性来声明所继承模型。注意我们并没有使用到其它类属性，甚至是_name 也没使用。除非想要做出修改，否则不需要使用这些属性。<br>
-可以把这个想成是对模型定义的一个引用，在原处做了一个修改。可以添加字段、修改已有字段、修改模型类属性甚至是包含业务逻辑的方法。<br>
-要在数据表中添加新的模型字段需要安装该模块。</p>
-<h2 id="修改已有字段">修改已有字段</h2>
-<p>通过上面部分可以看到向已有模型添加新字段非常简单。有时还要对已有字段进行修改，也非常简单。<br>
-在继承模型时，可对已有字段叠加修改，也就是说仅需定义要增加或修改的字段属性。<br>
-我们将对原来创建的library_app模块的 Book模型做两处简单修改：</p>
 <ul>
-<li>为isbn字段添加一条提示，说明同时支持10位数的 ISBN（稍后会实现该功能）</li>
-<li>为publisher_id字段添加数据库索引，以提升搜索效率<br>
-编辑library_member/models/library_book.py文件，并在library.book 模型中添加如下代码：</li>
+<li>使用<code>_inherit</code>类属性来声明所继承模型。注意我们并没有使用到其它类属性，甚至是<code>_name</code>也没使用。除非想要做出修改，否则不需要使用这些属性。</li>
+<li>可以把这个想成是对模型定义的一个引用，在原处做了一个修改。</li>
+<li>可以添加字段、修改已有字段、修改模型类属性甚至是包含业务逻辑的方法。</li>
+<li>要在数据表中添加新的模型字段需要安装该模块。</li>
+</ul>
+<h2 id="修改已有字段">修改已有字段</h2>
+<p>在继承模型时，可对已有字段叠加修改，也就是说仅需定义要增加或修改的字段属性。<br>
+我们将对原来创建的library_app模块的Book模型做两处简单修改：</p>
+<ul>
+<li>为<code>isbn</code>字段添加一条提示，说明同时支持10位数的 ISBN</li>
+<li>为<code>publisher_id</code>字段添加数据库索引，以提升搜索效率</li>
+<li>编辑library_member/models/library_book.py文件，并在<code>library.book</code>模型中添加如下代码：</li>
 </ul>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    isbn = fields.Char(help=<span class="string">"Use a valid ISBN-13 or ISBN-10."</span>)</span><br><span class="line">    publisher_id = fields.Many2one(index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-<p>index=True这一修改不太容易发现，通过Settings &gt; Technical &gt; Database Structure &gt; Models菜单下的字段定义中可进行查看。</p>
 <h1 id="修改视图和数据">修改视图和数据</h1>
-<p>模块中视图和其它数据构件也可通过继承来修改。就视图而言，通常需要添加功能。视图的展示结构在 arch 字段中使用 XML定义。<br>
-这一 XML 数据可通过定位到所需修改的地方来进行继承，然后声明需执行的操作，如在该处添加 XML 元素。对于剩余的数据元素，它们代表写入数据库中的记录，继承模型可通过写操作来修改它们的值。</p>
+<p>模块中视图和其它数据构件也可通过继承来修改。就视图而言，通常需要添加功能。视图的展示结构在<code>arch</code>字段中使用<code>XML</code>定义。</p>
 <h2 id="继承视图">继承视图</h2>
-<p>表单、列表和搜索视图通过arch XML结构定义。要继承视图，就要一种修改 XML 的方式，也即定位 XML 元素然后对该处进行修改。<br>
-视图继承的 XML 记录和普通视图中相似，多一个 inherit_id属性来引用所要继承的视图。<br>
-下面我们来继承图书视图并添加is_available字段。<br>
-首先要查找待继承的视图的XML ID，通过Settings &gt; Technical &gt; User Interface &gt; Views菜单来查看。<br>
-图书表单的XML ID是library_app.view_form_book。然后还要找到要插入修改的XML元素，我们在 ISBN 字段之后添加Is Available?通常通过name 属性定位元素，此处为<field name="isbn">。<br>
-我们添加views/book_view.xml文件来继承 Partner 视图，加入如下内容：</field></p>
+<ul>
+<li>表单、列表和搜索视图通过<code>arch XML</code>结构定义。要继承视图，就要一种修改<code>XML</code>的方式，也即定位<code>XML</code>元素然后对该处进行修改。</li>
+<li>视图继承的<code>XML</code>记录和普通视图中相似，多一个<code>inherit_id</code>属性来引用所要继承的视图。</li>
+<li>下面我们来继承图书视图并添加<code>is_available</code>字段。
+<ul>
+<li>首先要查找待继承的视图的<code>XML ID</code>，通过&quot;设置 &gt; 技术 &gt; 用户界面 &gt; 视图&quot;菜单来查看。</li>
+<li>图书表单的<code>XML ID</code>是<code>library_app.view_form_book</code>。然后还要找到要插入修改的XML元素，我们在<code>ISBN</code>字段之后添加<code>Is Available?</code>通常通过<code>name</code>属性定位元素，此处为<code>&lt;field name=&quot;isbn&quot;/&gt;</code>。</li>
+</ul>
+</li>
+<li>我们添加views/book_view.xml文件来继承<code>Partner</code>视图，加入如下内容：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_form_book_extend"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Book: add Is Available? field<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>library.book<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"library_app.view_form_book"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--field name="isbn" position="after"&gt;</span></span><br><span class="line"><span class="comment">                &lt;field name="is_available" /&gt;</span></span><br><span class="line"><span class="comment">            &lt;/field--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='isbn']"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_available"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>inherit_id记录字段通过 ref 属性指向继承视图的外部标识符<br>
-视图使用 XML 定义并存储在结构字段 arch 中。要继承一个视图，先定位要扩展的节点，然后执行要做的操作，如添加 XML 元素。<br>
-定位节点的最简单方法是使用唯一标识属性，<br>
-通常是 name。然后添加定位属性，声明要做的修改。本例中继承节点是name=”isbn”元素，修改是在选定元素后加一段 XML：</p>
+<ul>
+<li><code>inherit_id</code>记录字段通过<code>ref</code>属性指向继承视图的外部标识符</li>
+<li>视图使用<code>XML</code>定义并存储在结构字段<code>arch</code>中。要继承一个视图，先定位要扩展的节点，然后执行要做的操作，如添加<code>XML</code>元素。</li>
+<li>定位节点的最简单方法是使用唯一标识属性，</li>
+<li>通常是<code>name</code>。然后添加定位属性，声明要做的修改。本例中继承节点是<code>name=&quot;isbn&quot;</code>元素，修改是在选定元素后加一段<code>XML</code>：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"isbn"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 此处添加修改内容 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>除string 属性外的任意 XML 元素和属性可作为继承节点，字符串属性会被翻译成用户所使用的语言，因此不能作为节点选择器。<br>
-一旦 XML 节点被选为继承点，需要指明要执行的继承操作。这通过 position 属性实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- inside（默认值）：在所选节点内添加内容，这一节点应是&lt;group&gt;或&lt;page&gt;一类的容器</span><br><span class="line">- after：在选定节点之后向父节点添加内容</span><br><span class="line">- before：在选定节点之前向父节点添加内容</span><br><span class="line">- replace：替换所选节点。若使用空元素则会删除该元素。Odoo 之后还允许使用其它标记来包裹元素，通过在内容中使用$<span class="number">0</span>来表示被替换的元素。</span><br><span class="line">- attributes：修改匹配元素属性值。内容中应包含带有一个或多个&lt;attribute name=”attr-name”&gt;value&lt;/attribute&gt;元素。</span><br><span class="line">如&lt;attribute name=”invisible”&gt;True&lt;/attribute&gt;，若不带内容，如&lt;attribute name=”invisible” /&gt;则 attribute 会从所选元素中删除。</span><br></pre></td></tr></table></figure>
-<p>通过position=”replace”可删除 XML 元素，但应避免这么做。<br>
-这么做会破坏其它依赖所删除节点、将其作为占位符添加元素的模块。一个替代方案是，让该元素不可见。<br>
-除了attributes定位，上述定位符可与带position=”move”的子元素合并。效果是将子定位符目标节点移到父定位符目录位置。<br>
-例如：</p>
+<p>一旦<code>XML</code>节点被选为继承点，需要指明要执行的继承操作。这通过<code>position</code>属性实现：</p>
+<ul>
+<li>inside（默认值）：在所选节点内添加内容，这一节点应是<code>&lt;group&gt;</code>或<code>&lt;page&gt;</code>一类的容器</li>
+<li>after：在选定节点之后向父节点添加内容</li>
+<li>before：在选定节点之前向父节点添加内容</li>
+<li>replace：替换所选节点。若使用空元素则会删除该元素。Odoo 之后还允许使用其它标记来包裹元素，通过在内容中使用$0来表示被替换的元素。</li>
+<li>attributes：修改匹配元素属性值。内容中应包含带有一个或多个<code>&lt;attribute name=&quot;attr-name&quot;&gt;value&lt;/attribute&gt;</code>元素。</li>
+<li>如<code>&lt;attribute name=&quot;invisible&quot;&gt;True&lt;/attribute&gt;</code>，若不带内容，如<code>&lt;attribute name=&quot;invisible&quot;/&gt;</code>则<code>attribute</code>会从所选元素中删除。</li>
+<li>通过<code>position=&quot;replace&quot;</code>可删除<code>XML</code>元素，但应避免这么做。这么做会破坏其它依赖所删除节点、将其作为占位符添加元素的模块。一个替代方案是，让该元素不可见。</li>
+<li>除了<code>attributes</code>定位，上述定位符可与带<code>position=&quot;move&quot;</code>的子元素合并。效果是将子定位符目标节点移到父定位符目录位置。<br>
+例如：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"target_field"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"my_field"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>其它视图类型，如列表和搜索视图，也有 arch 字段，可以表单视图同样的方式被继承。</p>
-<h2 id="使用-xpath-选取继承点">使用 XPath 选取继承点</h2>
-<p>有时可能没有带唯一值的属性来用作 XML 节点选择器。在所选元素没有 name 属性时可能出现这一情况，如<group>、<notebook>或<page>视图元素。另外就是有多个带有相同 name 属性的元素，比如在看板 QWeb 视图中相同字段可能在同一 XML 模板中被多次包含。<br>
-在这些情况下我们就需要更高级的方式来定位待扩展 XML 元素。定位 XML 中元素的一种自然方式是 XPath 表达式。以上一篇文章中定义的 Book 表单视图为例，定位<field name="isbn">元素的 XPath 表达式是//field[@name]=‘isbn’。该表达式查找 name 属性等于 isbn 的<field>元素。<br>
-前一部分对图书表单视图继承的 XPath 写法是：</field></field></page></notebook></group></p>
+<p>其它视图类型，如列表和搜索视图，也有’arch`字段，可以表单视图同样的方式被继承。</p>
+<h2 id="使用xpath选取继承点">使用XPath选取继承点</h2>
+<ul>
+<li>有时可能没有带唯一值的属性来用作<code>XML</code>节点选择器。在所选元素没有<code>name</code>属性时可能出现这一情况，如<code>&lt;group&gt;</code>、<code>&lt;notebook&gt;</code>或<code>&lt;page&gt;</code>视图元素。</li>
+<li>另外就是有多个带有相同<code>name</code>属性的元素，比如在看板 QWeb 视图中相同字段可能在同一<code>XML</code>模板中被多次包含。</li>
+<li>在这些情况下我们就需要更高级的方式来定位待扩展<code>XML</code>元素。定位<code>XML</code>中元素的一种自然方式是<code>XPath</code>表达式。</li>
+<li>以定义的 Book 表单视图为例，定位<code>&lt;field name=&quot;isbn&quot;&gt;</code>元素的 XPath 表达式是<code>//field[@name]='isbn'</code>。该表达式查找<code>name</code>属性等于<code>isbn</code>的<code>&lt;field&gt;</code>元素。<br>
+前一部分对图书表单视图继承的<code>XPath</code>写法是：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='isbn']"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_available"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果 XPath 表达式匹配到了多个元素，仅会选取第一个作为扩展目录。所以表达式应越精确越好，使用唯一属性。<br>
-name 属性最易于确保找到精确元素作为扩展点，因此在创建视图 XML 元素时添加唯一标识符就非常重要。</p>
+<p>如果<code>XPath</code>表达式匹配到了多个元素，仅会选取第一个作为扩展目录。所以表达式应越精确越好，使用唯一属性。<br>
+<code>name</code>属性最易于确保找到精确元素作为扩展点，因此在创建视图<code>XML</code>元素时添加唯一标识符就非常重要。</p>
 <h2 id="修改数据">修改数据</h2>
-<p>普通数据记录不同于视图，它没有 XML arch 结构，也不能使用 XPath 来进行扩展。但还是可以通过替换字段值来进行修改。<br>
-<record id="x" model="y">数据加载元素实际是对 y 模型进行插入或更新操作。<br>
-若不存在记录 x，则被创建，否则被更新/覆盖。其它模块中的记录可通过<module>.<identifier>全局标识符访问，因此可以在我们的模块中重写其它模块中已写入的数据。<br>
-点号是保留符号，用于分隔模块名和对象标识符，所以在标识符名中不要使用点号，而应使用下划线字符。<br>
-举个例子，我们将 User 安全组的名称修改为 Librarian，对应修改library_app.library_group_user记录。添加library_member/security/library_security.xml并加入如下代码：</identifier></module></record></p>
+<ul>
+<li>普通数据记录不同于视图，它没有<code>XML arch</code>结构，也不能使用<code>XPath</code>来进行扩展。但还是可以通过替换字段值来进行修改。<br>
+<code>&lt;record id=&quot;x&quot; model=&quot;y&quot;&gt;</code>数据加载元素实际是对 y 模型进行插入或更新操作。</li>
+<li>若不存在记录 x，则被创建，否则被更新/覆盖。其它模块中的记录可通过<code>&lt;module&gt;.&lt;identifier&gt;</code>全局标识符访问，因此可以在我们的模块中重写其它模块中已写入的数据。</li>
+<li>点号是保留符号，用于分隔模块名和对象标识符，所以在标识符名中不要使用点号，而应使用下划线字符。</li>
+<li>举个例子，我们将<code>User</code>安全组的名称修改为<code>Librarian</code>，对应修改<code>library_app.library_group_user</code>记录。添加library_member/security/library_security.xml并加入如下代码：</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Modify Group name --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"library_app.library_group_user"</span> <span class="attr">model</span>=<span class="string">"res.groups"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Librarian<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这里我们使用了一个<record>元素，仅写了 name 字段。可以认为这是对所选字段的一次写操作。</record></p>
+<p>这里我们使用了一个<code>&lt;record&gt;</code>元素，仅写<code>name</code>字段。可以认为这是对所选字段的一次写操作。</p>
 
                 
 
@@ -296,7 +316,7 @@ name 属性最易于确保找到精确元素作为扩展点，因此在创建视
                     
                     
                         <li class="next">
-                            <a href="/article/nameSequence/" data-toggle="tooltip" data-placement="top" title="odoo开发之自动编号创建">Next Post &rarr;</a>
+                            <a href="/article/nameSequence/" data-toggle="tooltip" data-placement="top" title="Odoo开发之自动编号创建">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -346,7 +366,7 @@ name 属性最易于确保找到精确元素作为扩展点，因此在创建视
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#原模型继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x539F;&#x6A21;&#x578B;&#x7EE7;&#x627F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#为模型添加字段"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E3A;&#x6A21;&#x578B;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改已有字段"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x5DF2;&#x6709;&#x5B57;&#x6BB5;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#修改视图和数据"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x89C6;&#x56FE;&#x548C;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#继承视图"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x7EE7;&#x627F;&#x89C6;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用-xpath-选取继承点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528; XPath &#x9009;&#x53D6;&#x7EE7;&#x627F;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改数据"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x6570;&#x636E;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#原模型继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x539F;&#x6A21;&#x578B;&#x7EE7;&#x627F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#为模型添加字段"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E3A;&#x6A21;&#x578B;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改已有字段"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x5DF2;&#x6709;&#x5B57;&#x6BB5;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#修改视图和数据"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x89C6;&#x56FE;&#x548C;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#继承视图"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x7EE7;&#x627F;&#x89C6;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用xpath选取继承点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;XPath&#x9009;&#x53D6;&#x7EE7;&#x627F;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改数据"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x6570;&#x636E;</span></a></li></ol></li></ol>
         
         </div>
       </aside>

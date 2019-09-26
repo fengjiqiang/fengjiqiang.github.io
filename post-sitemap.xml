@@ -7,8 +7,72 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/notification/</loc>
+        <lastmod>2019-09-26T11:08:50.787Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/tec0827/</loc>
+        <lastmod>2019-09-26T11:07:21.102Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/nameSequence/</loc>
+        <lastmod>2019-09-26T11:07:08.043Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/bankpayment-oa-api/</loc>
+        <lastmod>2019-09-26T11:05:56.802Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/odooInherit/</loc>
+        <lastmod>2019-09-26T10:11:04.580Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/odooModelData/</loc>
+        <lastmod>2019-09-26T09:55:09.492Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/tomanywrite/</loc>
+        <lastmod>2019-09-26T09:43:59.101Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
+        <lastmod>2019-09-26T09:42:02.227Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/ViewInheritance/</loc>
-        <lastmod>2019-09-26T09:35:09.740Z</lastmod>
+        <lastmod>2019-09-26T09:40:27.390Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -55,14 +119,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
-        <lastmod>2019-09-26T09:05:10.957Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/article/docker-install/</loc>
         <lastmod>2019-09-26T00:59:05.313Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -95,64 +151,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/tomanywrite/</loc>
-        <lastmod>2019-09-21T07:48:24.966Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/bankpayment-oa-api/</loc>
-        <lastmod>2019-09-21T07:43:04.680Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/odooModelData/</loc>
-        <lastmod>2019-09-16T00:15:19.859Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/odooInherit/</loc>
-        <lastmod>2019-09-15T08:49:25.654Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/nameSequence/</loc>
-        <lastmod>2019-09-15T02:58:35.976Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/article/ubuntu-desktop/</loc>
         <lastmod>2019-09-15T02:43:08.850Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/notification/</loc>
-        <lastmod>2019-09-15T02:43:06.570Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/tec0827/</loc>
-        <lastmod>2019-08-27T13:28:04.097Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
