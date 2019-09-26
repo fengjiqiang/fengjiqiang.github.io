@@ -212,11 +212,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="tomany字段写值">tomany字段写值</h2>
+                <h3 id="tomany字段写值">tomany字段写值</h3>
 <p>reference:<br>
 D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> res <span class="keyword">in</span> self:</span><br><span class="line">    payment_line_sets = []</span><br><span class="line">    record = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> res.payment_line_ids.filtered(<span class="keyword">lambda</span> x: x.state == <span class="string">'unsubmitted'</span>):</span><br><span class="line">        record = &#123;</span><br><span class="line">            <span class="string">"pay_per_money"</span>: line.pay_per_money,</span><br><span class="line">        &#125;</span><br><span class="line">        payment_line_sets.append([<span class="number">0</span>, <span class="number">0</span>, record])</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> record:</span><br><span class="line">    <span class="keyword">raise</span> ValidationError(<span class="string">"没有付款记录可传！"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="实现跳转刷新">实现跳转刷新</h2>
+<h3 id="实现跳转刷新">实现跳转刷新</h3>
 <p>reference: D:\NewHopeOdoo10\NewHope\interface\interface_bank\models\payment_commit.py</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'type'</span>: <span class="string">'ir.actions.act_window'</span>,</span><br><span class="line">        <span class="string">'res_model'</span>: <span class="string">'interface.bank.payment'</span>,</span><br><span class="line">        <span class="string">'view_mode'</span>: <span class="string">'form'</span>,</span><br><span class="line">        <span class="string">'target'</span>: <span class="string">'current'</span>,</span><br><span class="line">        <span class="string">'res_id'</span>: payment.id,</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
@@ -282,7 +282,7 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tomany字段写值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">tomany&#x5B57;&#x6BB5;&#x5199;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#实现跳转刷新"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;&#x5237;&#x65B0;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tomany字段写值"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">tomany&#x5B57;&#x6BB5;&#x5199;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实现跳转刷新"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;&#x5237;&#x65B0;</span></a></li></ol>
         
         </div>
       </aside>

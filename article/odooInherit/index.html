@@ -212,8 +212,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="原模型继承">原模型继承</h1>
-<h2 id="为模型添加字段">为模型添加字段</h2>
+                <h2 id="原模型继承">原模型继承</h2>
+<h3 id="为模型添加字段">为模型添加字段</h3>
 <ul>
 <li>通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即<code>_inherit</code>类属性。</li>
 <li>该属性标明所继承的模型。新的类继承父 Odoo 模型的所有功能，仅需声明要做修改的部分。</li>
@@ -237,7 +237,7 @@
 <li>可以添加字段、修改已有字段、修改模型类属性甚至是包含业务逻辑的方法。</li>
 <li>要在数据表中添加新的模型字段需要安装该模块。</li>
 </ul>
-<h2 id="修改已有字段">修改已有字段</h2>
+<h3 id="修改已有字段">修改已有字段</h3>
 <p>在继承模型时，可对已有字段叠加修改，也就是说仅需定义要增加或修改的字段属性。<br>
 我们将对原来创建的library_app模块的Book模型做两处简单修改：</p>
 <ul>
@@ -246,9 +246,9 @@
 <li>编辑library_member/models/library_book.py文件，并在<code>library.book</code>模型中添加如下代码：</li>
 </ul>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    isbn = fields.Char(help=<span class="string">"Use a valid ISBN-13 or ISBN-10."</span>)</span><br><span class="line">    publisher_id = fields.Many2one(index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="修改视图和数据">修改视图和数据</h1>
+<h2 id="修改视图和数据">修改视图和数据</h2>
 <p>模块中视图和其它数据构件也可通过继承来修改。就视图而言，通常需要添加功能。视图的展示结构在<code>arch</code>字段中使用<code>XML</code>定义。</p>
-<h2 id="继承视图">继承视图</h2>
+<h3 id="继承视图">继承视图</h3>
 <ul>
 <li>表单、列表和搜索视图通过<code>arch XML</code>结构定义。要继承视图，就要一种修改<code>XML</code>的方式，也即定位<code>XML</code>元素然后对该处进行修改。</li>
 <li>视图继承的<code>XML</code>记录和普通视图中相似，多一个<code>inherit_id</code>属性来引用所要继承的视图。</li>
@@ -282,7 +282,7 @@
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"target_field"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"my_field"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其它视图类型，如列表和搜索视图，也有’arch`字段，可以表单视图同样的方式被继承。</p>
-<h2 id="使用xpath选取继承点">使用XPath选取继承点</h2>
+<h3 id="使用xpath选取继承点">使用XPath选取继承点</h3>
 <ul>
 <li>有时可能没有带唯一值的属性来用作<code>XML</code>节点选择器。在所选元素没有<code>name</code>属性时可能出现这一情况，如<code>&lt;group&gt;</code>、<code>&lt;notebook&gt;</code>或<code>&lt;page&gt;</code>视图元素。</li>
 <li>另外就是有多个带有相同<code>name</code>属性的元素，比如在看板 QWeb 视图中相同字段可能在同一<code>XML</code>模板中被多次包含。</li>
@@ -293,7 +293,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='isbn']"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_available"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果<code>XPath</code>表达式匹配到了多个元素，仅会选取第一个作为扩展目录。所以表达式应越精确越好，使用唯一属性。<br>
 <code>name</code>属性最易于确保找到精确元素作为扩展点，因此在创建视图<code>XML</code>元素时添加唯一标识符就非常重要。</p>
-<h2 id="修改数据">修改数据</h2>
+<h3 id="修改数据">修改数据</h3>
 <ul>
 <li>普通数据记录不同于视图，它没有<code>XML arch</code>结构，也不能使用<code>XPath</code>来进行扩展。但还是可以通过替换字段值来进行修改。<br>
 <code>&lt;record id=&quot;x&quot; model=&quot;y&quot;&gt;</code>数据加载元素实际是对 y 模型进行插入或更新操作。</li>
@@ -366,7 +366,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#原模型继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x539F;&#x6A21;&#x578B;&#x7EE7;&#x627F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#为模型添加字段"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E3A;&#x6A21;&#x578B;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改已有字段"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x5DF2;&#x6709;&#x5B57;&#x6BB5;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#修改视图和数据"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x89C6;&#x56FE;&#x548C;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#继承视图"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x7EE7;&#x627F;&#x89C6;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用xpath选取继承点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;XPath&#x9009;&#x53D6;&#x7EE7;&#x627F;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改数据"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x6570;&#x636E;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原模型继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x539F;&#x6A21;&#x578B;&#x7EE7;&#x627F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为模型添加字段"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E3A;&#x6A21;&#x578B;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#修改已有字段"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x5DF2;&#x6709;&#x5B57;&#x6BB5;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改视图和数据"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x89C6;&#x56FE;&#x548C;&#x6570;&#x636E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#继承视图"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x7EE7;&#x627F;&#x89C6;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用xpath选取继承点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;XPath&#x9009;&#x53D6;&#x7EE7;&#x627F;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#修改数据"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;&#x6570;&#x636E;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
