@@ -212,14 +212,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="间隔期间取数">间隔期间取数</h2>
+                <h3 id="间隔期间取数">间隔期间取数</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值</span></span><br><span class="line"><span class="comment"># @author:fengjiqiang@inspur.com</span></span><br><span class="line">receipts_ids = self.env[<span class="string">'cost.transfer.receipts.sub'</span>].search(</span><br><span class="line">    [</span><br><span class="line">        (<span class="string">'product_id'</span>, <span class="string">'='</span>, id),</span><br><span class="line">        (<span class="string">'company_id'</span>, <span class="string">'='</span>, self.company_id.id),</span><br><span class="line">        (<span class="string">'created_date'</span>, <span class="string">'&lt;='</span>, period.date_stop),</span><br><span class="line">        (<span class="string">'outlet_unit_price'</span>, <span class="string">'&gt;'</span>, <span class="number">0</span>)</span><br><span class="line">    ], order=<span class="string">"created_date desc"</span>, limit=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># receipts_ids = receipts_ids[0]</span></span><br></pre></td></tr></table></figure>
-<h2 id="在-to-many-关联字段上设置值">在 to-many 关联字段上设置值</h2>
+<h3 id="在-to-many-关联字段上设置值">在 to-many 关联字段上设置值</h3>
 <p>完整的可用命令如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">• (<span class="number">0</span>, _ , &#123;‘field’: value&#125;)新建一条记录并将其与之关联</span><br><span class="line">• (<span class="number">1</span>, id, &#123;‘field’: value&#125;)更新已关联记录的值</span><br><span class="line">• (<span class="number">2</span>, id, _)移除关联并删除 id 关联的记录</span><br><span class="line">• (<span class="number">3</span>, id, _)移除关联但不删除 id 关联的记录。通常使用它来删除many-to-many字段的关联记录</span><br><span class="line">• (<span class="number">4</span>, id, _)关联已存在记录，仅适用于many-to-many字段</span><br><span class="line">• (<span class="number">5</span>, _, _)删除所有关联，但不删除关联记录</span><br><span class="line">• (<span class="number">6</span>, _, [ids])替换已关联记录列表为此处的列表</span><br></pre></td></tr></table></figure>
-<p>上述下划线_字符代表非关联值，通常填入 0 或 False。<br>
-后面的非关联值可以放心地省略掉，如(4, id, _) 可使用(4, id)</p>
-<h2 id="上下文context">上下文(context)</h2>
+<ul>
+<li>(0, _ , {‘field’: value})新建一条记录并将其与之关联</li>
+<li>(1, id, {‘field’: value})更新已关联记录的值</li>
+<li>(2, id, _)移除关联并删除 id 关联的记录</li>
+<li>(3, id, _)移除关联但不删除 id 关联的记录。通常使用它来删除many-to-many字段的关联记录</li>
+<li>(4, id, _)关联已存在记录，仅适用于many-to-many字段</li>
+<li>(5, _, _)删除所有关联，但不删除关联记录</li>
+<li>(6, _, [ids])替换已关联记录列表为此处的列表<br>
+上述下划线_字符代表非关联值，通常填入 0 或 False。<br>
+后面的非关联值可以放心地省略掉，如(4, id, _) 可使用(4, id)</li>
+</ul>
+<h3 id="上下文context">上下文(context)</h3>
 <ol>
 <li>服务端查看上下文命令为self.context_get()或self.env.context</li>
 <li>在客户端中，上下文可用于使用default_或default_search_前缀在目录视图上设置默认值或启动默认过滤器。举例如下：
@@ -229,7 +237,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="多公司company_id">多公司(company_id)</h2>
+<h3 id="多公司company_id">多公司(company_id)</h3>
 <ol>
 <li>每个模型在设计时都要加入company_id，参考：company_id = fields.Many2one(‘res.company’, string=‘公司’, required=True, default=lambda self: self.env.user.company_id)</li>
 <li>使用search()方法时，在搜索条件内也要加入company_id，参考：(‘company_id’,’=’, self.env.user.company_id.id)</li>
@@ -297,7 +305,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#间隔期间取数"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x95F4;&#x9694;&#x671F;&#x95F4;&#x53D6;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#在-to-many-关联字段上设置值"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5728; to-many &#x5173;&#x8054;&#x5B57;&#x6BB5;&#x4E0A;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#上下文context"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x4E0A;&#x4E0B;&#x6587;(context)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#多公司company_id"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x591A;&#x516C;&#x53F8;(company_id)</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#间隔期间取数"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x95F4;&#x9694;&#x671F;&#x95F4;&#x53D6;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在-to-many-关联字段上设置值"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5728; to-many &#x5173;&#x8054;&#x5B57;&#x6BB5;&#x4E0A;&#x8BBE;&#x7F6E;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#上下文context"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x4E0A;&#x4E0B;&#x6587;(context)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#多公司company_id"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x591A;&#x516C;&#x53F8;(company_id)</span></a></li></ol>
         
         </div>
       </aside>
