@@ -456,7 +456,8 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         </h3>
         <div class="post-content-preview">
             间隔期间取数
-12345678910# 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值# @author:fengjiqiang@inspur.comreceipts_ids = self.env['cost.transfer.receipts.sub'].search(    [        ('product_id', '=', id), ......
+search()中order和limit结合使用
+12345678910# 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值# @author:fengjiqiang@inspur.comreceipts_ids = self.env['cost.transfer.receipts.sub'].search(    [        ......
         </div>
     </a>
     

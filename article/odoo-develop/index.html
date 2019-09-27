@@ -213,6 +213,7 @@
                 post-container">
 
                 <h3 id="间隔期间取数">间隔期间取数</h3>
+<p><code>search()</code>中<code>order</code>和<code>limit</code>结合使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修复当产品出现隔月或者多月未发生业务时，上月结转单价为0，就需追溯到有成本单价的月份进行取值</span></span><br><span class="line"><span class="comment"># @author:fengjiqiang@inspur.com</span></span><br><span class="line">receipts_ids = self.env[<span class="string">'cost.transfer.receipts.sub'</span>].search(</span><br><span class="line">    [</span><br><span class="line">        (<span class="string">'product_id'</span>, <span class="string">'='</span>, id),</span><br><span class="line">        (<span class="string">'company_id'</span>, <span class="string">'='</span>, self.company_id.id),</span><br><span class="line">        (<span class="string">'created_date'</span>, <span class="string">'&lt;='</span>, period.date_stop),</span><br><span class="line">        (<span class="string">'outlet_unit_price'</span>, <span class="string">'&gt;'</span>, <span class="number">0</span>)</span><br><span class="line">    ], order=<span class="string">"created_date desc"</span>, limit=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># receipts_ids = receipts_ids[0]</span></span><br></pre></td></tr></table></figure>
 <h3 id="在-to-many-关联字段上设置值">在 to-many 关联字段上设置值</h3>
 <p>完整的可用命令如下：</p>
@@ -229,19 +230,23 @@
 </ul>
 <h3 id="上下文context">上下文(context)</h3>
 <ol>
-<li>服务端查看上下文命令为self.context_get()或self.env.context</li>
-<li>在客户端中，上下文可用于使用default_或default_search_前缀在目录视图上设置默认值或启动默认过滤器。举例如下：
+<li>服务端查看上下文命令为<code>self.context_get()</code>或<code>self.env.context</code></li>
+<li>在客户端中，上下文可用于使用<code>default_</code>或<code>default_search_</code>前缀在目录视图上设置默认值或启动默认过滤器。举例如下：
 <ul>
-<li>设置当前用户为user_id字段默认值，使用{‘default_user_id’: uid}</li>
-<li>在目标视图上默认启动filter_my_books过滤器，使用{‘default_search_filter_my_tasks’: 1}</li>
+<li>设置当前用户为<code>user_id</code>字段默认值，使用<code>{'default_user_id': uid}</code></li>
+<li>在目标视图上默认启动<code>filter_my_books</code>过滤器，使用<code>{'default_search_filter_my_tasks': 1}</code></li>
 </ul>
 </li>
 </ol>
 <h3 id="多公司company_id">多公司(company_id)</h3>
 <ol>
-<li>每个模型在设计时都要加入company_id，参考：company_id = fields.Many2one(‘res.company’, string=‘公司’, required=True, default=lambda self: self.env.user.company_id)</li>
-<li>使用search()方法时，在搜索条件内也要加入company_id，参考：(‘company_id’,’=’, self.env.user.company_id.id)</li>
+<li>每个模型在设计时都要加入<code>company_id</code>，参考：</li>
 </ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">company_id = fields.Many2one(<span class="string">'res.company'</span>, string=<span class="string">'公司'</span>, required=<span class="keyword">True</span>, default=<span class="keyword">lambda</span> self: self.env.user.company_id)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用<code>search()</code>方法时，在搜索条件内也要加入<code>company_id</code>，参考：</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">'company_id'</span>,<span class="string">'='</span>, self.env.user.company_id.id)</span><br></pre></td></tr></table></figure>
 
                 
 
