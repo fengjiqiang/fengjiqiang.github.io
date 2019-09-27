@@ -7,6 +7,62 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
+        <lastmod>2019-09-27T09:37:02.997Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/ViewInheritance/</loc>
+        <lastmod>2019-09-27T09:36:53.058Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/add-business-logic/</loc>
+        <lastmod>2019-09-27T09:36:43.761Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/xml-add-jilu/</loc>
+        <lastmod>2019-09-27T09:36:41.598Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/buttonshixian/</loc>
+        <lastmod>2019-09-27T09:36:30.497Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/add-field/</loc>
+        <lastmod>2019-09-27T09:36:25.111Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/article/morenshaixuan/</loc>
+        <lastmod>2019-09-27T09:35:55.863Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/odoo-develop/</loc>
         <lastmod>2019-09-27T09:34:15.238Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -89,62 +145,6 @@
     <url>
         <loc>http://yoursite.com/article/odooModelData/</loc>
         <lastmod>2019-09-26T09:55:09.492Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
-        <lastmod>2019-09-26T09:42:02.227Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/ViewInheritance/</loc>
-        <lastmod>2019-09-26T09:40:27.390Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/add-field/</loc>
-        <lastmod>2019-09-26T09:27:25.646Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/xml-add-jilu/</loc>
-        <lastmod>2019-09-26T09:16:28.297Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/add-business-logic/</loc>
-        <lastmod>2019-09-26T09:12:05.278Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/buttonshixian/</loc>
-        <lastmod>2019-09-26T09:10:26.823Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/article/morenshaixuan/</loc>
-        <lastmod>2019-09-26T09:09:26.893Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
