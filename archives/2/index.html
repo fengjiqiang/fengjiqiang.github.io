@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - Ethan | Blog
+          Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/about/">
+    <link rel="canonical" href="http://yoursite.com/archives/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,8 +71,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/about.jpg')
-            /*page*/
+            background-image: url('/img/header_img/home.jpg') 
+            /*config*/
         
     }
     
@@ -86,9 +86,9 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
                     <div class="site-heading">
-                        <h1>About</h1>
+                        <h1>Ethan</h1>
                         <!--<hr class="small">-->
-                        <span class="subheading">走在成为极客的路上</span>
+                        <span class="subheading">个人博客</span>
                     </div>
                 
 
@@ -206,64 +206,402 @@
                 post-container
             ">
             
-                <h3 id="一句话">一句话</h3>
-<blockquote>
-<p>Just do it !    (翻译：我只是个搞 IT的！哭笑脸)</p>
-</blockquote>
-<h3 id="关于我">关于我</h3>
-<blockquote>
-<p>一个莫名其妙的，喜欢敲代码，喜欢研究技术的，表面上高冷、不苟言笑的，</p>
-<p>偶尔又嬉皮笑脸，偶尔又特立独行的，双重性格的技术爱好者！</p>
-</blockquote>
-<h3 id="兴趣方向">兴趣方向</h3>
-<blockquote>
-<p>容器云（Docker、Kubernetes等）相关生态技术研究。</p>
-</blockquote>
-<h3 id="参与社区">参与社区</h3>
-<blockquote>
-<p>CSDN博客:<a href="http://blog.csdn.net/huwh_" target="_blank" rel="noopener">http://blog.csdn.net/huwh_</a></p>
-<p>Github:<a href="https://github.com/huweihuang" target="_blank" rel="noopener">https://github.com/huweihuang</a></p>
-<p>阿里云栖社区:<a href="https://yq.aliyun.com/u/huweihuang" target="_blank" rel="noopener">https://yq.aliyun.com/u/huweihuang</a></p>
-<p>DockOne社区:<a href="http://dockone.io/people/%E8%83%A1%E4%BC%9F%E7%85%8C" target="_blank" rel="noopener">http://dockone.io/people/胡伟煌</a></p>
-</blockquote>
-<h3 id="联系我">联系我</h3>
-<blockquote>
-<p>Email: <a href="mailto:huweihuang@foxmail.com" target="_blank" rel="noopener">huweihuang@foxmail.com</a></p>
-</blockquote>
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/article/notification/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之消息通知
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            添加社交网络功能
+社交网络模块 (技术名称mail) 提供留言板功能和关注的特征，以及消息和通知功能。
+社交网络邮件功能由mail.thread模型的mail模块提供。要将其添加到自定义的模型，我们需要执行以下操作︰
+
+依赖mail模块
+继承mail.thread类
+将关注者和线程小部件添加到form视图
+为关注者设置记录规则
+
+
+在我们模块的__manifest__.py清单文件中添加对m......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-28
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/tec0827/">
+        <h2 class="post-title">
+                                 
+            技术分享会0827
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            技术分享
+
+bug解决
+
+
+readonly字段无法自动保存，可以加一个属性
+
+必填字段没写
+
+
+特殊字段active设置为False后，前端页面不会显示，在视图中传一个上下文就会显示出来。
+上下文的用法
+
+
+实现给默认值赋值
+
+xml文件
+
+ 1context="&#123;'default_lesson_id': id, 'default_subject_id': subject_id&......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritNotice/">
+        <h2 class="post-title">
+                                 
+            Odoo视图继承注意的点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            授权继承的视图继承
+模型继承时，使用授权继承方式，也称代理继承，即应用这样的代码：
+123book_id = fields.Many2one('training.book', string="书籍", delegate=True)或_inherits = &#123;'training.book': 'book_id'&#125;
+在写Form视图继承时，容易忽略的一点是在代码中加入一句：
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritance/">
+        <h2 class="post-title">
+                                 
+            Odoo开发视图继承
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            视图继承
+在odoo中，表单、列表和搜索视图是使用arch XML结构定义的。
+如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。这需要通过两步来实现。
+1、定位到视图XML中某个界面元素的位置；
+2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。
+继承视图正可以实现这个功能。一个继承视图声明如下：
+12345678&lt;record id="view......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/add-field/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之向模型中添加字段
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            向模型中添加字段
+
+我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。
+在model文件夹下面创建一个文件名称为partner.py文件（即创建training_academy/models/partner.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：
+
+12345678910111213# -*- ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/xml-add-jilu/">
+        <h2 class="post-title">
+                                 
+            Odoo开发在XML里定义记录
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用表达式设置值
+定义字段值的更精细的替代方法是eval属性。它评估一个Python表达式并将结果值分配给字段。
+该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。
+要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。
+例如，要将值设置为昨天，我们将使用：
+12&lt;field name="date_deadli......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/add-business-logic/">
+        <h2 class="post-title">
+                                 
+            Odoo开发添加业务逻辑
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            添加业务逻辑
+
+对于记录上的逻辑，使用@api.multi装饰器。这里，self将表示一个记录集，然后我们应该遍历每个记录。
+
+12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
+代码循环遍历所有待完成的任务记录......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/buttonshixian/">
+        <h2 class="post-title">
+                                 
+            Odoo实现按钮(button)跳转
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            按钮支持的属性
+
+string是按钮文本标签或使用图标时的 HTML alt 文本
+type是执行操作的类型，有以下值：
+
+object用于调用 Python 方法
+action用于运行窗口操作
+
+
+name标识按所选类型要操作的具体的操作，要么是模型方法名，要么是要运行的窗口操作的数据库 ID。可使用%(xmlid)d方程式来将XML ID转换成加载视图时所需的数据库 ID。
+args在类......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/morenshaixuan/">
+        <h2 class="post-title">
+                                 
+            Odoo实现默认筛选和默认排序
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            筛选(search)视图
+12345678910111213141516&lt;record id="view_search_partner" model="ir.ui.view"&gt;    &lt;field name="name"&gt;Partner Filters&lt;/field&gt;    &lt;field name="model"&gt;library.partner......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/docker-install/">
+        <h2 class="post-title">
+                                 
+            windows10安装docker
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            下载docker
+
+docker官网，不过国内从官网下载较慢。
+可以在这里下载需要的版本。
+也可以从百度云下载，点击下载，提取码: v8k8
+
+安装docker
+
+windows10安装docker，首先需要启用Hyper-v。
+
+先安装git，然后安装docker。安装过程简单
+
+配置docker
+
+安装完成后，电脑右下角出现一个小鲸鱼图标，右键选择settings进行配置。最好先关闭防火......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#docker" title="docker">docker</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/archives/3/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
 
 
                 <br>
 
                 <!-- require APlayer -->
                 
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
-                    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
-                
-                    <div class="aplayer"
-                        data-id="2423410161"
-                        data-server="netease"
-                        data-type="playlist"
-                        data-fixed="false" >
-                    </div>
-                
 
                 <!-- 如果开启评论功能 -->
-                
-                    <hr>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
                 
             </div>
 
