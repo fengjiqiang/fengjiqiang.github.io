@@ -134,13 +134,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -149,6 +142,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -198,18 +198,42 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
+                    <a href="#git" title="git" rel="1">git</a>
+                
                     <a href="#odoo" title="odoo" rel="17">odoo</a>
                 
-                    <a href="#ubuntu" title="ubuntu" rel="1">ubuntu</a>
+                    <a href="#docker" title="docker" rel="1">docker</a>
                 
                     <a href="#hello" title="hello" rel="1">hello</a>
                 
-                    <a href="#docker" title="docker" rel="1">docker</a>
+                    <a href="#ubuntu" title="ubuntu" rel="1">ubuntu</a>
                 
             </div>
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="git">
+                    <span class="tag-text">git</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/article/2019-11-05-19-53/">
+                        <h2 class="post-title">
+                            git修改已coomit并push的注释
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="odoo">
@@ -474,8 +498,8 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="ubuntu">
-                    <span class="tag-text">ubuntu</span>
+                <span class="fa fa-tag listing-seperator" id="docker">
+                    <span class="tag-text">docker</span>
                 </span>
                 
                   <!-- <li class="listing-item">
@@ -483,9 +507,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/article/ubuntu-desktop/">
+                     <a href="/article/docker-install/">
                         <h2 class="post-title">
-                            Unbuntu子系统安装WSL 图形界面 远程桌面
+                            windows10安装docker
                         </h2>
                         
                     </a>
@@ -518,8 +542,8 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="docker">
-                    <span class="tag-text">docker</span>
+                <span class="fa fa-tag listing-seperator" id="ubuntu">
+                    <span class="tag-text">ubuntu</span>
                 </span>
                 
                   <!-- <li class="listing-item">
@@ -527,9 +551,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/article/docker-install/">
+                     <a href="/article/ubuntu-desktop/">
                         <h2 class="post-title">
-                            windows10安装docker
+                            Unbuntu子系统安装WSL 图形界面 远程桌面
                         </h2>
                         
                     </a>

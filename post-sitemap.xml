@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/2019-11-05-19-53/</loc>
+        <lastmod>2019-11-05T12:06:15.391Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/ViewInheritNotice/</loc>
         <lastmod>2019-09-27T09:37:02.997Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -64,7 +72,7 @@
 
     <url>
         <loc>http://yoursite.com/article/odoo-develop/</loc>
-        <lastmod>2019-09-27T09:34:15.238Z</lastmod>
+        <lastmod>2019-09-27T09:35:09.279Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
