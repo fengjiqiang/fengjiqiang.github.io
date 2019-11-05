@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Ethan | Blog
+          odoo13 web(一) - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/page/3/">
+    <link rel="canonical" href="http://yoursite.com/article/2019-11-05-20-27/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,8 +71,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/home.jpg') 
-            /*config*/
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
         
     }
     
@@ -85,10 +85,18 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>Ethan</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">个人博客</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
+                            
+                        </div>
+                        <h1>odoo13 web(一)</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Ethan on
+                            2019-10-15
+                        </span>
                     </div>
                 
 
@@ -191,297 +199,203 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/article/docker-install/">
-        <h2 class="post-title">
-                                 
-            windows10安装docker
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            下载docker
-
-docker官网，不过国内从官网下载较慢。
-可以在这里下载需要的版本。
-也可以从百度云下载，点击下载，提取码: v8k8
-
-安装docker
-
-windows10安装docker，首先需要启用Hyper-v。
-
-先安装git，然后安装docker。安装过程简单
-
-配置docker
-
-安装完成后，电脑右下角出现一个小鲸鱼图标，右键选择settings进行配置。最好先关闭防火......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#docker" title="docker">docker</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/git_use/">
-        <h2 class="post-title">
-                                 
-            使用git命令行提交代码至GitHub
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            git安装
-git下载
-GitHub新建代码仓库
-GitHub
-提交代码至GitHub
-
-git add --all
-git commit -m &quot;first commit&quot;
-git push
-
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-18
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/test/">
-        <h2 class="post-title">
-                                 
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Hello World
-Hello World
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2018-07-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hello" title="hello">hello</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/2/">&larr; Newer Posts</a>
-        </li>
-    
-    
+                <h3 id="取视图行id">取视图行id</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event.currentTarget.dataset.id</span><br></pre></td></tr></table></figure>
+<p>与</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(event.currentTarget).data(<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure>
+<p>取到相同的数据</p>
+<h3 id="行可编辑判断">行可编辑判断</h3>
+<ul>
+<li>odoo12</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">this</span>._isEditable()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>odoo13</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">this</span>._isRecordEditable(event.currentTarget.dataset.id)</span><br></pre></td></tr></table></figure>
+<h3 id="获取记录id">获取记录id</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> recordID = <span class="keyword">this</span>._getRecordID(<span class="keyword">this</span>.currentRow);</span><br></pre></td></tr></table></figure>
+<h3 id="windows刷新">windows刷新</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.reload();</span><br></pre></td></tr></table></figure>
+<h3 id="本视图的模型名称">本视图的模型名称</h3>
+<pre><code class="language-javascript">this.__parentedParent.model
+</code></pre>
+<h3 id="当前字段名称">当前字段名称</h3>
+<pre><code class="language-javascript">this.__parentedParent.name  
+</code></pre>
 
+                
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/article/2019-11-05-19-53/" data-toggle="tooltip" data-placement="top" title="git修改已coomit并push的注释">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
                 <br>
 
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
                 <!-- require APlayer -->
                 
 
-                <!-- 如果开启评论功能 -->
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#取视图行id"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x53D6;&#x89C6;&#x56FE;&#x884C;id</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#行可编辑判断"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x884C;&#x53EF;&#x7F16;&#x8F91;&#x5224;&#x65AD;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获取记录id"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x83B7;&#x53D6;&#x8BB0;&#x5F55;id</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#windows刷新"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">windows&#x5237;&#x65B0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#本视图的模型名称"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x672C;&#x89C6;&#x56FE;&#x7684;&#x6A21;&#x578B;&#x540D;&#x79F0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#当前字段名称"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x5F53;&#x524D;&#x5B57;&#x6BB5;&#x540D;&#x79F0;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.csdn.net/qq_16525279" target="_blank">CSDN Blog Me</a></li>
+                    
+                </ul>
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#git" title="git" rel="1">git</a>
-            
-        
-            
-            <a href="/tags/#odoo" title="odoo" rel="18">odoo</a>
-            
-        
-            
-            <a href="/tags/#docker" title="docker" rel="1">docker</a>
-            
-        
-            
-            <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
-            
-        
-            
-            <a href="/tags/#hello" title="hello" rel="1">hello</a>
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/avatar/aboutme.JPG" />
-        
 
-        
-            <p>Stay hungry,Stay foolish</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
 
-            
 
-            
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/fengjiqiang">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
 
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/article/2019-11-05-20-27/">odoo13 web(一)</a>
-        </li>
-      
-        <li>
-          <a href="/article/2019-11-05-19-53/">git修改已coomit并push的注释</a>
-        </li>
-      
-        <li>
-          <a href="/article/201909251/">Odoo开发之设置</a>
-        </li>
-      
-        <li>
-          <a href="/article/20190925/">Odoo开发之后台视图(一)</a>
-        </li>
-      
-        <li>
-          <a href="/article/bankpayment-oa-api/">Odoo开发之接口实现</a>
-        </li>
-      
-    </ul>
-  </div>
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-        <hr>
-    
-        <!-- Friends Blog -->
 
-<h5>FRIENDS</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="http://blog.csdn.net/qq_16525279" target="_blank">CSDN Blog Me</a></li>
-    
-</ul>
-
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
 
 
     <!-- Footer -->

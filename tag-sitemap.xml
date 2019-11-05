@@ -23,15 +23,15 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/odoo/</loc>
-        <lastmod>2019-09-27T09:37:02.997Z</lastmod>
+        <loc>http://yoursite.com/tags/git/</loc>
+        <lastmod>2019-11-05T12:20:35.009Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/git/</loc>
-        <lastmod>2019-11-05T12:20:35.009Z</lastmod>
+        <loc>http://yoursite.com/tags/odoo/</loc>
+        <lastmod>2019-11-05T12:33:02.169Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
