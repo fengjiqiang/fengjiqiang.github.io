@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          windows10安装docker - Ethan | Blog
+          odoo13 web(二) - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/docker-install/">
+    <link rel="canonical" href="http://yoursite.com/article/20191124/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#docker" title="docker">docker</a>
+                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>windows10安装docker</h1>
+                        <h1>odoo13 web(二)</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-18
+                            2019-10-24
                         </span>
                     </div>
                 
@@ -212,27 +212,28 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="下载docker">下载docker</h2>
+                <h3 id="属性">属性</h3>
+<p>qweb可以对属性进行实时计算并在输出时设置，通过<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-  ```t-att-$name```可以创建一个名为```$name```的属性，原属性的值会被解析为新生成的属性的值</span><br><span class="line">```xml</span><br><span class="line">&lt;div t-att-a=&quot;666&quot;/&gt;  </span><br><span class="line"># 输出</span><br><span class="line">&lt;div a=&quot;666&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><a href="https://www.docker.com/" target="_blank" rel="noopener">docker官网</a>，不过国内从官网下载较慢。</li>
-<li>可以在<a href="https://oomake.com/download/docker-windows" target="_blank" rel="noopener">这里</a>下载需要的版本。</li>
-<li>也可以从百度云下载，<a href="https://pan.baidu.com/share/init?surl=BAeN1RWoUWWoM_rd7HtmqQ" target="_blank" rel="noopener">点击下载</a>，提取码: v8k8</li>
+<li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```xml</span><br><span class="line">&lt;t t-foreach=&quot;[1, 2, 3]&quot; t-as=&quot;item&quot;&gt;</span><br><span class="line">    &lt;li t-attf-class=&quot;row &#123;&#123; item_parity &#125;&#125;&quot;&gt;&lt;t t-esc=&quot;item&quot;/&gt;&lt;/li&gt;</span><br><span class="line">&lt;/t&gt;</span><br><span class="line"></span><br><span class="line"># 输出：</span><br><span class="line">&lt;li class=&quot;row even&quot;&gt;1&lt;/li&gt;</span><br><span class="line">&lt;li class=&quot;row odd&quot;&gt;2&lt;/li&gt;</span><br><span class="line">&lt;li class=&quot;row even&quot;&gt;3&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```xml</span><br><span class="line">&lt;div t-att=&quot;&#123;&apos;a&apos;: 1, &apos;b&apos;: 2&#125;&quot;/&gt;</span><br><span class="line"># 输出</span><br><span class="line">&lt;div a=&quot;1&quot; b=&quot;2&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```xml</span><br><span class="line">&lt;div t-att=&quot;[&apos;a&apos;, &apos;b&apos;]&quot;/&gt;</span><br><span class="line"># 输出</span><br><span class="line">&lt;div a=&quot;b&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="安装docker">安装docker</h2>
-<ul>
-<li>windows10安装docker，首先需要启用Hyper-v。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819084845.png" alt="Hyper-v"></li>
-<li>先安装git，然后安装docker。安装过程简单</li>
-</ul>
-<h2 id="配置docker">配置docker</h2>
-<ul>
-<li>安装完成后，电脑右下角出现一个小鲸鱼图标，右键选择settings进行配置。最好先关闭防火墙，然后进行配置。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085023.png" alt="shared drivers"><br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085049.png" alt="general"></li>
-<li>docker在拉取镜像时会从国外的源进行拉取，速度较慢，我们可以将docker的源设置为阿里或者中科大的源，这样下载速度较快。<br>
-<img src="/article/docker-install/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190819085115.png" alt="mirrors"></li>
-<li>配置完成docker之后应用然后关闭就可以了。</li>
-</ul>
+<h3 id="使用123456789t-attf指令使用字符串替换动态生成标记属性-这允许动态生成较大的字符串例如url地址或css类名-123123-125125可以是任何有效的javascript表达式可以使用任何可用的qweb表达式的变量如record和widget-我们可以使用这个指令来动态更改截止日期的颜色以便过期日期以红色显示-xmlltfield-namequotdate_deadlinequotgtltli-t-attf-classquotoe_kanban_text_123123-recorddate_deadlineraw_value-and-recorddate_deadlineraw_value-gt-new-date-aposredapos-aposblackapos-125125quotgtltfield-namequotdate_deadlinequotgtltligt">使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```t-attf```指令使用字符串替换动态生成标记属性。这允许动态生成较大的字符串，例如```URL```地址或```CSS```类名。</span><br><span class="line">&#123;&#123; &#125;&#125;可以是任何有效的JavaScript表达式，可以使用任何可用的Qweb表达式的变量，如```record```和```widget```。</span><br><span class="line">我们可以使用这个指令来动态更改截止日期的颜色，以便过期日期以红色显示。</span><br><span class="line">```xml</span><br><span class="line">&lt;field name=&quot;date_deadline&quot;/&gt;:</span><br><span class="line">&lt;li t-attf-class=&quot;oe_kanban_text_&#123;&#123;   record.date_deadline.raw_value and </span><br><span class="line">  !(record.date_deadline.raw_value &gt; (new Date())) </span><br><span class="line">  ? &apos;red&apos; : &apos;black&apos; &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;field name=&quot;date_deadline&quot;/&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">### 使用```t-att```作为动态属性</span><br><span class="line">```t-att```Qweb指令动态计算一个表达式并生成一个属性值。</span><br><span class="line">```t-att-name```和```t-attf-name```可以用于渲染任何属性，作为生成的属性名称是从NAME后缀获取的。</span><br><span class="line">### 更多的方法来使用```t-attf</span><br></pre></td></tr></table></figure>
+<p>前面讲到<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用如下映射：</span><br><span class="line">```xml</span><br><span class="line">&lt;p t-att=&quot;&#123;&apos;class&apos;: &apos;oe_bold&apos;, &apos;name&apos;: &apos;test1&apos;&#125;&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"oe_bold"</span> <span class="attr">name</span>=<span class="string">"test1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">t-att</span>=<span class="string">"['class', 'oe_bold']"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"oe_bold"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
                 
 
@@ -240,13 +241,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/morenshaixuan/" data-toggle="tooltip" data-placement="top" title="Odoo实现默认筛选和默认排序">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/git_use/" data-toggle="tooltip" data-placement="top" title="使用git命令行提交代码至GitHub">Next Post &rarr;</a>
+                            <a href="/article/20191105/" data-toggle="tooltip" data-placement="top" title="odoo13 web(一)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -296,7 +293,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#下载docker"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E0B;&#x8F7D;docker</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装docker"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;docker</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置docker"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x914D;&#x7F6E;docker</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#属性"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用123456789t-attf指令使用字符串替换动态生成标记属性-这允许动态生成较大的字符串例如url地址或css类名-123123-125125可以是任何有效的javascript表达式可以使用任何可用的qweb表达式的变量如record和widget-我们可以使用这个指令来动态更改截止日期的颜色以便过期日期以红色显示-xmlltfield-namequotdate_deadlinequotgtltli-t-attf-classquotoe_kanban_text_123123-recorddate_deadlineraw_value-and-recorddate_deadlineraw_value-gt-new-date-aposredapos-aposblackapos-125125quotgtltfield-namequotdate_deadlinequotgtltligt"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```t-attf```&#x6307;&#x4EE4;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x66FF;&#x6362;&#x52A8;&#x6001;&#x751F;&#x6210;&#x6807;&#x8BB0;&#x5C5E;&#x6027;&#x3002;&#x8FD9;&#x5141;&#x8BB8;&#x52A8;&#x6001;&#x751F;&#x6210;&#x8F83;&#x5927;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4F8B;&#x5982;```URL```&#x5730;&#x5740;&#x6216;```CSS```&#x7C7B;&#x540D;&#x3002;</span><br><span class="line">{{ }}&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x4F55;&#x6709;&#x6548;&#x7684;JavaScript&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EFB;&#x4F55;&#x53EF;&#x7528;&#x7684;Qweb&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5982;```record```&#x548C;```widget```&#x3002;</span><br><span class="line">&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6307;&#x4EE4;&#x6765;&#x52A8;&#x6001;&#x66F4;&#x6539;&#x622A;&#x6B62;&#x65E5;&#x671F;&#x7684;&#x989C;&#x8272;&#xFF0C;&#x4EE5;&#x4FBF;&#x8FC7;&#x671F;&#x65E5;&#x671F;&#x4EE5;&#x7EA2;&#x8272;&#x663E;&#x793A;&#x3002;</span><br><span class="line">```xml</span><br><span class="line">&lt;field name=&quot;date_deadline&quot;/&gt;:</span><br><span class="line">&lt;li t-attf-class=&quot;oe_kanban_text_{{   record.date_deadline.raw_value and </span><br><span class="line">  !(record.date_deadline.raw_value &gt; (new Date())) </span><br><span class="line">  ? &apos;red&apos; : &apos;black&apos; }}&quot;&gt;</span><br><span class="line">&lt;field name=&quot;date_deadline&quot;/&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure></span></a></li></ol>
         
         </div>
       </aside>
@@ -316,7 +313,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#docker" title="docker">docker</a>
+                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                         
                     </div>
                 </section>
