@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          odoo13 web(一) - Ethan | Blog
+          odoo qweb模板template - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/20191105/">
+    <link rel="canonical" href="http://yoursite.com/article/20191123/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>odoo13 web(一)</h1>
+                        <h1>odoo qweb模板template</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-10-15
+                            2019-10-25
                         </span>
                     </div>
                 
@@ -212,30 +212,23 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="取视图行id">取视图行id</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event.currentTarget.dataset.id</span><br></pre></td></tr></table></figure>
-<p>与</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(event.currentTarget).data(<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure>
-<p>取到相同的数据</p>
-<h3 id="行可编辑判断">行可编辑判断</h3>
+                <h3 id="模板template定义">模板template定义</h3>
+<p>t-name只能放在模板文件的最外面，离template标签最近的地方</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">templates</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"template-name"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- template code --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">templates</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>它没有其他参数，但可以使用一个<code>t</code>标签，当使用<code>t</code>标签时它需要有单个子元素，模板名可以随便取，一般会用<code>.</code>分隔来表示继承关系。</p>
+<h3 id="模板template继承">模板template继承</h3>
+<p>模板继承是用来修改已存在的模板，即给在其他模块定义的模板添加内容。通过t-extend来表示，它的值是被继承的模板名，通过t-jquery来进行修改。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-extend</span>=<span class="string">"base.template"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-jquery</span>=<span class="string">"ul"</span> <span class="attr">t-operation</span>=<span class="string">"append"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>new element<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>t-jquery</code>给出的是一个<code>css</code>选择器，用于选择需要改变的节点，并通过<code>t-operation</code>指定需要进行的操作。</p>
 <ul>
-<li>odoo12</li>
+<li>append - 新节点的内容添加到原节点的后面（最后一个子节点后）</li>
+<li>prepend - 新节点内容添加到原节点前面（第一个子节点前）</li>
+<li>before - 新节点内容添加到原节点前</li>
+<li>after - 新节点内容添加到原节点后</li>
+<li>inner - 新节点内容替换原节点的子节点</li>
+<li>replace - 新节点内容直接替换原节点</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">this</span>._isEditable()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>odoo13</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">this</span>._isRecordEditable(event.currentTarget.dataset.id)</span><br></pre></td></tr></table></figure>
-<h3 id="获取记录id">获取记录id</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> recordID = <span class="keyword">this</span>._getRecordID(<span class="keyword">this</span>.currentRow);</span><br></pre></td></tr></table></figure>
-<h3 id="windows刷新">windows刷新</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.reload();</span><br></pre></td></tr></table></figure>
-<h3 id="本视图的模型名称">本视图的模型名称</h3>
-<pre><code class="language-javascript">this.__parentedParent.model
-</code></pre>
-<h3 id="当前字段名称">当前字段名称</h3>
-<pre><code class="language-javascript">this.__parentedParent.name  
-</code></pre>
+<p>如果没有指定<code>operation</code>，那么模板内容会被解析成javascript节点，并将<code>context</code>节点设置为<code>this</code>。</p>
 
                 
 
@@ -243,13 +236,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/20191123/" data-toggle="tooltip" data-placement="top" title="odoo qweb模板template">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/2019110501/" data-toggle="tooltip" data-placement="top" title="git修改已coomit并push的注释">Next Post &rarr;</a>
+                            <a href="/article/20191105/" data-toggle="tooltip" data-placement="top" title="odoo13 web(一)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -299,7 +288,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#取视图行id"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x53D6;&#x89C6;&#x56FE;&#x884C;id</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#行可编辑判断"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x884C;&#x53EF;&#x7F16;&#x8F91;&#x5224;&#x65AD;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获取记录id"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x83B7;&#x53D6;&#x8BB0;&#x5F55;id</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#windows刷新"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">windows&#x5237;&#x65B0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#本视图的模型名称"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x672C;&#x89C6;&#x56FE;&#x7684;&#x6A21;&#x578B;&#x540D;&#x79F0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#当前字段名称"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x5F53;&#x524D;&#x5B57;&#x6BB5;&#x540D;&#x79F0;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模板template定义"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6A21;&#x677F;template&#x5B9A;&#x4E49;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模板template继承"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x6A21;&#x677F;template&#x7EE7;&#x627F;</span></a></li></ol>
         
         </div>
       </aside>

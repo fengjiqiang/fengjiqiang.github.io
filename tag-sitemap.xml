@@ -24,14 +24,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/git/</loc>
-        <lastmod>2019-11-05T12:20:35.009Z</lastmod>
+        <lastmod>2019-11-24T06:31:29.650Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/odoo/</loc>
-        <lastmod>2019-11-24T06:21:12.974Z</lastmod>
+        <lastmod>2019-11-24T07:17:53.953Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
