@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Unbuntu子系统安装WSL 图形界面 远程桌面 - Ethan | Blog
+          JavaScript setTimeout()初试 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/ubuntu-desktop/">
+    <link rel="canonical" href="http://yoursite.com/article/20191211/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#ubuntu" title="ubuntu">ubuntu</a>
+                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                             
                         </div>
-                        <h1>Unbuntu子系统安装WSL 图形界面 远程桌面</h1>
+                        <h1>JavaScript setTimeout()初试</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-09-14
+                            2019-11-09
                         </span>
                     </div>
                 
@@ -212,14 +212,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="升级子系统">升级子系统</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get upgrade -y &amp;&amp; sudo apt-get dist-upgrade -y &amp;&amp; sudo apt-get autoremove -y</span><br></pre></td></tr></table></figure>
-<h3 id="远程图形界面的配置">远程图形界面的配置</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install xorg</span><br><span class="line">sudo apt-get install xfce4</span><br><span class="line">sudo apt-get install xrdp</span><br><span class="line"># 修改端口号port=<span class="number">3365</span></span><br><span class="line">sudo nano /etc/xrdp/xrdp.ini  </span><br><span class="line">sudo echo xfce4-session &gt;~/.xsession</span><br><span class="line">sudo service xrdp restart</span><br></pre></td></tr></table></figure>
-<p>cmd输入mstsc<br>
-计算机名填写的是ip地址加端口，由于我这是自己电脑连接自己电脑的操作系统所以是127.0.0.1，<br>
-而端口号就是上面设置的3365.<br>
-下次需要再用的时候都是需要输入<code>sudo service xrdp restart</code>的，输入完毕之后会提示端口是多少.</p>
+                <h2 id="settimeout延迟任务执行">setTimeout()延迟任务执行</h2>
+<p>setTimeout(fn,t),超时调用，超过时间t，就执行fn。</p>
+<p>setTimeout(fn,t)中t告诉JS再过多久把当前任务添加到队列中，并不是执行的到setTimeout就添加任务。如果队列是空，那么添加的代码会立即执行；如果队列不空，那么它就要等前面的代码执行完了以后在执行。</p>
+<p>代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    $(<span class="string">`input[name='Layout_icon'][value=<span class="subst">$&#123;<span class="keyword">this</span>.layout&#125;</span>]`</span>).attr(<span class="string">'checked'</span>,<span class="string">'true'</span>);</span><br><span class="line">&#125;, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>此代码实现延迟30ms执行元素赋值操作。</p>
+<p>总结：</p>
+<p>JS是一个单线程的解释器，因此一段时间内只能执行一段代码。为了要控制执行的代码，就有一个JS任务队列。这些任务会按照将它们添加到队列的顺序执行。</p>
+<p>在处理DOM点击事件的时候通常会产生冒泡，正常情况下首先触发的是子元素的handler，再触发父元素的handler，如果我想让父元素的handler先于子元素的handler执行应该怎么办？那就用setTimeout延迟子元素handler若干个毫秒执行吧。问题是这个“若干个”毫秒应该是多少？可以是0。</p>
+<h2 id="异步任务">异步任务</h2>
+<p>JS中存在一个内部的任务队列，用于存储异步任务(setTimeOut,点击事件的回调函数等)。</p>
+<p>其实，通俗来说同步的任务会按照代码顺序来执行函数，而异步的(当前就是setTimeOut会加入任务队列，即使它的delay为0)。</p>
 
                 
 
@@ -227,13 +231,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/odoo-develop/" data-toggle="tooltip" data-placement="top" title="Odoo开发之小方法">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/notification/" data-toggle="tooltip" data-placement="top" title="Odoo开发之消息通知">Next Post &rarr;</a>
+                            <a href="/article/20191123/" data-toggle="tooltip" data-placement="top" title="odoo qweb模板template">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -283,7 +283,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#升级子系统"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5347;&#x7EA7;&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#远程图形界面的配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x8FDC;&#x7A0B;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x7684;&#x914D;&#x7F6E;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#settimeout延迟任务执行"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">setTimeout()&#x5EF6;&#x8FDF;&#x4EFB;&#x52A1;&#x6267;&#x884C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#异步任务"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5F02;&#x6B65;&#x4EFB;&#x52A1;</span></a></li></ol>
         
         </div>
       </aside>
@@ -303,7 +303,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#ubuntu" title="ubuntu">ubuntu</a>
+                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
                         
                     </div>
                 </section>
