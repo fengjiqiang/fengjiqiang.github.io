@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -208,6 +208,40 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/add-business-logic/">
+        <h2 class="post-title">
+                                 
+            Odoo开发添加业务逻辑
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            添加业务逻辑
+
+对于记录上的逻辑，使用@api.multi装饰器。这里，self将表示一个记录集，然后我们应该遍历每个记录。
+
+12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
+代码循环遍历所有待完成的任务记录......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -427,11 +461,15 @@ Hello World
     <div class="tags">
         
             
+            <a href="/tags/#odoo" title="odoo" rel="21">odoo</a>
+            
+        
+            
             <a href="/tags/#git" title="git" rel="2">git</a>
             
         
             
-            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
+            <a href="/tags/#docker" title="docker" rel="1">docker</a>
             
         
             
@@ -440,10 +478,6 @@ Hello World
         
             
             <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
-            
-        
-            
-            <a href="/tags/#docker" title="docker" rel="1">docker</a>
             
         
     </div>
@@ -499,6 +533,10 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/20191212/">Promise.resolve()初试</a>
+        </li>
+      
+        <li>
           <a href="/article/20191211/">JavaScript setTimeout()初试</a>
         </li>
       
@@ -512,10 +550,6 @@ Hello World
       
         <li>
           <a href="/article/2019110501/">git修改已coomit并push的注释</a>
-        </li>
-      
-        <li>
-          <a href="/article/201909251/">Odoo开发之设置</a>
         </li>
       
     </ul>
@@ -538,7 +572,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
