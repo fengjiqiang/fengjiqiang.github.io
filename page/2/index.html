@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -208,6 +208,79 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/odooInherit/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之模块继承(一)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            原模型继承
+为模型添加字段
+
+通过 Python 类来新建模型，继承模型同样是通过 Python 以及 Odoo 自有的继承机制，即_inherit类属性。
+该属性标明所继承的模型。新的类继承父 Odoo 模型的所有功能，仅需声明要做修改的部分。
+添加library_member/models/library_book.py文件来继承原模型，首先创建__init__.py文件来导入该文件：
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-09-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/nameSequence/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之自动编号创建
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            应用场景
+在创建单据的时候，我们很容易遇到单据的编号是按照一定规则创建的，那么在新建单据的时候能够自动生成编号无疑可以减少用户的工作量，
+本文为该流程的操作示例。
+解决办法
+通过在data文件夹插入一条ir.sequence数据，在模型里调用该数据，完成自动生成编号流程。
+代码示例
+预制数据
+模块目录下新建data文件夹，创建xx_data.xml文件：
+
+在__manifest__.py中......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-09-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -494,79 +567,6 @@ xml文件
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/add-business-logic/">
-        <h2 class="post-title">
-                                 
-            Odoo开发添加业务逻辑
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            添加业务逻辑
-
-对于记录上的逻辑，使用@api.multi装饰器。这里，self将表示一个记录集，然后我们应该遍历每个记录。
-
-12345@api.multi def do_toggle_done(self):    for task in self:        task.is_done = not task.is_done    return True
-代码循环遍历所有待完成的任务记录......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/buttonshixian/">
-        <h2 class="post-title">
-                                 
-            Odoo实现按钮(button)跳转
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            按钮支持的属性
-
-string是按钮文本标签或使用图标时的 HTML alt 文本
-type是执行操作的类型，有以下值：
-
-object用于调用 Python 方法
-action用于运行窗口操作
-
-
-name标识按所选类型要操作的具体的操作，要么是模型方法名，要么是要运行的窗口操作的数据库 ID。可使用%(xmlid)d方程式来将XML ID转换成加载视图时所需的数据库 ID。
-args在类......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -612,7 +612,7 @@ args在类......
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="19">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
             
         
             
@@ -629,6 +629,10 @@ args在类......
         
             
             <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
+            
+        
+            
+            <a href="/tags/#odoo,js" title="odoo,js" rel="1">odoo,js</a>
             
         
     </div>
@@ -684,6 +688,14 @@ args在类......
     <ul>
       
         <li>
+          <a href="/article/20191212/">Promise.resolve()初试</a>
+        </li>
+      
+        <li>
+          <a href="/article/20191211/">JavaScript setTimeout()初试</a>
+        </li>
+      
+        <li>
           <a href="/article/20191123/">odoo qweb模板template</a>
         </li>
       
@@ -693,14 +705,6 @@ args在类......
       
         <li>
           <a href="/article/2019110501/">git修改已coomit并push的注释</a>
-        </li>
-      
-        <li>
-          <a href="/article/201909251/">Odoo开发之设置</a>
-        </li>
-      
-        <li>
-          <a href="/article/20190925/">Odoo开发之后台视图(一)</a>
         </li>
       
     </ul>
@@ -723,7 +727,7 @@ args在类......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
