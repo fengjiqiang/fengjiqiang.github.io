@@ -31,14 +31,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/odoo/</loc>
-        <lastmod>2019-12-11T11:06:07.929Z</lastmod>
+        <lastmod>2019-11-24T07:17:53.953Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/odoo-js/</loc>
-        <lastmod>2019-12-12T12:43:15.733Z</lastmod>
+        <loc>http://yoursite.com/tags/js/</loc>
+        <lastmod>2019-12-12T12:44:24.670Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
