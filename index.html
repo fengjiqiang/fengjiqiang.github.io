@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -208,6 +208,42 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/20191215/">
+        <h2 class="post-title">
+                                 
+            odoo13 qweb(一)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            属性
+qweb可以对属性进行实时计算并在输出时设置，通过t-attr来实现，有三种形式：
+
+t-attr-$name可以创建一个名为$name的属性，原属性的值会被解析为新生成的属性的值
+
+1&lt;div t-attr-viewaction="&#123;&#123;action.attrs['name']&#125;&#125;"/&gt;
+
+t-attf-$name与第一个类似，但它的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-11-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -517,43 +553,6 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/odooModelData/">
-        <h2 class="post-title">
-                                 
-            Odoo开发之使用模型数据(一)
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            使用记录集和作用域(domain)查询数据
-
-在方法中，self表示当前模型，并且我们仅能访问该模型的记录。要访问其它模型就需要使用self.env。
-例如self.env['res.partner']返回一条对Partner模型的引用(也是一个空记录集)。
-我们可以使用search()或browse()来获取记录集，其中search()方法使用域表达式来定义记录选择范围。
-
-创建记录集
-
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-09-15
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -562,7 +561,7 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
     
     
         <li class="next">
-            <a href="/archives/2/">Older Posts &rarr;</a>
+            <a href="/page/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -595,11 +594,15 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="19">odoo</a>
+            <a href="/tags/#git" title="git" rel="2">git</a>
             
         
             
-            <a href="/tags/#git" title="git" rel="2">git</a>
+            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
+            
+        
+            
+            <a href="/tags/#js" title="js" rel="2">js</a>
             
         
             
@@ -612,14 +615,6 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         
             
             <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#js" title="js" rel="2">js</a>
             
         
     </div>
@@ -675,6 +670,10 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
     <ul>
       
         <li>
+          <a href="/article/20191215/">odoo13 qweb(一)</a>
+        </li>
+      
+        <li>
           <a href="/article/20191212/">Promise.resolve()初试</a>
         </li>
       
@@ -688,10 +687,6 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
       
         <li>
           <a href="/article/20191105/">odoo13 web(一)</a>
-        </li>
-      
-        <li>
-          <a href="/article/2019110501/">git修改已coomit并push的注释</a>
         </li>
       
     </ul>
@@ -714,7 +709,7 @@ D:\NewHopeOdoo10\NewHope\oa\myaddons\oa_interface_bank\models\up_payment.py
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
