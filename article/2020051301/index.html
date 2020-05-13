@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Odoo视图继承注意的点 - Ethan | Blog
+          Vue.js基础（一） - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/ViewInheritNotice/">
+    <link rel="canonical" href="http://yoursite.com/article/2020051301/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
+                              <a class="tag" href="/tags/#vue.js" title="vue.js">vue.js</a>
                             
                         </div>
-                        <h1>Odoo视图继承注意的点</h1>
+                        <h1>Vue.js基础（一）</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2019-08-24
+                            2020-05-13
                         </span>
                     </div>
                 
@@ -212,41 +212,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="授权继承的视图继承">授权继承的视图继承</h3>
-<p>模型继承时，使用授权继承方式，也称代理继承，即应用这样的代码：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">book_id = fields.Many2one(<span class="string">'training.book'</span>, string=<span class="string">"书籍"</span>, delegate=<span class="keyword">True</span>)</span><br><span class="line">或</span><br><span class="line">_inherits = &#123;<span class="string">'training.book'</span>: <span class="string">'book_id'</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>在写Form视图继承时，容易忽略的一点是在代码中加入一句：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这样在Form视图中才可以正常显示。<br>
-官方解释：</p>
-<ul>
-<li>View matching
-<ul>
-<li>if a view is requested by (model, type), the view with the right model and type, mode=primary and the lowest priority is matched</li>
-<li>when a view is requested by id, if its mode is not primary its closest parent with mode primary is matched</li>
-</ul>
-</li>
-</ul>
-<h3 id="视图继承中positionmove的用法">视图继承中position='move’的用法</h3>
-<p>直接贴代码：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_training_book_copy_form"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>training.book.copy.form<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>training.book.copy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"mode"</span>&gt;</span>primary<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"inherit_id"</span> <span class="attr">ref</span>=<span class="string">"view_training_book_form"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='author']"</span> <span class="attr">position</span>=<span class="string">"before"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_id"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"reference"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"book_rented"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//field[@name='ISBN']"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"year"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>year</code>字段定义在<code>view_training_book_form</code>视图中，通过<code>position='move'</code>可以将移动到ISBN字段后面，即可以自定义位置。<br>
-官方解释：<br>
-the position move can be used as a direct child of a spec with a inside, replace, after or before position attribute to move a node.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//@target"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"//@node"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"target_field"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"my_field"</span> <span class="attr">position</span>=<span class="string">"move"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+                <h2 id="vuejs是什么">Vue.js是什么</h2>
+<p>Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。</p>
+<h2 id="声明式渲染">声明式渲染</h2>
+<p>Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：Hello Vue!</p>
+<p>我们不再和 HTML 直接交互了。一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 #app) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</p>
+<p>除了文本插值，我们还可以像这样来绑定元素 attribute：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">    鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：鼠标悬停几秒钟查看此处动态绑定的提示信息！</p>
+<p><code>v-bind</code> attribute 被称为指令。指令带有前缀 <code>v-</code>，以表示它们是 Vue 提供的特殊 attribute。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。</p>
+<h2 id="条件与循环">条件与循环</h2>
+<p>控制切换一个元素是否显示也相当简单：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"seen"</span>&gt;</span>现在你看到我了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    seen: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：现在你看到我了</p>
+<p>我们不仅可以把数据绑定到 DOM 文本或 attribute，还可以绑定到 DOM 结构。此外，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/移除元素时自动应用过渡效果。</p>
+<p>还有其它很多指令，每个都有特殊的功能。例如，<code>v-for</code> 指令可以绑定数组的数据来渲染一个项目列表：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">      &#123;&#123; todo.text &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'学习 JavaScript'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'学习 Vue'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'整个牛项目'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/tec0827/" data-toggle="tooltip" data-placement="top" title="技术分享会0827">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/ViewInheritance/" data-toggle="tooltip" data-placement="top" title="Odoo开发视图继承">Next Post &rarr;</a>
+                            <a href="/article/20200513/" data-toggle="tooltip" data-placement="top" title="overflow:hidden清除浮动原理">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -296,7 +293,7 @@ the position move can be used as a direct child of a spec with a inside, replace
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#授权继承的视图继承"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6388;&#x6743;&#x7EE7;&#x627F;&#x7684;&#x89C6;&#x56FE;&#x7EE7;&#x627F;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#视图继承中positionmove的用法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x89C6;&#x56FE;&#x7EE7;&#x627F;&#x4E2D;position=&apos;move&#x2019;&#x7684;&#x7528;&#x6CD5;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#vuejs是什么"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Vue.js&#x662F;&#x4EC0;&#x4E48;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#声明式渲染"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x58F0;&#x660E;&#x5F0F;&#x6E32;&#x67D3;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#条件与循环"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x6761;&#x4EF6;&#x4E0E;&#x5FAA;&#x73AF;</span></a></li></ol>
         
         </div>
       </aside>
@@ -316,7 +313,7 @@ the position move can be used as a direct child of a spec with a inside, replace
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
+                          <a class="tag" href="/tags/#vue.js" title="vue.js">vue.js</a>
                         
                     </div>
                 </section>
