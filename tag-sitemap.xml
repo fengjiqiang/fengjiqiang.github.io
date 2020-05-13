@@ -38,7 +38,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/odoo/</loc>
-        <lastmod>2019-12-15T12:39:17.827Z</lastmod>
+        <lastmod>2019-12-15T12:43:19.395Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/css/</loc>
+        <lastmod>2020-05-13T06:43:12.851Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
