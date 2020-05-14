@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Vue.js基础（一） - Ethan | Blog
+          inline-block的详解和应用 - Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/2020051301/">
+    <link rel="canonical" href="http://yoursite.com/article/20200514/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#vue.js" title="vue.js">vue.js</a>
+                              <a class="tag" href="/tags/#css" title="css">css</a>
                             
                         </div>
-                        <h1>Vue.js基础（一）</h1>
+                        <h1>inline-block的详解和应用</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Ethan on
-                            2020-05-13
+                            2020-05-14
                         </span>
                     </div>
                 
@@ -212,28 +212,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="vuejs是什么">Vue.js是什么</h2>
-<p>Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。</p>
-<h2 id="声明式渲染">声明式渲染</h2>
-<p>Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>输出：Hello Vue!</p>
-<p>我们不再和 HTML 直接交互了。一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 #app) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</p>
-<p>除了文本插值，我们还可以像这样来绑定元素 attribute：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">    鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>输出：鼠标悬停几秒钟查看此处动态绑定的提示信息！</p>
-<p><code>v-bind</code> attribute 被称为指令。指令带有前缀 <code>v-</code>，以表示它们是 Vue 提供的特殊 attribute。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。</p>
-<h2 id="条件与循环">条件与循环</h2>
-<p>控制切换一个元素是否显示也相当简单：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"seen"</span>&gt;</span>现在你看到我了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    seen: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>输出：现在你看到我了</p>
-<p>我们不仅可以把数据绑定到 DOM 文本或 attribute，还可以绑定到 DOM 结构。此外，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/移除元素时自动应用过渡效果。</p>
-<p>还有其它很多指令，每个都有特殊的功能。例如，<code>v-for</code> 指令可以绑定数组的数据来渲染一个项目列表：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">      &#123;&#123; todo.text &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app-4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'学习 JavaScript'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'学习 Vue'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'整个牛项目'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+                <h2 id="inline-block的两个兄弟">inline-block的两个兄弟</h2>
+<p>display:inline; 内联元素，简单来说就是在同一行显示。他没有高度，给内联元素设置width和height是没效果的。<br>
+display:block; 块级元素，简单来说就是就是有换行，会换到第二行。同时可以设置宽高。</p>
+<h2 id="inline-block">inline-block</h2>
+<p>inline-block 的元素既具有 block 元素可以设置宽高的特性，同时又具有 inline 元素默认不换行的特性。当然不仅仅是这些特性，比如 inline-block 元素也可以设置 vertical-align（因为这个垂直对齐属性只对设置了inline-block的元素有效） 属性。<br>
+HTML 中的换行符、空格符、制表符等合并为空白符，字体大小不为 0 的情况下，空白符自然占据一定的宽度，使用inline-block 会产生了元素间的空隙。</p>
+<h2 id="详细应用">详细应用</h2>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> item_style &#123;</span><br><span class="line">    <span class="selector-tag">width</span>: 20%;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line">    <span class="selector-tag">text-align</span>: <span class="selector-tag">center</span>;</span><br><span class="line">    <span class="selector-tag">padding</span>: 20<span class="selector-tag">px</span> 0 0 12<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-class">.back_frame</span> &#123;</span><br><span class="line">        <span class="attribute">cursor</span>: pointer;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">32px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">        &amp;:hover &#123;</span><br><span class="line">            <span class="selector-tag">box-shadow</span>: 0<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 4<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(201,201,201,0<span class="selector-class">.5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.detail_name</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">13.5px</span>;</span><br><span class="line">            <span class="attribute">font-family</span>: Alibaba-PuHuiTi-M,Alibaba-PuHuiTi;</span><br><span class="line">            <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.inited_img</span> &#123;</span><br><span class="line">            <span class="attribute">position</span>: absolute;</span><br><span class="line">            <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">35px</span>;</span><br><span class="line">            <span class="attribute">height</span>: auto;</span><br><span class="line">            <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.item_img</span> &#123;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">80px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果<br>
+<img src="/img/20200514/Snipaste_2020-05-14_19-45-27.jpg" alt="inline-block的详解和应用"></p>
+<p>这两块之间有一个空隙，这个空隙是因为块级元素会换行，就有换行。<br>
+HTML 中的换行符、空格符、制表符等合并为空白符，所以换行符会占据宽度，产生间隙。</p>
+<h2 id="解决inline-block产生的间隙">解决inline-block产生的间隙</h2>
+<p>使用负值的margin：margin:-4px</p>
 
                 
 
@@ -241,13 +233,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/20200514/" data-toggle="tooltip" data-placement="top" title="inline-block的详解和应用">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/20200513/" data-toggle="tooltip" data-placement="top" title="overflow:hidden清除浮动原理">Next Post &rarr;</a>
+                            <a href="/article/2020051301/" data-toggle="tooltip" data-placement="top" title="Vue.js基础（一）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -297,7 +285,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#vuejs是什么"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Vue.js&#x662F;&#x4EC0;&#x4E48;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#声明式渲染"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x58F0;&#x660E;&#x5F0F;&#x6E32;&#x67D3;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#条件与循环"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x6761;&#x4EF6;&#x4E0E;&#x5FAA;&#x73AF;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block的两个兄弟"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">inline-block&#x7684;&#x4E24;&#x4E2A;&#x5144;&#x5F1F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">inline-block</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#详细应用"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x8BE6;&#x7EC6;&#x5E94;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决inline-block产生的间隙"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x89E3;&#x51B3;inline-block&#x4EA7;&#x751F;&#x7684;&#x95F4;&#x9699;</span></a></li></ol>
         
         </div>
       </aside>
@@ -317,7 +305,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#vue.js" title="vue.js">vue.js</a>
+                          <a class="tag" href="/tags/#css" title="css">css</a>
                         
                     </div>
                 </section>

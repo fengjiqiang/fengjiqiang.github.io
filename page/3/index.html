@@ -211,6 +211,39 @@
 
 <div class="post-preview">
 
+    <a href="/article/ViewInheritNotice/">
+        <h2 class="post-title">
+                                 
+            Odoo视图继承注意的点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            授权继承的视图继承
+模型继承时，使用授权继承方式，也称代理继承，即应用这样的代码：
+123book_id = fields.Many2one('training.book', string="书籍", delegate=True)或_inherits = &#123;'training.book': 'book_id'&#125;
+在写Form视图继承时，容易忽略的一点是在代码中加入一句：
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/ViewInheritance/">
         <h2 class="post-title">
                                  
@@ -564,6 +597,10 @@ Hello World
     <div class="tags">
         
             
+            <a href="/tags/#git" title="git" rel="2">git</a>
+            
+        
+            
             <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
             
         
@@ -572,11 +609,7 @@ Hello World
             
         
             
-            <a href="/tags/#git" title="git" rel="2">git</a>
-            
-        
-            
-            <a href="/tags/#css" title="css" rel="1">css</a>
+            <a href="/tags/#css" title="css" rel="2">css</a>
             
         
             
@@ -648,6 +681,10 @@ Hello World
     <ul>
       
         <li>
+          <a href="/article/20200514/">inline-block的详解和应用</a>
+        </li>
+      
+        <li>
           <a href="/article/2020051301/">Vue.js基础（一）</a>
         </li>
       
@@ -661,10 +698,6 @@ Hello World
       
         <li>
           <a href="/article/20191212/">Promise.resolve()初试</a>
-        </li>
-      
-        <li>
-          <a href="/article/20191211/">JavaScript setTimeout()初试</a>
         </li>
       
     </ul>
@@ -687,7 +720,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

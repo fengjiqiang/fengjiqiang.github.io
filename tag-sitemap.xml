@@ -44,15 +44,15 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/css/</loc>
-        <lastmod>2020-05-13T06:43:12.851Z</lastmod>
+        <loc>http://yoursite.com/tags/vue-js/</loc>
+        <lastmod>2020-05-13T08:10:13.743Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/vue-js/</loc>
-        <lastmod>2020-05-13T08:10:13.743Z</lastmod>
+        <loc>http://yoursite.com/tags/css/</loc>
+        <lastmod>2020-05-14T11:47:27.414Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
