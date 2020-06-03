@@ -30,13 +30,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/js/</loc>
-        <lastmod>2019-12-12T12:49:32.905Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/odoo/</loc>
         <lastmod>2019-12-15T12:43:19.395Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -52,7 +45,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/css/</loc>
-        <lastmod>2020-05-14T11:47:27.414Z</lastmod>
+        <lastmod>2020-06-03T02:15:55.455Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/js/</loc>
+        <lastmod>2020-06-03T02:16:38.834Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

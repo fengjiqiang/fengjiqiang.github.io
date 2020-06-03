@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Odoo开发添加业务逻辑 - Ethan | Blog
+          Ethan | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/add-business-logic/">
+    <link rel="canonical" href="http://yoursite.com/page/4/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,8 +71,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/article_header/article_bg.jpg')
-            /*post*/
+            background-image: url('/img/header_img/home.jpg') 
+            /*config*/
         
     }
     
@@ -85,18 +85,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="post-heading">
-                        <div class="tags">
-                            
-                              <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
-                            
-                        </div>
-                        <h1>Odoo开发添加业务逻辑</h1>
-                        <h2 class="subheading"></h2>
-                        <span class="meta">
-                            Posted by Ethan on
-                            2019-08-20
-                        </span>
+                    <div class="site-heading">
+                        <h1>Ethan</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">个人博客</span>
                     </div>
                 
 
@@ -199,199 +191,229 @@
 
 
     <!-- Main Content -->
-    <!-- Modify by Yu-Hsuan Yen -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Post Container -->
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
 
-                <h3 id="添加业务逻辑">添加业务逻辑</h3>
-<ul>
-<li>对于记录上的逻辑，使用<code>@api.multi</code>装饰器。这里，<code>self</code>将表示一个记录集，然后我们应该遍历每个记录。</li>
+
+<div class="post-preview">
+
+    <a href="/article/test/">
+        <h2 class="post-title">
+                                 
+            Hello World
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Hello World
+Hello World
+...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2018-07-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#hello" title="hello">hello</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/3/">&larr; Newer Posts</a>
+        </li>
+    
+    
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@api.multi </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_toggle_done</span><span class="params">(self)</span>:</span> </span><br><span class="line">   <span class="keyword">for</span> task <span class="keyword">in</span> self: </span><br><span class="line">       task.is_done = <span class="keyword">not</span> task.is_done </span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-<p>代码循环遍历所有待完成的任务记录，并对每个任务记录修改<code>is_done</code>字段，将值取反。<br>
-该方法不需要返回任何东西，但我们应该让它至少返回一个<code>True</code>值。</p>
-<ul>
-<li>在用<code>@api.model</code>装饰的方法上，自变量表示没有记录的模型</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@api.model </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_clear_done</span><span class="params">(self)</span>:</span> </span><br><span class="line">   dones = self.search([(<span class="string">'is_done'</span>, <span class="string">'='</span>, <span class="keyword">True</span>)]) </span><br><span class="line">   dones.write(&#123;<span class="string">'active'</span>: <span class="keyword">False</span>&#125;) </span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-<p>它应该查找已完成的所有活动记录，并使它们处于非活动状态。<br>
-我们将构建一个包含所有标记为<code>done</code>的任务的<code>dones</code>记录集。然后，我们将<code>active</code>标志设置为<code>False</code>。<br>
-<code>search</code>方法是一种返回满足某些条件的记录的API方法。这些条件写在一个<code>domain</code>中，这是一个三元组列表。<br>
-写入方法同时对记录集的所有元素设置值。要写入的值使用字典进行描述。<br>
-在这里使用<code>write</code>比遍历记录集更有效率，以便逐一为每个记录集赋值。</p>
 
-                
 
-                <hr>
-                <!-- Pager -->
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/article/xml-add-jilu/" data-toggle="tooltip" data-placement="top" title="Odoo开发在XML里定义记录">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/article/buttonshixian/" data-toggle="tooltip" data-placement="top" title="Odoo实现按钮(button)跳转">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
 
                 <br>
 
-                <!--打赏-->
-                
-                <!--打赏-->
-
-                <br>
-                <!--分享-->
-                
-                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
-                    <!--  css & js -->
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-                
-                <!--分享-->
-                <br>                       
-                
                 <!-- require APlayer -->
                 
 
-                <!-- duoshuo Share start -->
+                <!-- 如果开启评论功能 -->
                 
-                <!-- 多说 Share end-->
-
-                <!-- 多说评论框 start -->
-                
-                <!-- 多说评论框 end -->
-
-                <!-- disqus comment start -->
-                
-                <!-- disqus comment end -->
-
-                
-
             </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
             
-            <!-- Tabe of Content -->
-            <!-- Table of Contents -->
-
-  
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+            <a href="/tags/#git" title="git" rel="2">git</a>
+            
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#添加业务逻辑"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6DFB;&#x52A0;&#x4E1A;&#x52A1;&#x903B;&#x8F91;</span></a></li></ol>
+            
+            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
+            
         
-        </div>
-      </aside>
-    
-
-                
-            <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#odoo" title="odoo">odoo</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-
-                    
-                        <li><a href="http://blog.csdn.net/qq_16525279" target="_blank">CSDN Blog Me</a></li>
-                    
-                </ul>
-                
-            </div>
-        </div>
+            
+            <a href="/tags/#js" title="js" rel="3">js</a>
+            
+        
+            
+            <a href="/tags/#css" title="css" rel="2">css</a>
+            
+        
+            
+            <a href="/tags/#vue.js" title="vue.js" rel="1">vue.js</a>
+            
+        
+            
+            <a href="/tags/#docker" title="docker" rel="1">docker</a>
+            
+        
+            
+            <a href="/tags/#hello" title="hello" rel="1">hello</a>
+            
+        
+            
+            <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
+            
+        
     </div>
-</article>
+</section>
 
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
 
+        
+            <img id = "avatar_pic" src="/img/avatar/aboutme.JPG" />
+        
 
+        
+            <p>Stay hungry,Stay foolish</p>
+        
 
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
 
+            
 
+            
 
+            
+                <li>
+                    <a target="_blank"  href="https://github.com/fengjiqiang">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
 
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'hover',
-          placement: 'left',
-          icon: 'ℬ'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/article/20200602/">jQuery中empty、remove、detach区别</a>
+        </li>
+      
+        <li>
+          <a href="/article/20200514/">inline-block的详解和应用</a>
+        </li>
+      
+        <li>
+          <a href="/article/2020051301/">Vue.js基础（一）</a>
+        </li>
+      
+        <li>
+          <a href="/article/20200513/">overflow:hidden清除浮动原理</a>
+        </li>
+      
+        <li>
+          <a href="/article/20191215/">odoo13 qweb(一)</a>
+        </li>
+      
+    </ul>
+  </div>
 
+        <hr>
+    
+        <!-- Friends Blog -->
 
-<!-- chrome Firefox 中文锚点定位失效-->
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<!-- smooth scroll behavior polyfill  -->
-<script type="text/javascript" src="/js/smoothscroll.js"></script>
-<script>
-        $('#toc').on('click','a',function(a){
-            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
-            // console.log(window.navigator.userAgent,isChrome)
-                // if(isChrome) {
-                    // console.log(a.currentTarget.outerHTML);
-                    // console.log($(a.currentTarget).attr("href"));
-                    //跳转到指定锚点
-                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
-                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
-                // }
-        })  
-</script>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="http://blog.csdn.net/qq_16525279" target="_blank">CSDN Blog Me</a></li>
+    
+</ul>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
 
 
     <!-- Footer -->

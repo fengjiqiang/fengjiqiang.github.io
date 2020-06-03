@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -218,11 +218,11 @@ display:block; 块级元素，简单来说就是就是有换行，会换到第�
 <h2 id="inline-block">inline-block</h2>
 <p>inline-block 的元素既具有 block 元素可以设置宽高的特性，同时又具有 inline 元素默认不换行的特性。当然不仅仅是这些特性，比如 inline-block 元素也可以设置 vertical-align（因为这个垂直对齐属性只对设置了inline-block的元素有效） 属性。<br>
 HTML 中的换行符、空格符、制表符等合并为空白符，字体大小不为 0 的情况下，空白符自然占据一定的宽度，使用inline-block 会产生了元素间的空隙。</p>
-<h2 id="详细应用">详细应用</h2>
+<h3 id="详细应用">详细应用</h3>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> item_style &#123;</span><br><span class="line">    <span class="selector-tag">width</span>: 20%;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line">    <span class="selector-tag">text-align</span>: <span class="selector-tag">center</span>;</span><br><span class="line">    <span class="selector-tag">padding</span>: 20<span class="selector-tag">px</span> 0 0 12<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-class">.back_frame</span> &#123;</span><br><span class="line">        <span class="attribute">cursor</span>: pointer;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">32px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">        &amp;:hover &#123;</span><br><span class="line">            <span class="selector-tag">box-shadow</span>: 0<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 4<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(201,201,201,0<span class="selector-class">.5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.detail_name</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">13.5px</span>;</span><br><span class="line">            <span class="attribute">font-family</span>: Alibaba-PuHuiTi-M,Alibaba-PuHuiTi;</span><br><span class="line">            <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.inited_img</span> &#123;</span><br><span class="line">            <span class="attribute">position</span>: absolute;</span><br><span class="line">            <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">35px</span>;</span><br><span class="line">            <span class="attribute">height</span>: auto;</span><br><span class="line">            <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.item_img</span> &#123;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">80px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果<br>
 <img src="/img/20200514/Snipaste_2020-05-14_19-45-27.jpg" alt="inline-block的详解和应用"></p>
-<p>这两块之间有一个空隙，这个空隙是因为块级元素会换行，就有换行。<br>
+<p>这两块之间有一个不同于之前的比较大的空隙，这个空隙是因为块级元素会换行，就有换行。<br>
 HTML 中的换行符、空格符、制表符等合并为空白符，所以换行符会占据宽度，产生间隙。</p>
 <h2 id="解决inline-block产生的间隙">解决inline-block产生的间隙</h2>
 <p>使用负值的margin：margin:-4px</p>
@@ -232,6 +232,10 @@ HTML 中的换行符、空格符、制表符等合并为空白符，所以换行
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/20200602/" data-toggle="tooltip" data-placement="top" title="jQuery中empty、remove、detach区别">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -285,7 +289,7 @@ HTML 中的换行符、空格符、制表符等合并为空白符，所以换行
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block的两个兄弟"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">inline-block&#x7684;&#x4E24;&#x4E2A;&#x5144;&#x5F1F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">inline-block</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#详细应用"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x8BE6;&#x7EC6;&#x5E94;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决inline-block产生的间隙"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x89E3;&#x51B3;inline-block&#x4EA7;&#x751F;&#x7684;&#x95F4;&#x9699;</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block的两个兄弟"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">inline-block&#x7684;&#x4E24;&#x4E2A;&#x5144;&#x5F1F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#inline-block"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">inline-block</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#详细应用"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x8BE6;&#x7EC6;&#x5E94;&#x7528;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决inline-block产生的间隙"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x89E3;&#x51B3;inline-block&#x4EA7;&#x751F;&#x7684;&#x95F4;&#x9699;</span></a></li></ol>
         
         </div>
       </aside>
