@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/article/20200930/</loc>
+        <lastmod>2020-09-30T06:27:20.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/article/20200602/</loc>
-        <lastmod>2020-06-03T02:16:38.834Z</lastmod>
+        <lastmod>2020-09-30T06:13:44.905Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

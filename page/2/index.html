@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -208,6 +208,50 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/2019110501/">
+        <h2 class="post-title">
+                                 
+            git修改已coomit并push的注释
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            修改倒数第n次的commit
+1git rebase -i HEAD~n
+修改pick为edit
+以n=2为例
+
+编辑退出保存再退出
+修改commit注释
+1git commit --amend
+编辑退出保存再退出
+应用修改
+1git rebase --continue
+
+强推
+1git push --force
+可能需要执行的操作 切换回原来的分支
+1git checkout 分支名...
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-10-09
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#git" title="git">git</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -507,45 +551,6 @@ search()中order和limit结合使用
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/notification/">
-        <h2 class="post-title">
-                                 
-            Odoo开发之消息通知
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            添加社交网络功能
-社交网络模块 (技术名称mail) 提供留言板功能和关注的特征，以及消息和通知功能。
-社交网络邮件功能由mail.thread模型的mail模块提供。要将其添加到自定义的模型，我们需要执行以下操作︰
-
-依赖mail模块
-继承mail.thread类
-将关注者和线程小部件添加到form视图
-为关注者设置记录规则
-
-
-在我们模块的__manifest__.py清单文件中添加对m......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#odoo" title="odoo">odoo</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -591,11 +596,11 @@ search()中order和limit结合使用
     <div class="tags">
         
             
-            <a href="/tags/#git" title="git" rel="2">git</a>
+            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
             
         
             
-            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
+            <a href="/tags/#git" title="git" rel="2">git</a>
             
         
             
@@ -608,6 +613,10 @@ search()中order和limit结合使用
         
             
             <a href="/tags/#vue.js" title="vue.js" rel="1">vue.js</a>
+            
+        
+            
+            <a href="/tags/#vue" title="vue" rel="1">vue</a>
             
         
             
@@ -675,6 +684,10 @@ search()中order和limit结合使用
     <ul>
       
         <li>
+          <a href="/article/20200930/">vue中使用mockjs</a>
+        </li>
+      
+        <li>
           <a href="/article/20200602/">jQuery中empty、remove、detach区别</a>
         </li>
       
@@ -688,10 +701,6 @@ search()中order和limit结合使用
       
         <li>
           <a href="/article/20200513/">overflow:hidden清除浮动原理</a>
-        </li>
-      
-        <li>
-          <a href="/article/20191215/">odoo13 qweb(一)</a>
         </li>
       
     </ul>
@@ -714,7 +723,7 @@ search()中order和limit结合使用
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

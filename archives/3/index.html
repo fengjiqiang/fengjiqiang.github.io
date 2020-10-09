@@ -211,6 +211,228 @@
 
 <div class="post-preview">
 
+    <a href="/article/notification/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之消息通知
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            添加社交网络功能
+社交网络模块 (技术名称mail) 提供留言板功能和关注的特征，以及消息和通知功能。
+社交网络邮件功能由mail.thread模型的mail模块提供。要将其添加到自定义的模型，我们需要执行以下操作︰
+
+依赖mail模块
+继承mail.thread类
+将关注者和线程小部件添加到form视图
+为关注者设置记录规则
+
+
+在我们模块的__manifest__.py清单文件中添加对m......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-28
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/tec0827/">
+        <h2 class="post-title">
+                                 
+            技术分享会0827
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            技术分享
+
+bug解决
+
+
+readonly字段无法自动保存，可以加一个属性
+
+必填字段没写
+
+
+特殊字段active设置为False后，前端页面不会显示，在视图中传一个上下文就会显示出来。
+上下文的用法
+
+
+实现给默认值赋值
+
+xml文件
+
+ 1context="&#123;'default_lesson_id': id, 'default_subject_id': subject_id&......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritNotice/">
+        <h2 class="post-title">
+                                 
+            Odoo视图继承注意的点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            授权继承的视图继承
+模型继承时，使用授权继承方式，也称代理继承，即应用这样的代码：
+123book_id = fields.Many2one('training.book', string="书籍", delegate=True)或_inherits = &#123;'training.book': 'book_id'&#125;
+在写Form视图继承时，容易忽略的一点是在代码中加入一句：
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/ViewInheritance/">
+        <h2 class="post-title">
+                                 
+            Odoo开发视图继承
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            视图继承
+在odoo中，表单、列表和搜索视图是使用arch XML结构定义的。
+如果要通过继承扩展原有视图，我们需要用一种方法来修改这个XML。这需要通过两步来实现。
+1、定位到视图XML中某个界面元素的位置；
+2、然后在这个位置插入增补定义的视图。通过这两步就可以达到扩展视图的目的。
+继承视图正可以实现这个功能。一个继承视图声明如下：
+12345678&lt;record id="view......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/add-field/">
+        <h2 class="post-title">
+                                 
+            Odoo开发之向模型中添加字段
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            向模型中添加字段
+
+我们将添加几个字段到academy.partner模型，包括添加一个布尔类型的字段instructor。
+在model文件夹下面创建一个文件名称为partner.py文件（即创建training_academy/models/partner.py文件），该文件包含一个用于对之前某个原来的类进行继承和扩展的类，具体代码如下：
+
+12345678910111213# -*- ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/xml-add-jilu/">
+        <h2 class="post-title">
+                                 
+            Odoo开发在XML里定义记录
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用表达式设置值
+定义字段值的更精细的替代方法是eval属性。它评估一个Python表达式并将结果值分配给字段。
+该表达式在除了Python内置函数之外还有一些在其他标识符的上下文中求值。
+要处理日期，可以使用以下模块：time，datetime，timedelta和relativedelta。
+例如，要将值设置为昨天，我们将使用：
+12&lt;field name="date_deadli......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Ethan on
+            2019-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#odoo" title="odoo">odoo</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/add-business-logic/">
         <h2 class="post-title">
                                  
@@ -355,71 +577,6 @@ windows10安装docker，首先需要启用Hyper-v。
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/git_use/">
-        <h2 class="post-title">
-                                 
-            使用git命令行提交代码至GitHub
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            git安装
-git下载
-GitHub新建代码仓库
-GitHub
-提交代码至GitHub
-1234- git pull- git add 文件名- git commit -m "注释"- git push`...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2019-08-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#git" title="git">git</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/test/">
-        <h2 class="post-title">
-                                 
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Hello World
-Hello World
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Ethan on
-            2018-07-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#hello" title="hello">hello</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -430,6 +587,10 @@ Hello World
             <a href="/archives/2/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/4/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -461,11 +622,27 @@ Hello World
     <div class="tags">
         
             
-            <a href="/tags/#odoo" title="odoo" rel="19">odoo</a>
+            <a href="/tags/#odoo" title="odoo" rel="20">odoo</a>
             
         
             
             <a href="/tags/#git" title="git" rel="2">git</a>
+            
+        
+            
+            <a href="/tags/#js" title="js" rel="3">js</a>
+            
+        
+            
+            <a href="/tags/#vue" title="vue" rel="1">vue</a>
+            
+        
+            
+            <a href="/tags/#css" title="css" rel="2">css</a>
+            
+        
+            
+            <a href="/tags/#vue.js" title="vue.js" rel="1">vue.js</a>
             
         
             
@@ -478,14 +655,6 @@ Hello World
         
             
             <a href="/tags/#ubuntu" title="ubuntu" rel="1">ubuntu</a>
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#js" title="js" rel="2">js</a>
             
         
     </div>
@@ -541,23 +710,23 @@ Hello World
     <ul>
       
         <li>
-          <a href="/article/20191212/">Promise.resolve()初试</a>
+          <a href="/article/20200930/">vue中使用mockjs</a>
         </li>
       
         <li>
-          <a href="/article/20191211/">JavaScript setTimeout()初试</a>
+          <a href="/article/20200602/">jQuery中empty、remove、detach区别</a>
         </li>
       
         <li>
-          <a href="/article/20191123/">odoo qweb模板template</a>
+          <a href="/article/20200514/">inline-block的详解和应用</a>
         </li>
       
         <li>
-          <a href="/article/20191105/">odoo13 web(一)</a>
+          <a href="/article/2020051301/">Vue.js基础（一）</a>
         </li>
       
         <li>
-          <a href="/article/2019110501/">git修改已coomit并push的注释</a>
+          <a href="/article/20200513/">overflow:hidden清除浮动原理</a>
         </li>
       
     </ul>
@@ -580,7 +749,7 @@ Hello World
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
@@ -622,7 +791,7 @@ Hello World
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Ethan 2019 
+                    Copyright &copy; Ethan 2020 
                     <br>
                     Theme by <a href="http://beantech.org">BeanTech</a> 
                     <span style="display: inline-block; margin: 0 5px;">
